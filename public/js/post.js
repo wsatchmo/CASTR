@@ -58,7 +58,7 @@ $(document).ready(function() {
 
 //THIS IS THE JS FROM THE PUT REQUEST SECTION OF newpost.handlebars:::
 
-<script type="text/javascript"> //Script for sending PUT request
+//Script for sending PUT request
     $("#add-post").on("click", function(event) {
         var id = $(this).data("id");
         //console.log("Button pressed");
@@ -72,5 +72,4 @@ $(document).ready(function() {
             location.reload();
         });
     });
-</script>
 
