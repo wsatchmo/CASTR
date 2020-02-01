@@ -15,6 +15,11 @@ let posts = {
         orm.updateOne("posts", objColVals, condition, function(res){
             cb(res);
         });
+    },
+    deleteOne: function(table, objColVals, condition, cb){
+        orm.deleteOne("posts", objColVals, condition, function(res){
+            cb(res);
+        });
     }
 }; 
 
