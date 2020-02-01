@@ -34,7 +34,7 @@ var orm = {
         queryString += cols.toString(); //MAKE SURE THIS IS THE COLUMN NAMES
         queryString += ") ";
         queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length); //MAKE SURE THIS IS THE CORRECT AMT OF VARIABLES
+        queryString += printQuestionMarks(vals.length); //MAKE SURE THIS IS THE CORRECT AMOUNT OF VARIABLES
         queryString += ") ";
 
         console.log(queryString);

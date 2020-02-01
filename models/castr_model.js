@@ -1,3 +1,5 @@
+var orm = require("../config/orm.js"); // Require the ORM to interact with Database
+
 let posts = {
     all: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
         orm.all("posts", function(res){
