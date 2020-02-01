@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var cast = require("../models/cast.js");
+var cast = require("../models/index.js");
 
 
 //CHANGE TO GET DATA FROM THE DB TO POST ONTO HOME PAGE
@@ -17,9 +17,9 @@ router.get("/", function(req, res) {
 //CHANGE SO THIS CAN POST FROM A USER [OR ANON]
 router.post("/api/cast", function(req, res){
     cast.create([
-        "name", "cast"
+        "post_title", "post_type", "post_user", "post_body", "post_image"
     ], [
-        req.body.name, req.body.eaten 
+        req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
         res.json({ id: result.insertId });
     });
