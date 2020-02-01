@@ -2,7 +2,7 @@ var express = require("express");
 
 var router = express.Router();
 
-var food = require("../models/cast.js");
+var cast = require("../models/cast.js");
 
 router.get("/", function(req, res) {
     cast.all(function(data) {
