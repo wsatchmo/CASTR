@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var cast = require("../models/cast.js");
 
+var cast = require("../models/cast.js");
 
 //CHANGE TO GET DATA FROM THE DB TO POST ONTO HOME PAGE
 router.get("/", function(req, res) {
