@@ -3,18 +3,20 @@
     <div class="col-8 offset-2">
       <div class="card mt-4">
         <div class="card-body">
-          <h5 class="card-title">Example</h5>
+          <br>
+          <h3 class="card-title">Your Post</h3>
+          <br>
           <div class="field">
             <label class="label">Title</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Text input">
+                <input class="input" id="post-title" type="text" placeholder="Text input">
               </div>
             </div>
 
             <div class="field">
               <label class="label">Username</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+                <input class="input is-success" id="post-user" type="text" placeholder="Text input">
                 <span class="icon is-small is-left">
                   <i class="fas fa-user"></i>
                 </span>
@@ -22,17 +24,16 @@
                   <i class="fas fa-check"></i>
                 </span>
               </div>
-              <p class="help is-success">This username is available</p>
             </div>
 
             <div class="field">
               <label class="label">Genre</label>
               <div class="control">
-                <div class="select">
+                <div id="post-type" class="select">
                   <select>
                     <option>Select dropdown</option>
                     <option>OPTION1</option> <!-- MAKE IT SO THESE LOAD THE DIFFERENT GENRES -->
-                    <option>OPTION2</option>
+                    <option>OPTION2</option> <!-- ADD A FIELD TO MAKE YOUR OWN GENRE -->
                     <option>OPTION3</option>
                     
                   </select>
@@ -43,18 +44,32 @@
             <div class="field">
               <label class="label">Message</label>
               <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
+                <textarea id="post-body" class="textarea" placeholder="Textarea"></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Link to your image</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" id="post-image" type="text" placeholder="Text input">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
               </div>
             </div>
 
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link">Submit</button>
+                <button id="add-post" class="button is-link">Submit</button>
               </div>
               <div class="control">
                 <button class="button is-link is-light">Cancel</button>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -70,17 +85,28 @@
     -->
 
 <script type="text/javascript"> //Script for sending PUT request
-    $(".eat_burg").on("click", function(event) {
-        var id = $(this).data("id");
-        //console.log("Button pressed");
+    $("#add-post").on("click", function(event) {
+        console.log("Submit button pressed");
+        let title = $("#post-title").val();
+        let type = $("#post-type").val();
+        let user = $("#post-user").val();
+        let body = $("#post-body").val();
+        let image = $("#post-image").val();      
 
+        data = { //IS THIS RIGHT??? DOES IT NEED MORE???
+          post_title: title,
+          post_type: type,
+          post_user: user,
+          post_body: body,
+          post_image: image
+        }
         // Send the PUT request.
-        $.ajax("/burgers/update/" + id, {
+        $.ajax("/posts/update/" + id, {
         type: "PUT"
         }).then(
         function() {
             // Reload the page to get the updated list
-            location.reload();
+            location.reload(); //CHANGE THIS TO RELOAD TO A PAGE THAT DISPLAYS THE CHANGES???
         });
     });
 </script>

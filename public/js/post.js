@@ -1,3 +1,5 @@
+//VERY POSSIBLE YOU WON'T NEED ANY OF THIS:::
+
 $(document).ready(function() {
     var newPost = $("input.new-post"); //TAKE INFO FROM THE FORM new-post
     // Our new posts will go inside the todoContainer
@@ -52,3 +54,23 @@ $(document).ready(function() {
 //Make 2 handlebars files for this: 
     // - one with the forms to post in
     // - one with information posted (same information, but uneditable -- sort of just confirmation)
+
+
+//THIS IS THE JS FROM THE PUT REQUEST SECTION OF newpost.handlebars:::
+
+<script type="text/javascript"> //Script for sending PUT request
+    $("#add-post").on("click", function(event) {
+        var id = $(this).data("id");
+        //console.log("Button pressed");
+
+        // Send the PUT request.
+        $.ajax("/burgers/update/" + id, {
+        type: "PUT"
+        }).then(
+        function() {
+            // Reload the page to get the updated list
+            location.reload();
+        });
+    });
+</script>
+
