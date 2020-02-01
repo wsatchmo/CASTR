@@ -1,11 +1,10 @@
 # CASTR
 
-
-Group project #2   -- THE WIZARDS         
-Team Members: Luke Klymshyn, Will S, Krizel Minnema, Hyejin Kim
-Group Name: The Wizards
-Project Name: CASTR
-Repo: https://github.com/cshjnim/CASTR.git
+## Group project #2   -- THE WIZARDS         
+* Team Members: Luke Klymshyn, Will S, Krizel Minnema, Hyejin Kim
+* Group Name: The Wizards
+* Project Name: CASTR
+* Repo: https://github.com/cshjnim/CASTR.git
 
 Team Roles: 
 Design: Luke
