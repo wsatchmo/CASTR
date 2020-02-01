@@ -8,7 +8,7 @@ if (process.env.JAWSDB_URL){
         host: "localhost",
         user: "root",
         port: 3306,
-        password: "MrMeseeksorgy", //Change to your own
+        password: process.env.LOCAL_DB_PASSWORD, //Change to your own
         database: "content_db"
     });
 };

@@ -1,3 +1,4 @@
+
 var orm = require("../config/orm.js"); // Require the ORM to interact with Database
 
 let posts = {
@@ -24,3 +25,4 @@ let posts = {
 }; 
 
 module.exports = posts;
+
