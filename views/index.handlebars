@@ -22,9 +22,8 @@
         <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
 
-          {{#each cast}}
+          {{#each posts}}
 
-          {{#each examples}}
 
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="example/{{this.id}}">{{this.text}}</a>
@@ -37,5 +36,26 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<!--                                                        
+ _____ __ __ _____    _____ _____ _____ _____ _____ _____ _____ 
+|  _  |  |  |_   _|  | __  |   __|     |  |  |   __|   __|_   _|
+|   __|  |  | | |    |    -|   __|  |  |  |  |   __|__   | | |  
+|__|  |_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|  
+                                    |__|                         
+    -->
+
+<script type="text/javascript"> //Script for sending PUT request
+    $(".eat_burg").on("click", function(event) {
+        var id = $(this).data("id");
+        //console.log("Button pressed");
+
+        // Send the PUT request.
+        $.ajax("/burgers/update/" + id, {
+        type: "PUT"
+        }).then(
+        function() {
+            // Reload the page to get the updated list
+            location.reload();
+        });
+    });
+</script>
