@@ -1,17 +1,23 @@
-var express = require("express");
-var exphbs = require("express-handlebars");
-var PORT = process.env.PORT || 8080;
-
+var express = require("express");  //Pull in express dependency
+var exphbs = require("express-handlebars");  //Pull in express handlebars dependency
+var PORT = process.env.PORT || 8080; //initialize port
+//initialize express application
 var app = express();
 
 app.use(express.static("public"));
 
+//Parse application body JSON
 app.use(express.urlencoded({ extended: true}));
-app.use(express.json());
+app.use(express.json()); //Recognize JSON Object
 
+//Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
+//Import routes
+var routes = require("./controllers/cast-controller.js");
+//Recognize & use the routes
+app.use(routes);
 // var routes = require("./controllers/cast-controller.js");
 
 // app.use(routes);
