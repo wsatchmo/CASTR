@@ -1,7 +1,7 @@
-var db = require("../models");
+var db = require("../models/index"); //index[??]
 
 module.exports = function(app) {
-  // Get all examples
+  // Get all posts
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
