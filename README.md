@@ -1,41 +1,38 @@
 # CASTR
+**CASTR** is a cross between Pinterest and Reddit/Quora.
 
-## Group project #2   -- THE WIZARDS         
-* Team Members: Luke Klymshyn, Will S, Krizel Minnema, Hyejin Kim
-* Group Name: The Wizards
-* Project Name: CASTR
-* Repo: https://github.com/cshjnim/CASTR.git
+Users sign up for an account and subscribe to their favorite podcasts. What makes this app different from native podcast platforms or aggregator is that they’re able to pin episodes on their dashboard and pull related conversations.
 
-Team Roles: 
+The real magic behind CASTR is the conversational space around the users’ favorite content. When a podcast is posted, users are able to have real, live conversations around the topic. Eventually, they’ll receive suggested podcasts relating to their engagement (future development) and likes.
+
+## Group project #2
+* **Team Members:** Luke Klymshyn, Will Satcher, Krizel Minnema, Hyejin Kim
+* **Group Name:** The Wizards
+
+## Team Roles
 Design: Luke
-Auth/Chat/Conversation: Krizel
-Auth/Aggregating/Database: Will
-API: Hyejin
+Chat/Conversation: Krizel
+Database/User Submissions: Will
+Auth: Hyejin
 
-Technologies:
-Web Sockets https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
--Podcast API :: SimpleCast https://www.programmableweb.com/api/simplecast, MixCloud https://www.mixcloud.com/developers/ [[VoicePods, Digital Podcast Service]]
--[Audiobook API :: LibriVox] (??)
--CSS Framework :: Bulma
--ESLint, Travis
-Okta - https://developer.okta.com/blog/2018/06/08/add-authentication-to-any-web-page-in-10-minutes
--Maybe Confetti for new users -- https://www.cssscript.com/confetti-falling-animation/
+## Technologies
+* Javascript
+* HTML
+* CSS
 
-Overview: 
-CASTR is a cross between Pinterest and Reddit/Quora.
+## Dependencies
+* dotenv
+* Node.js
+* Express
+* Handlebars
 
-Users sign up for an account and subscribe to their favorite podcasts. What makes this app different from native podcast platforms or aggregator is that they’re able to pin episodes on their dashboard and pull related conversations. (Future development: people can follow users.)
+## Libraries
+* Bulma (CSS Framework)
+* jQuery
 
-The real magic behind CASTR is the conversational space around the users’ favorite content. When a podcast is posted, users are able to have real, live conversations around the topic. Eventually, they’ll receive suggested podcasts relating to their engagement (future development) and likes.  
+## Other Tools
 
-Competitors: 
-Stitcher
-Castbox
-Soundcloud
-Youtube (Kinda)
-iTunes Podcasts
-
-Simple Wireframe: 
+## Simple Wireframe:
 
 LOGIN/SIGN UP
 |
