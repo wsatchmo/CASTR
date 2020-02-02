@@ -1,4 +1,5 @@
 <div class="control">
+    <form id="comment">
     {{!-- NAME AND EMAIL --}}
     <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -15,7 +16,7 @@
             </div>
             <div class="field">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input is-success" type="email" placeholder="Email" value="alex@smith.com">
+                    <input class="input is-success" type="email" placeholder="Email" value="email@domain.com" required>
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
@@ -35,7 +36,7 @@
         <div class="field-body">
             <div class="field">
                 <div class="control">
-                    <textarea class="textarea" placeholder="Join the Conversation"></textarea>
+                    <textarea class="textarea" placeholder="Join the Conversation" required></textarea>
                 </div>
             </div>
         </div>
@@ -50,4 +51,5 @@
             Cancel
         </a>
     </p>
+    </form>
 </div>

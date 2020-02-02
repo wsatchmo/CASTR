@@ -10,10 +10,10 @@ The real magic behind CASTR is the conversational space around the users’ favo
 * **Group Name:** The Wizards
 
 ## Team Roles
-Design: Luke
-Chat/Conversation: Krizel
-Database/User Submissions: Will
-Auth: Hyejin
+* **Design:** Luke
+* **Chat/Conversation:** Krizel
+* **Database/User Submissions:** Will
+* **Auth:** Hyejin
 
 ## Technologies
 * Javascript
@@ -31,18 +31,3 @@ Auth: Hyejin
 * jQuery
 
 ## Other Tools
-
-## Simple Wireframe:
-
-LOGIN/SIGN UP
-|
-|_ VIEW PAGE
-|	-Get podcasts on database (by Genre, Author, Poster, etc)
-|	-Chat section on each page
-|
-|_ ADD PAGE
-|	-Post Podcasts from RSS Feed, Youtube Channel
-|	-Post single videos (must be a  link to youtube or Vimeo)
-|
-|_UPDATE POSTS
- -DELETE USER :: Doesn't delete posted casts or conversations
