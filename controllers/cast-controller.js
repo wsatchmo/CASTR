@@ -31,14 +31,44 @@ router.post("/posts/add", function(req, res){
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        //PUSH STUFF TO THE DB;
+        //PUSH STUFF TO THE DB
     });
 });
 
 //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
 //////////////////////////// WORKING ////////////////////////////
 
-//CHANGE SO THIS CAN EDIT A USER'S POSTS
+//MAKE:: function for the comments page --                              ||
+//Every post gets a blank {object} with {object2} inside, which         ||
+//contains data from each message to be displayed on comment page       ||
+//OR Make a new table, but shouldn't need to                            ||
+router.put("/posts/comments/:id", function(req, res){                   //
+	var condition = "id=" + req.params.id;                              //
+	console.log("condition", condition);                                //
+
+	cast.updateOne({                                                    // 
+        comment_user: req.body.post_title,                              //
+        comment_body: req.body.post_type                                //
+	}, condition, function(data){                                       //
+		res.render('index'); //CHANGE TO:: reload this page             ||
+	});
+});
+//~
+
+//PAGES NEEDED --
+  //Landing/Home
+        //Modal for login/signup
+    //Posting page √
+        //Create
+        //Update
+    //Posted page
+        //About Section
+        //Comment Section
+        //Edit button
+        //Delete button
+            //Modal
+
+//CHANGE SO THIS CAN EDIT A USER'S POSTS  === 
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;
 	console.log("condition", condition);
