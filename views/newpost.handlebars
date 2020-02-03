@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <br>
+          <h3 class="card-title">Your Post</h3>
+          <br>
+          <div class="field">
+            <label class="label">Title</label>
+              <div class="control">
+                <input class="input" id="post-title" type="text" placeholder="Text input">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" id="post-user" type="text" placeholder="Text input">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Genre</label>
+              <div class="control">
+                <div class="select">
+                  <select id="post-type">
+                    <option>Select dropdown</option>
+                    <option>OPTION1</option> <!-- MAKE IT SO THESE LOAD THE DIFFERENT GENRES -->
+                    <option>OPTION2</option> <!-- ADD A FIELD TO MAKE YOUR OWN GENRE -->
+                    <option>OPTION3</option>
+                    
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea id="post-body" class="textarea" placeholder="Textarea"></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Link to your image</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" id="post-image" type="text" placeholder="Text input">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button id="add-post" class="button is-link">Submit</button>
+              </div>
+              <div class="control">
+                <button class="button is-link is-light">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--                                                        
+ _____ __ __ _____    _____ _____ _____ _____ _____ _____ _____ 
+|  _  |  |  |_   _|  | __  |   __|     |  |  |   __|   __|_   _|
+|   __|  |  | | |    |    -|   __|  |  |  |  |   __|__   | | |  
+|__|  |_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|  
+                                    |__|                         
+    -->
+
+<script type="text/javascript"> //Script for sending PUT request
+    $("#add-post").on("click", function(event) {
+        console.log("Submit button pressed");
+        let title = $("#post-title").val();
+        let type = $("#post-type").val();
+        let user = $("#post-user").val();
+        let body = $("#post-body").val();
+        let image = $("#post-image").val();      
+
+        data = { //This sends the data from the fields to the server
+          post_title: title,
+          post_type: type,
+          post_user: user,
+          post_body: body,
+          post_image: image
+        }
+        console.log(data);
+        // Send the PUT request.
+        $.ajax("/posts/add", {
+        type: "POST",
+        data: data
+        }).then(
+        function() {
+            //CHANGE THIS TO RELOAD (render) A PAGE THAT DISPLAYS THE POST
+        });
+    });
+</script>

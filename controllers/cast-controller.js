@@ -15,23 +15,35 @@ router.get('/landing', function(req,res){
     });
 });
 
-//CHANGE SO THIS CAN POST FROM A USER [OR ANON]
-router.post("/posts/create", function(req, res){
-    posts.create([
-        "post_title", "post_type", "post_user", "post_body", "post_image"
+//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
+router.get('/posts', function(req,res){
+    res.render('newpost', {layout: 'newpost.handlebars'});
+});
+
+//ADDING POSTS
+router.post("/posts/add", function(req, res){
+    cast.create([
+        post_title = req.body.post_title,
+        post_type = req.body.post_type,
+        post_user = req.body.post_user,
+        post_body = req.body.post_body,
+        post_image = req.body.post_image
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        res.json({ id: result.insertId });
+        //PUSH STUFF TO THE DB;
     });
 });
+
+//||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
+//////////////////////////// WORKING ////////////////////////////
 
 //CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;
 	console.log("condition", condition);
 
-	posts.updateOne({
+	cast.updateOne({
         post_title: req.body.post_title,
         post_type: req.body.post_type,
         post_user: req.body.post_user,
@@ -44,9 +56,11 @@ router.put("/posts/update/:id", function(req, res){
 
 //CHANGE SO THIS CAN DELETE A USER'S POSTS
 router.delete("/posts/delete/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
 
-    posts.delete(condition, function(result) {
+    var condition = "id = " + req.params.id; 
+  
+    cast.deleteOne(condition, function(result) {
+
       if (result.affectedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
         return res.status(404).end();

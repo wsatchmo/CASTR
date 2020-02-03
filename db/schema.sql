@@ -11,3 +11,14 @@ CREATE TABLE posts (
     time_created DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE comments (
+    id INTEGER AUTO_INCREMENT,
+    postId INTEGER NOT NULL,
+    name VARCHAR (44) NOT NULL,
+    email VARCHAR (44) NOT NULL,
+    comment VARCHAR (300) NOT NULL,
+    time_created DATETIME NOT NULL DEFAULT NOW(),
+    PRIMARY KEY(id),
+    FOREIGN KEY(postId) REFERENCES posts(id)
+);
