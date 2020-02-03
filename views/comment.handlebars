@@ -1,0 +1,55 @@
+<div class="control">
+    <form id="commentForm">
+    {{!-- NAME AND EMAIL --}}
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Name</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    <input class="input" type="text" placeholder="Name" id="name">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                    <input class="input is-success" type="email" placeholder="Email" value="email@domain.com" id="email" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {{!-- COMMENT --}}
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Comment</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <textarea class="textarea" placeholder="Join the Conversation" id="commentBody" required></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="control">
+        <a class="button is-primary">
+            COMMENT
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-light">
+            EDIT
+        </a>
+    </p>
+    </form>
+</div>

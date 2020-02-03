@@ -9,3 +9,6 @@ Has fallen short or been turned aside.
 But who shall dare
 To measure loss and gain in this wise? Defeat may be victory in disguise;
 The lowest ebb is the turn of the tide." , "https://youtube.com/watch?v=zgPlhGKNado");
+
+
+INSERT INTO comments(postId, name, email, comment) VALUES (1, "krizel", "krizelminnema@gmail.com", "testing");
