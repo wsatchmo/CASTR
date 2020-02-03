@@ -38,6 +38,20 @@ router.post("/posts/add", function(req, res){
 //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
 //////////////////////////// WORKING ////////////////////////////
 
+// COMMENT ROUTE
+router.post("/api/comments/:id", function(req, res){
+    var postId  = req.params.id;
+    var nameInput = req.body.name;
+    var emailInput = req.body.email;
+    var commentForm = req.body.comment;
+
+    posts.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
+        console.log(result)
+        console.log("comment added to db")
+    });
+});
+
+
 //CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;
@@ -57,8 +71,8 @@ router.put("/posts/update/:id", function(req, res){
 //CHANGE SO THIS CAN DELETE A USER'S POSTS
 router.delete("/posts/delete/:id", function(req, res) {
 
-    var condition = "id = " + req.params.id; 
-  
+    var condition = "id = " + req.params.id;
+
     cast.deleteOne(condition, function(result) {
 
       if (result.affectedRows == 0) {
