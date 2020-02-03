@@ -50,8 +50,8 @@ $(document).ready(function() {
 
     // Submits a new post and brings user to blog page upon completion
     function submitPost(Post) {
-      $.post("/api/comment/", Post, function() {
-        window.location.href = "/comments";
+      $.post("/api/comments/", Post, function() {
+        window.location.href = "/api/comments";
       });
     }
 
