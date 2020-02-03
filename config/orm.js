@@ -1,6 +1,7 @@
  var connection = require('../config/connection.js'); //Connections dependency
 
- function printQuestionMarks(num){ // Array of question marks -- to be used as sequelize variables 
+ // Array of question marks -- to be used as parameterized variables
+ function printQuestionMarks(num){  
      var arr = [];
  
      for (var i = 0; i < num; i++){
@@ -21,10 +22,7 @@ var orm = {
 
     create: function(table, cols, vals, cb){ // CREATE -
         var queryString = "INSERT INTO " + table;
-        queryString += " (";
-        queryString += cols.toString(); //MAKE SURE THIS IS THE CORRECT COLUMN NAMES
-        queryString += ") ";
-        queryString += "VALUES (";
+        queryString += " (post_title, post_type, post_user, post_body, post_image) VALUES (";
         queryString += printQuestionMarks(vals.length); //MAKE SURE THIS IS THE CORRECT AMOUNT OF VARIABLES
         queryString += ") ";
 
@@ -35,6 +33,9 @@ var orm = {
         });
     },
 
+    //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
+    //////////////////////////// WORKING ////////////////////////////
+    
     delete: function(table, condition, cb){
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE "; //CHANGE THIS TO DELETE POSTS

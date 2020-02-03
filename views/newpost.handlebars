@@ -29,8 +29,8 @@
             <div class="field">
               <label class="label">Genre</label>
               <div class="control">
-                <div id="post-type" class="select">
-                  <select>
+                <div class="select">
+                  <select id="post-type">
                     <option>Select dropdown</option>
                     <option>OPTION1</option> <!-- MAKE IT SO THESE LOAD THE DIFFERENT GENRES -->
                     <option>OPTION2</option> <!-- ADD A FIELD TO MAKE YOUR OWN GENRE -->
@@ -93,20 +93,21 @@
         let body = $("#post-body").val();
         let image = $("#post-image").val();      
 
-        data = { //IS THIS RIGHT??? DOES IT NEED MORE???
+        data = { //This sends the data from the fields to the server
           post_title: title,
           post_type: type,
           post_user: user,
           post_body: body,
           post_image: image
         }
+        console.log(data);
         // Send the PUT request.
-        $.ajax("/posts/update/" + id, {
-        type: "PUT"
+        $.ajax("/posts/add", {
+        type: "POST",
+        data: data
         }).then(
         function() {
-            // Reload the page to get the updated list
-            location.reload(); //CHANGE THIS TO RELOAD TO A PAGE THAT DISPLAYS THE CHANGES???
+            //CHANGE THIS TO RELOAD (render) A PAGE THAT DISPLAYS THE POST
         });
     });
 </script>
