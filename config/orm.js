@@ -12,7 +12,7 @@
 
 var orm = {
     all: function(table, cb){  //ALL - 
-        var queryString = "SELECT * FROM " + table;
+        var queryString = "SELECT * FROM " + table + " ORDER BY id DESC";
 
         connection.query(queryString, function(err, result){
             if (err) throw err;

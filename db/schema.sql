@@ -7,7 +7,7 @@ CREATE TABLE posts (
     post_type varchar (50) NOT NULL,
     post_user varchar (100),
     post_body varchar (1000),
-    post_image varchar (200),
+    post_image varchar (500) NOT NULL,
     time_created DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (id)
 );

@@ -1,0 +1,48 @@
+body{
+    background-image: url("../images/diagonal.jpg");
+    background-repeat: repeat;
+    background-size: 200px;
+}
+
+#mosaic{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.mosaic-small {
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 5rem;
+    height: auto;
+    flex-grow: 1;
+}
+
+.mosaic-med{
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 15rem;
+    height: auto;
+    flex-grow: 2;
+}
+
+.mosaic-lrg{
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 25rem;
+    height: auto;
+    flex-grow: 5;
+  
+}
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
