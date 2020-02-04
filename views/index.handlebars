@@ -1,40 +1,158 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-
-        <h2>Welcome to CASTR</h2>
-
-        <h2>This is our Home Page!</h2>
-
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-
-          {{#each posts}}
-
-
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<!-- NAVBAR -->
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/landing"> <!-- LOGO -->
+            <img src="/images/logo2.png" width="112" height="28">
+        </a>
+    
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        </div>
+    
+        <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/posts">
+            Post <!-- HOME -->
+            </a>
+    
+            <a class="navbar-item">
+            Random
+            </a> <!-- RANDOM POST -->
+    
+            <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+                More <!-- MORE - Change to About, Contact, & Github Repo -->
+            </a>
+    
+            <div class="navbar-dropdown">
+                <a class="navbar-item">
+                About
+                </a>
+                <a class="navbar-item">
+                Jobs
+                </a>
+                <a class="navbar-item">
+                Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                Report an issue
+                </a>
+            </div>
+            </div>
+        </div>
+    
+        <div class="navbar-end">
+            <div class="navbar-item">
+            <div class="buttons">
+                <a class="button is-primary">
+                <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
+                </a>
+                <a class="button is-light">
+                Log in
+                </a>
+            </div>
+            </div>
+        </div>
     </div>
-    <!-- where the sign-in form will be displayed -->
-      <div id="okta-login-container"></div>
-  </div>
+</nav>
 
+<!-- MOSAIC OF IMAGES -->
+<div class="columns main">
+    <div id="mosaic" class="column">
+        {{#each posts}}
+        <img class="mosaic-image" src="{{this.post_image}}">
+        {{/each}}
+    </div>
 </div>
+
+<!-- FOOTER -->    
+<footer class="footer" style="background-color: rgb(54, 54, 54); height: 100px;">
+    <div class="content has-text-centered">
+        <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+    </div>
+</footer>
+<!-- where the sign-in form will be displayed -->
+<div id="okta-login-container"></div>
+
+<script id="IMAGE_SIZE_RANDOMIZER">
+$(".mosaic-image").each(function randomClass(){
+  console.log("this:", this);
+  let random = Math.floor(Math.random() * 6);
+  console.log(random);
+  if (random <= 1){
+      $(this).addClass("mosaic-small");
+  }
+  else if (random <= 4){
+      $(this).addClass("mosaic-med");
+  }
+  else {
+      $(this).addClass("mosaic-lrg");
+  }
+});
+</script>
+
+<!-- use the Okta widget to power authentication! -->
+<script id="OKLA_AUTH" type="text/javascript">
+  var oktaSignIn = new OktaSignIn({
+    baseUrl: "https://dev-243399.okta.com",
+    clientId: "0oa17yze2QPsrc85c4x6",
+    authParams: {
+      issuer: "default",
+      responseType: ['token', 'id_token'],
+      display: 'page'
+    }
+  });
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    oktaSignIn.token.parseTokensFromUrl(
+      // If we get here, the user just logged in.
+      function success(res) {
+        var accessToken = res[0];
+        var idToken = res[1];
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
+        window.location.hash='';
+        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+      },
+      function error(err) {
+        console.error(err);
+      }
+    );
+  } else {
+    oktaSignIn.session.get(function (res) {
+      // If we get here, the user is already signed in.
+      if (res.status === 'ACTIVE') {
+        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
+        return;
+      }
+      oktaSignIn.renderEl(
+        { el: '#okta-login-container' },
+        function success(res) {},
+        function error(err) {
+          console.error(err);
+        }
+      );
+    });
+  }
+</script>
+
+<script id="NAVBAR_BURGER_TOGGLE">
+$(document).ready(function() {
+
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function() {
+
+      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+      $(".navbar-burger").toggleClass("is-active");
+      $(".navbar-menu").toggleClass("is-active");
+
+  });
+});
+</script>

@@ -38,37 +38,20 @@ router.post("/posts/add", function(req, res){
 //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
 //////////////////////////// WORKING ////////////////////////////
 
-//MAKE:: function for the comments page --                              ||
-//Every post gets a blank {object} with {object2} inside, which         ||
-//contains data from each message to be displayed on comment page       ||
-//OR Make a new table, but shouldn't need to                            ||
-router.put("/posts/comments/:id", function(req, res){                   //
-	var condition = "id=" + req.params.id;                              //
-	console.log("condition", condition);                                //
+// COMMENT ROUTE
+router.post("/api/comments/:id", function(req, res){
+    var postId  = req.params.id;
+    var nameInput = req.body.name;
+    var emailInput = req.body.email;
+    var commentForm = req.body.comment;
 
-	cast.updateOne({                                                    // 
-        comment_user: req.body.post_title,                              //
-        comment_body: req.body.post_type                                //
-	}, condition, function(data){                                       //
-		res.render('index'); //CHANGE TO:: reload this page             ||
-	});
+    posts.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
+        console.log(result)
+        console.log("comment added to db")
+    });
 });
-//~
 
-//PAGES NEEDED --
-  //Landing/Home
-        //Modal for login/signup
-    //Posting page √
-        //Create
-        //Update
-    //Posted page
-        //About Section
-        //Comment Section
-        //Edit button
-        //Delete button
-            //Modal
-
-//CHANGE SO THIS CAN EDIT A USER'S POSTS  === 
+//CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;
 	console.log("condition", condition);
@@ -87,8 +70,8 @@ router.put("/posts/update/:id", function(req, res){
 //CHANGE SO THIS CAN DELETE A USER'S POSTS
 router.delete("/posts/delete/:id", function(req, res) {
 
-    var condition = "id = " + req.params.id; 
-  
+    var condition = "id = " + req.params.id;
+
     cast.deleteOne(condition, function(result) {
 
       if (result.affectedRows == 0) {

@@ -1,0 +1,46 @@
+<div class="control">
+    <form id="commentForm" action="/api/comments/{{post.id}} " method="post">
+    {{!-- NAME AND EMAIL --}}
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Name</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    <input class="input" type="text" placeholder="Name" id="name">
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                    <input class="input is-success" type="email" placeholder="Email" value="email@domain.com" id="email" required>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {{!-- COMMENT --}}
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Comment</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <textarea class="textarea" placeholder="Join the Conversation" id="commentBody" required></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="control">
+        <a class="button is-primary">
+            COMMENT
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-light">
+            EDIT
+        </a>
+    </p>
+    </form>
+</div>
