@@ -23,11 +23,21 @@ var orm = {
     create: function(table, cols, vals, cb){ // CREATE -
         var queryString = "INSERT INTO " + table;
         queryString += " (post_title, post_type, post_user, post_body, post_image) VALUES (";
-        queryString += printQuestionMarks(vals.length); //MAKE SURE THIS IS THE CORRECT AMOUNT OF VARIABLES
+        queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
         console.log(queryString);
         connection.query(queryString, vals, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    getOne: function(table, vals, cb){ // CREATE -
+        var queryString = "SELECT * FROM " + table + " WHERE id = ";
+        queryString += vals;
+        //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
+        connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
         });

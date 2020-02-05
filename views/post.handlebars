@@ -1,0 +1,13 @@
+<!-- PANEL OF IMAGE -->
+<div id="post-main" class="columns main">
+    <div id="post-column" class="column is-two-thirds">
+        {{#each posts}}
+        <h3 class="post-title">{{this.post_title}}</h3>
+        <img class="post-image" src="{{this.post_image}}">
+        <p class="post-body">{{this.post_body}}</p>
+        {{/each}}
+    </div>
+    <div id="comments" class="column">
+        <div class="comments-section"></div>
+    </div>
+</div>
