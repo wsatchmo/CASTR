@@ -31,7 +31,7 @@ router.post("/posts/add", function(req, res){
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        //PUSH STUFF TO THE DB;
+        //PUSH STUFF TO THE DB
     });
 });
 
@@ -50,7 +50,6 @@ router.post("/api/comments/:id", function(req, res){
         console.log("comment added to db")
     });
 });
-
 
 //CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
