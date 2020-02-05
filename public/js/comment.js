@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     // If we have this section in our url, we pull out the post id from the url
     // In localhost:8080/cms?post_id=1, postId is 1
-    if (url.indexOf("?post_id=") !== -1) {
+    if (url.indexOf("?postId=") !== -1) {
       postId = url.split("=")[1];
       getPostData(postId);
     }
@@ -50,14 +50,14 @@ $(document).ready(function() {
 
     // Submits a new post and brings user to blog page upon completion
     function submitPost(Post) {
-      $.post("/api/comments/", Post, function() {
-        window.location.href = "/api/comments";
+      $.post("/comments", Post, function() {
+        window.location.href = "/comments";
       });
     }
 
     // Gets post data for a post if we're editing
     function getPostData(id) {
-      $.get("/api/comment/" + id, function(data) {
+      $.get("/comments/" + id, function(data) {
         if (data) {
           // If this post exists, prefill our forms with its data
           nameInput.val(data.name);
@@ -74,7 +74,7 @@ $(document).ready(function() {
     function updatePost(post) {
       $.ajax({
         method: "PUT",
-        url: "/api/posts",
+        url: "/posts",
         data: post
       })
         .then(function() {

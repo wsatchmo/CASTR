@@ -51,7 +51,7 @@ $(document).ready(function() {
     }
 });
 
-//Make 2 handlebars files for this: 
+//Make 2 handlebars files for this:
     // - one with the forms to post in
     // - one with information posted (same information, but uneditable -- sort of just confirmation)
 
