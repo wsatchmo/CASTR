@@ -29,67 +29,67 @@
 
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/landing"> <!-- LOGO -->
-                <img src="/images/logo2.png" width="112" height="28">
-            </a>
-        
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-            </div>
-        
-            <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="/newpost">
-                Post <!-- HOME -->
-                </a>
-        
-                <a class="navbar-item">
-                Random
-                </a> <!-- RANDOM POST -->
-        
-                <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More <!-- MORE - Change to About, Contact, & Github Repo -->
-                </a>
-        
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                    About
-                    </a>
-                    <a class="navbar-item">
-                    Jobs
-                    </a>
-                    <a class="navbar-item">
-                    Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                    Report an issue
-                    </a>
-                </div>
-                </div>
-            </div>
-        
-            <div class="navbar-end">
-                <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary">
-                    <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
-                    </a>
-                    <a class="button is-light">
-                    Log in
-                    </a>
-                </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- NAVBAR -->
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+          <a class="navbar-item" href="/landing"> <!-- LOGO -->
+              <img src="/images/logo2.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+          </a>
+          </div>
+      
+          <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+              <a class="navbar-item" href="/newpost">
+              Post <!-- HOME -->
+              </a>
+      
+              <a class="navbar-item">
+              Random
+              </a> <!-- RANDOM POST -->
+      
+              <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                  More <!-- MORE - Change to About, Contact, & Github Repo -->
+              </a>
+      
+              <div class="navbar-dropdown">
+                  <a class="navbar-item">
+                  About
+                  </a>
+                  <a class="navbar-item">
+                  Jobs
+                  </a>
+                  <a class="navbar-item">
+                  Contact
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                  Report an issue
+                  </a>
+              </div>
+              </div>
+          </div>
+      
+          <div class="navbar-end">
+              <div class="navbar-item">
+              <div class="buttons">
+                  <a class="button is-primary modal-button">
+                  <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
+                  </a>
+                  <a class="button is-light modal-button" data-target="#signin-modal">
+                  Log in
+                  </a>
+              </div>
+              </div>
+          </div>
+      </div>
+  </nav>
 
 
 {{!-- __________            _      ______   
@@ -125,20 +125,47 @@
   '""""       /'    .L_      `\       """"' --}}
 
 
-    <!-- FOOTER -->    
-    <footer class="footer" style="background-color: rgb(54, 54, 54); height: 100px;">
-        <div class="content has-text-centered">
-            <p>
-            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-            </p>
-        </div>
-    </footer>
-    <!-- where the sign-in form will be displayed -->
-    <div id="okta-login-container"></div>
+  <!-- FOOTER -->    
+  <footer class="footer" style="background-color: rgb(54, 54, 54); height: 100px;">
+      <div class="content has-text-centered">
+          <p>
+          <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          </p>
+      </div>
+  </footer>
+  <!-- where the sign-in form will be displayed -->
+
+  <div id="signin-modal" class="modal">
+    <div class="modal-background"></div>
+    <div id="okta-login-container">
+      <!-- Any other Bulma elements you want -->
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 
 </body>
+
+<!-- MODAL -->
+<script id="MODAL_JS">
+$(".modal-button").click(function() {
+  var target = $(this).data("target");
+  $("html").addClass("is-clipped");
+  $(target).addClass("is-active");
+});
+
+$(".modal-close").click(function() {
+  $("html").removeClass("is-clipped");
+  $(this).parent().removeClass("is-active");
+});
+
+$(".modal-background").click(function() {
+  $("html").removeClass("is-clipped");
+  $(this).parent().removeClass("is-active");
+});
+</script>
+
 
 <!-- use the Okta widget to power authentication! -->
 <script id="OKLA_AUTH" type="text/javascript">
@@ -183,6 +210,7 @@
     });
   }
 </script>
+
 
 <script id="NAVBAR_BURGER_TOGGLE">
 $(document).ready(function() {

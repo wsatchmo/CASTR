@@ -2,11 +2,18 @@
 <div class="columns main">
     <div id="mosaic" class="column">
         {{#each posts}}
-        <img class="mosaic-image" src="{{this.post_image}}">
+        <img class="mosaic-image" src="{{this.post_image}}" data-id="{{this.id}}">
         {{/each}}
     </div>
 </div>
 
+<script id="GO_TO_PAGE">
+$(".mosaic-image").on("click", function toPage(){
+    let id = $(this).attr("data-id");
+    console.log(id);
+    window.location.href = "/post/" + id;
+});
+</script>
 
 <script id="IMAGE_SIZE_RANDOMIZER">
 $(".mosaic-image").each(function randomClass(){
