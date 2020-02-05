@@ -1,17 +1,17 @@
  var connection = require('../config/connection.js'); //Connections dependency
 
  // Array of question marks -- to be used as parameterized variables
- function printQuestionMarks(num){  
+ function printQuestionMarks(num){
      var arr = [];
- 
+
      for (var i = 0; i < num; i++){
          arr.push('?');
      };
      return arr.toString();
- }; 
+ };
 
 var orm = {
-    all: function(table, cb){  //ALL - 
+    all: function(table, cb){  //ALL -
         var queryString = "SELECT * FROM " + table + " ORDER BY id DESC";
 
         connection.query(queryString, function(err, result){
@@ -45,7 +45,23 @@ var orm = {
 
     //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
     //////////////////////////// WORKING ////////////////////////////
-    
+
+    comment: function(table, cols, vals, cb){ // CREATE -
+        var queryString = "INSERT INTO " + table;
+        queryString += " (postId, name, email, comment) VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+
+        console.log(queryString);
+        connection.query(queryString, vals, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    //||||||||||||||||||||||||||NOT SURE?||||||||||||||||||||||||||||
+    //////////////////////////// WORKING ////////////////////////////
+
     delete: function(table, condition, cb){
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE "; //CHANGE THIS TO DELETE POSTS
@@ -59,7 +75,7 @@ var orm = {
 		cb(result);
 	    });
     },
-    
+
     updateOne: function(table, condition, cb){
         var queryString = "UPDATE " + table;
         queryString += " SET devoured = true WHERE "; //CHANGE THIS TO UPDATE POSTS -- WHEN EDITING? ETC [???]
