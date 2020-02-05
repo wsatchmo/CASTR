@@ -20,6 +20,8 @@ router.get('/posts', function(req,res){
     res.render('newpost', {layout: 'newpost.handlebars'});
 });
 
+
+
 //ADDING POSTS
 router.post("/posts/add", function(req, res){
     cast.create([
@@ -38,14 +40,20 @@ router.post("/posts/add", function(req, res){
 //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
 //////////////////////////// WORKING ////////////////////////////
 
+//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
+router.get('/posts', function(req,res){
+    res.render('newpost', {layout: 'newpost.handlebars'});
+});
+
+
 // COMMENT ROUTE
-router.post("/api/comments/:id", function(req, res){
+router.post("/comments/:id", function(req, res){
     var postId  = req.params.id;
     var nameInput = req.body.name;
     var emailInput = req.body.email;
-    var commentForm = req.body.comment;
+    var commentForm = req.body.commentBody;
 
-    posts.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
+    cast.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
         console.log(result)
         console.log("comment added to db")
     });

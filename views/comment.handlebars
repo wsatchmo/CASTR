@@ -1,46 +1,84 @@
+{{!-- SECTION FOR POST --}}
+
+{{!-- COMMENT TO APPEAR ON POST --}}
+
+​
+<div class="row">
+  <div class="col s2"></div>
+   <form action="/comment/{{post._id}}" method="POST" class="card-panel col s8 commenting">
+    <p id="commentHeading">Comment on this post:</p>
+      <div class="row">
+        <div class="input-field">
+          <input id="icon_prefix" type="text" placeholder="Name" name="name" class="validate active formfields formInput">
+        </div>
+        <div class="input-field">
+          <input id="icon_telephone" type="text" placeholder="Comment" name="comment" class="validate active formfields formInput">
+        </div>
+      </div>
+       <!-- Submit Button -->
+      <div class="row">
+        <div class="input-field">
+        <center><input class="btn add-comment-button brown lighten-1" type="submit" value="Submit"></center>
+        </div>
+      </div>
+    </form>
+</div>
+​
+{{!-- comments go here --}}
+<div class="row">
+  <div class="col s2"></div>
+    <div class="col s8">
+      <h5>Comments:</h5>
+        {{#if post.comment}}
+          {{#each post.comment}}
+            <div class="card">
+              <p id="nameComment">{{name}}
+
+                <form action="/deleteComment/{{this._id}}" method="POST">
+​
+                  <button class="glyphicon glyphicon-remove right red" id="deletebutt"></button>
+
+                </form>
+​
+              </p>
+              <p id= "comment">{{body}}<p>
+            </div>
+          {{/each}}
+          {{else}}
+          <p>No Comments Yet.</p>
+        {{/if}}
+    </div>
+</div>
+
+{{!-- FORM --}}
+
 <div class="control">
     <form id="commentForm" action="/api/comments/{{post.id}} " method="post">
-    {{!-- NAME AND EMAIL --}}
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Name</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <p class="control is-expanded has-icons-left">
-                    <input class="input" type="text" placeholder="Name" id="name">
-                </p>
+        {{!-- NAME AND EMAIL --}}
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Name</label>
             </div>
-            <div class="field">
-                <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input is-success" type="email" placeholder="Email" value="email@domain.com" id="email" required>
-                </p>
-            </div>
-        </div>
-    </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" type="text" placeholder="Name" id="name">
+                    </p>
+                </div>
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                    </div>
+                    <p class="help is-danger">This email is invalid</p>
 
-    {{!-- COMMENT --}}
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label class="label">Comment</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control">
-                    <textarea class="textarea" placeholder="Join the Conversation" id="commentBody" required></textarea>
                 </div>
             </div>
         </div>
-    </div>
-    <p class="control">
-        <a class="button is-primary">
-            COMMENT
-        </a>
-    </p>
-    <p class="control">
-        <a class="button is-light">
-            EDIT
-        </a>
-    </p>
-    </form>
-</div>
+
