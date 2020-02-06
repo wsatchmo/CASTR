@@ -12,13 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pixla - The Everything Network</title>
 
-    <!-- OCTA -->
-    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js"
-        type="text/javascript"></script>
-    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css"
-        type="text/css" rel="stylesheet" />
-    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css"
-        type="text/css" rel="stylesheet" />
+    <!-- OTA -->
+    <script src="https://global.oktacdn.com/okta-signin-widget/3.2.2/js/okta-sign-in.min.js" type="text/javascript"></script>
+
+    <link href="https://global.oktacdn.com/okta-signin-widget/3.2.2/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
 
     <!-- Bulma Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
@@ -77,7 +74,7 @@
           </div>
       
           <div class="navbar-end">
-              <div class="navbar-item">
+              <div class="navbar-item" id="messagebox">
               <div class="buttons" id="okta-button">
                   <a class="button is-primary modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
@@ -173,7 +170,7 @@ $(".modal-background").click(function() {
     baseUrl: "https://dev-243399.okta.com",
     clientId: "0oa17yze2QPsrc85c4x6",
     authParams: {
-      issuer: "default",
+      issuer: "https://dev-243399.okta.com/oauth2/default",
       responseType: ['token', 'id_token'],
       display: 'page'
     }
@@ -187,8 +184,8 @@ $(".modal-background").click(function() {
         oktaSignIn.tokenManager.add('accessToken', accessToken);
         oktaSignIn.tokenManager.add('idToken', idToken);
         window.location.hash='';
-        hide(document.getElementById("okta-button"));
-        document.getElementById("okta-button").innerHTML = "Hello, " + idToken.claims.email;
+        $(".okta-button").hide();
+        document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email;
       },
       function error(err) {
         console.error(err);
@@ -198,7 +195,7 @@ $(".modal-background").click(function() {
     oktaSignIn.session.get(function (res) {
       // If we get here, the user is already signed in.
       if (res.status === 'ACTIVE') {
-        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
+        document.getElementById("messageBox").innerHTML = "Hello, " + res.login;
         return;
       }
       oktaSignIn.renderEl(
