@@ -1,7 +1,45 @@
-body{
+body, html{
+    height: 100%;
+}
+
+.main{
     background-image: url("../images/diagonal.jpg");
+    height: 100%;
     background-repeat: repeat;
     background-size: 200px;
+}
+
+#post-main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#post-column{
+   margin-left: 5%;
+}
+
+#comments{
+
+}
+
+.card{
+    margin-top: 5%;
+}
+
+.post-title{
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.post-body{
+    margin-top: 15px;
+    color: white;
+}
+
+.card-content{
+    background-color: rgb(20, 20, 20);
 }
 
 #mosaic{
@@ -10,7 +48,7 @@ body{
     align-content: stretch;
     justify-content: space-evenly;
     align-items: stretch;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .mosaic-small {
@@ -38,7 +76,6 @@ body{
     width: 25rem;
     height: auto;
     flex-grow: 5;
-  
 }
 
 .footer{

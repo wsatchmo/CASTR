@@ -7,6 +7,12 @@ let posts = {
             cb(res);
         });
     }, //create columns for new posts
+    getOne: function(vals, cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+        orm.getOne("posts", vals, function(res){
+            //console.log("Vals: ", vals);
+            cb(res);
+        });
+    }, //create columns for new posts
     create: function(cols, vals, cb){
         orm.create("posts", cols, vals, function(res){
             cb(res);
@@ -25,4 +31,3 @@ let posts = {
 }; 
 
 module.exports = posts;
-

@@ -16,14 +16,12 @@ router.get("/landing", function(req,res){
 });
 
 //POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
-router.get("/posts", function(req,res){
-    res.render("newpost", {layout: "newpost.handlebars"});
+router.get('/newpost', function(req,res){
+    res.render('newpost', {layout: 'main.handlebars'});
 });
 
-
-
 //ADDING POSTS
-router.post("/posts/add", function(req, res){
+router.post("/newpost/add", function(req, res){
     cast.create([
         post_title = req.body.post_title,
         post_type = req.body.post_type,
@@ -34,6 +32,23 @@ router.post("/posts/add", function(req, res){
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
         //PUSH STUFF TO THE DB
+        res.render('/post/' + req.body.id);
+    });
+});
+
+//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
+router.get('/post/', function(req,res){
+    res.render('post', {layout: 'main.handlebars'});
+});
+
+router.get('/post/:id', function(req,res){
+    var id = req.params.id;
+    //console.log("ID: ", id);
+    cast.getOne(id, function(data){ //Display image by id
+        var postsObj = {posts: data};
+        console.log("postsObj :", postsObj);
+        
+        res.render('post', postsObj);
     });
 });
 

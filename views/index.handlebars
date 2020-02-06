@@ -1,86 +1,19 @@
-<!-- NAVBAR -->
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/landing"> <!-- LOGO -->
-            <img src="/images/logo2.png" width="112" height="28">
-        </a>
-    
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-        </div>
-    
-        <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="/posts">
-            Post <!-- HOME -->
-            </a>
-    
-            <a class="navbar-item">
-            Random
-            </a> <!-- RANDOM POST -->
-    
-            <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                More <!-- MORE - Change to About, Contact, & Github Repo -->
-            </a>
-    
-            <div class="navbar-dropdown">
-                <a class="navbar-item">
-                About
-                </a>
-                <a class="navbar-item">
-                Jobs
-                </a>
-                <a class="navbar-item">
-                Contact
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                Report an issue
-                </a>
-            </div>
-            </div>
-        </div>
-    
-        <div class="navbar-end">
-            <div class="navbar-item">
-            <div class="buttons">
-                <a class="button is-primary">
-                <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
-                </a>
-                <a class="button is-light">
-                Log in
-                </a>
-            </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- MOSAIC OF IMAGES -->
 <div class="columns main">
     <div id="mosaic" class="column">
         {{#each posts}}
-        <img class="mosaic-image" src="{{this.post_image}}">
+        <img class="mosaic-image" src="{{this.post_image}}" data-id="{{this.id}}">
         {{/each}}
     </div>
 </div>
 
-<!-- FOOTER -->    
-<footer class="footer" style="background-color: rgb(54, 54, 54); height: 100px;">
-    <div class="content has-text-centered">
-        <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        </p>
-    </div>
-</footer>
-<!-- where the sign-in form will be displayed -->
-<div id="okta-login-container"></div>
+<script id="GO_TO_PAGE">
+$(".mosaic-image").on("click", function toPage(){
+    let id = $(this).attr("data-id");
+    console.log(id);
+    window.location.href = "/post/" + id;
+});
+</script>
 
 <script id="IMAGE_SIZE_RANDOMIZER">
 $(".mosaic-image").each(function randomClass(){
@@ -96,63 +29,5 @@ $(".mosaic-image").each(function randomClass(){
   else {
       $(this).addClass("mosaic-lrg");
   }
-});
-</script>
-
-<!-- use the Okta widget to power authentication! -->
-<script id="OKLA_AUTH" type="text/javascript">
-  var oktaSignIn = new OktaSignIn({
-    baseUrl: "https://dev-243399.okta.com",
-    clientId: "0oa17yze2QPsrc85c4x6",
-    authParams: {
-      issuer: "	https://dev-243399.okta.com/oauth2/default",
-      responseType: ['token', 'id_token'],
-      display: 'page'
-    }
-  });
-  if (oktaSignIn.token.hasTokensInUrl()) {
-    oktaSignIn.token.parseTokensFromUrl(
-      // If we get here, the user just logged in.
-      function success(res) {
-        var accessToken = res[0];
-        var idToken = res[1];
-        oktaSignIn.tokenManager.add('accessToken', accessToken);
-        oktaSignIn.tokenManager.add('idToken', idToken);
-        window.location.hash='';
-        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
-      },
-      function error(err) {
-        console.error(err);
-      }
-    );
-  } else {
-    oktaSignIn.session.get(function (res) {
-      // If we get here, the user is already signed in.
-      if (res.status === 'ACTIVE') {
-        document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-        return;
-      }
-      oktaSignIn.renderEl(
-        { el: '#okta-login-container' },
-        function success(res) {},
-        function error(err) {
-          console.error(err);
-        }
-      );
-    });
-  }
-</script>
-
-<script id="NAVBAR_BURGER_TOGGLE">
-$(document).ready(function() {
-
-  // Check for click events on the navbar burger icon
-  $(".navbar-burger").click(function() {
-
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
-
-  });
 });
 </script>
