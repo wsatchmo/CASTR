@@ -78,7 +78,7 @@
       
           <div class="navbar-end">
               <div class="navbar-item">
-              <div class="buttons">
+              <div class="buttons" id="okta-button">
                   <a class="button is-primary modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a>
@@ -187,7 +187,8 @@ $(".modal-background").click(function() {
         oktaSignIn.tokenManager.add('accessToken', accessToken);
         oktaSignIn.tokenManager.add('idToken', idToken);
         window.location.hash='';
-        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+        hide(document.getElementById("okta-button"));
+        document.getElementById("okta-button").innerHTML = "Hello, " + idToken.claims.email;
       },
       function error(err) {
         console.error(err);
@@ -209,6 +210,27 @@ $(".modal-background").click(function() {
       );
     });
   }
+   function callMessagesApi() {
+  var accessToken = oktaSignIn.tokenManager.get("accessToken");
+
+  if (!accessToken) {
+    return;
+  }
+
+  // Make the request using jQuery
+  $.ajax({
+    url: "https://dev-243399.okta.com/oauth2/default",
+    headers: {
+      Authorization : "Bearer " + accessToken.accessToken
+    },
+    success: function(response) {
+      console.log('Messages', response);
+    },
+    error: function(response) {
+      console.error(response);
+    }
+  });
+}
 </script>
 
 
