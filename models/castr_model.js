@@ -7,8 +7,19 @@ let posts = {
             cb(res);
         });
     }, //create columns for new posts
+    allGenre: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+        orm.allGenre("posts", function(res){
+            cb(res);
+        });
+    }, //create columns for new posts
     getOne: function(vals, cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
         orm.getOne("posts", vals, function(res){
+            //console.log("Vals: ", vals);
+            cb(res);
+        });
+    }, //create columns for new posts
+    getLast: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+        orm.getLast("posts", function(res){
             //console.log("Vals: ", vals);
             cb(res);
         });

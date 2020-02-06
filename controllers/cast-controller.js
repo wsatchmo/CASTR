@@ -8,16 +8,20 @@ router.get("/", function(req, res){
 });
 
 router.get("/landing", function(req,res){
-    cast.all(function(data){ //Display all burgers on home page
+    cast.all(function(data){ //Display all posts on home page
         var postsObj = {posts: data};
         console.log(postsObj);
         res.render("index", postsObj);
     });
 });
 
-//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
+//POSTS PAGE FOR NEW POSTS ---
 router.get('/newpost', function(req,res){
-    res.render('newpost', {layout: 'main.handlebars'});
+    cast.allGenre(function(data){ //Display all ids in dropdown
+        var postsObj = {posts: data};
+        console.log(postsObj);
+        res.render("newpost", postsObj);
+    });
 });
 
 //ADDING POSTS
@@ -31,12 +35,21 @@ router.post("/newpost/add", function(req, res){
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        //PUSH STUFF TO THE DB
-        res.render('/post/' + req.body.id);
+        //RENDER NEWEST ITEM FROM DB 
     });
 });
 
-//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
+router.get('/newpost/post', function(req,res){
+    //GET THE LAST POST BY ID
+    cast.getLast(function(result){
+        console.log("result ::");
+        console.log(result[0].id);
+        //GIVES THE RESULT NUMBER
+        res.redirect("/post/" + result[0].id);
+    });
+});
+
+//PAGE OF INDIVIDUAL POSTS ---
 router.get('/post/', function(req,res){
     res.render('post', {layout: 'main.handlebars'});
 });
@@ -54,12 +67,6 @@ router.get('/post/:id', function(req,res){
 
 //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
 //////////////////////////// WORKING ////////////////////////////
-
-//POSTS PAGE FOR ADDING, EDITING, DELETING POSTS ---
-router.get("/posts", function(req,res){
-    res.render("newpost", {layout: "newpost.handlebars"});
-});
-
 
 // COMMENT ROUTE
 router.post("/comments/:id", function(req, res){

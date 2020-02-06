@@ -20,6 +20,16 @@ var orm = {
         });
     },
 
+    allGenre: function(table, cb){  //ALL BY GENRE -
+        var queryString = "SELECT DISTINCT post_type FROM " + table;
+
+        //console.log(queryString);
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
     create: function(table, cols, vals, cb){ // CREATE -
         var queryString = "INSERT INTO " + table;
         queryString += " (post_title, post_type, post_user, post_body, post_image) VALUES (";
@@ -36,6 +46,15 @@ var orm = {
     getOne: function(table, vals, cb){ // CREATE -
         var queryString = "SELECT * FROM " + table + " WHERE id = ";
         queryString += vals;
+        //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    getLast: function(table, cb){ // CREATE -
+        var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
         //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
         connection.query(queryString, function(err, result){
             if (err) throw err;

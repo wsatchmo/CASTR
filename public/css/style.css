@@ -78,8 +78,30 @@ body, html{
     flex-grow: 5;
 }
 
+#newpost-main{
+    background-color: rgb(20, 20, 20);
+    height: 100%;
+}
+
+#newpost-cardbody{
+    background-color: rgb(54, 54, 54);
+    padding: 2%;
+    color: rgb(220, 220, 220);
+    margin-bottom: 150px;
+}
+
+.genre-input{
+    width: 33%;
+}
+
+.white-label{
+    color: rgb(220, 220, 220);
+}
+
 .footer{
     position: fixed;
     bottom: 0px;
     width: 100%;
+    background-color: rgb(54, 54, 54); 
+    height: 100px;
 }
