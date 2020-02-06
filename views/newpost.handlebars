@@ -7,20 +7,19 @@
         <br>
         <div class="field">
           <label class="label white-label">Title</label>
-            <div class="control">
+            <div class="control has-icons-right">
               <input class="input is-info" id="post-title" type="text" placeholder="Post Title">
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
             </div>
           </div>
 
           <div class="field">
             <label class="label white-label">Username</label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control">
               <input class="input is-info" id="post-user" type="text" placeholder="Username">
               <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
               </span>
             </div>
           </div>
@@ -43,7 +42,7 @@
           <div class="field">
             <label class="label white-label">Message</label>
             <div class="control">
-              <textarea id="post-body" class="textarea" placeholder="Post Message"></textarea>
+              <textarea id="post-body" class="textarea" placeholder="Post Message or <iframe> Embed"></textarea>
             </div>
           </div>
 
@@ -52,7 +51,7 @@
             <div class="control has-icons-left has-icons-right">
               <input class="input is-info" id="post-image" type="text" placeholder="Image url">
               <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-image"></i>
               </span>
               <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
@@ -145,7 +144,7 @@ $("#add-post").on("click", function(event) {
           “More, more, more!”
         </p>
         <p class="subtitle">
-          Billy Idol & Zoidberg
+          - Billy Idol & Zoidberg
         </p>
       </div>
       <footer class="card-footer" style="padding: 15px;">

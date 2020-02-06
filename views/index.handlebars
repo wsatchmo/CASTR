@@ -2,7 +2,7 @@
 <div class="columns main">
     <div id="mosaic" class="column">
         {{#each posts}}
-        <img class="mosaic-image lazy" src="{{this.post_image}}" data-id="{{this.id}}">
+        <img class="mosaic-image lazy" src="{{this.post_image}}" data-id="{{this.id}}" onerror="this.src='/images/error.jpg'" loading="lazy" style="cursor:pointer;">
         {{/each}}
     </div>
 </div>

@@ -5,15 +5,16 @@
         <div class="card" style="margin-bottom: 100px;">
             <div class="card-image">
                 <figure class="image is-3by3">
-                    <img class="post-image" src="{{this.post_image}}">
+                    <img class="post-image" src="{{this.post_image}}" onerror="this.src='/images/error.jpg'">
                 </figure>
             </div>
             <div class="card-content" id="post-content">
                 <div class="media-content">
                     <p class="post-title title is-4">{{this.post_title}}</p>
+                    <p class="subtitle">{{this.post_user}}</p>
                 </div>
                 <div class="content post-body">{{this.post_body}}</div>
-                <div ></div>
+                <div id="if-embed"></div>
             </div>
             <footer class="card-footer">
                 <p class="card-footer-item">
@@ -53,4 +54,19 @@
             window.location.href = "/post/" + previousNum;
         }
     };
+</script>
+
+<script>
+    $(document).ready(function() {
+        let postBod = $(".post-body");
+        console.log(postBod);
+        let postBodVal = postBod[0].innerText;
+        console.log(postBodVal);
+        let ifEmbed = $("#if-embed");
+        if (postBodVal.includes("<iframe")) {
+           console.log("Has embed link");
+           ifEmbed.append(postBodVal);
+           postBod.remove();
+        } 
+    });
 </script>
