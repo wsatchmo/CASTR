@@ -1,21 +1,21 @@
 <div class="columns" id="newpost-main">
   <div class="column" id="newpost-card">
-    <div class="card mt-4">
+    <div class="card mt-4" style="margin-left: 2%; margin-right: 2%;">
       <div class="card-body" id="newpost-cardbody">
         <br>
-        <h3 class="card-title">Your Post</h3>
+        <h3 class="card-title" id="newpost-title">Create New Post</h3>
         <br>
         <div class="field">
           <label class="label white-label">Title</label>
             <div class="control">
-              <input class="input is-primary" id="post-title" type="text" placeholder="Post Title">
+              <input class="input is-info" id="post-title" type="text" placeholder="Post Title">
             </div>
           </div>
 
           <div class="field">
             <label class="label white-label">Username</label>
             <div class="control has-icons-left has-icons-right">
-              <input class="input is-primary" id="post-user" type="text" placeholder="Username">
+              <input class="input is-info" id="post-user" type="text" placeholder="Username">
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
@@ -36,7 +36,7 @@
                     {{/each}}
                 </select>
               </div>
-              <input class="input genre-input is-primary" name="genre-new" type="text" placeholder="Create Genre">  {{!-- MAKE IT SO USERS CAN FILL THIS IS TO MAKE A GENRE --}}
+              <input class="input genre-input is-info" name="genre-new" type="text" placeholder="Create Genre">  {{!-- MAKE IT SO USERS CAN FILL THIS IS TO MAKE A GENRE --}}
             </div>
           </div>
 
@@ -50,7 +50,7 @@
           <div class="field">
             <label class="label white-label">Link to your image</label>
             <div class="control has-icons-left has-icons-right">
-              <input class="input is-primary" id="post-image" type="text" placeholder="Image url">
+              <input class="input is-info" id="post-image" type="text" placeholder="Image url">
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
               </span>
@@ -90,7 +90,6 @@ $("#add-post").on("click", function(event) {
     let user = $("#post-user").val();
     let body = $("#post-body").val();
     let image = $("#post-image").val();
-
     let genreInput = $(".genre-input");
     let genreSelect = $(".genre-select");
 
@@ -101,29 +100,59 @@ $("#add-post").on("click", function(event) {
       type = genreSelect.val();
     }
 
-    data = { //This sends the data from the fields to the server
-      post_title: title,
-      post_type: type,
-      post_user: user,
-      post_body: body,
-      post_image: image
+    if(user === ""){
+      user = "Anonymous";
     }
-    console.log(data);
-    // Send the PUT request.
-    $.ajax("/newpost/add", {
-      type: "POST",
-      data: data
-      }).then(
-      function(req) {
-          // RELOAD (render) A PAGE THAT DISPLAYS THE POST
+
+    //If any of these are blank, modal
+    if ((type === "") || (image === "") || (title === "") ){
+      console.log("Not enough info");
+      $("#required-modal").addClass("is-active");
+    } else {
+      //otherwise add to db
+      data = { //This sends the data from the fields to the server
+        post_title: title,
+        post_type: type,
+        post_user: user,
+        post_body: body,
+        post_image: image
+      }
+      //console.log(data);
+      // Send the PUT request.
+      $.ajax("/newpost/add", {
+        type: "POST",
+        data: data
+        }).then(
+        function(req) {
+           
       });
-      console.log("Am i even firing??"); //NOT YET.......
-      window.location.href = '/newpost/post';
+      // LOAD A PAGE THAT DISPLAYS THE POST
+      setTimeout(function() {
+        //console.log("Am i even firing??"); //In 5 sec, go to post
+        window.location.href = '/newpost/post';
+      }, 5000);
+    }
+
 });
 
 </script>
 
-<script id="CREATE_GENRE_FORM">
+  <div id="required-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="card" id="modal-content" style="margin: 3%;">
+      <div class="card-content">
+        <p class="title">
+          “More, more, more!”
+        </p>
+        <p class="subtitle">
+          Billy Idol & Zoidberg
+        </p>
+      </div>
+      <footer class="card-footer" style="padding: 15px;">
+        <p>We're sorry, but you haven't provided enough information for this post. Please include at minimum: a title, genre, and image link.</p>
+      </footer>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 
-  console.log("type: ", type);
-</script>
+</body>

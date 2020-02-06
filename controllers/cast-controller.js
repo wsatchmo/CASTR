@@ -56,12 +56,28 @@ router.get('/post/', function(req,res){
 
 router.get('/post/:id', function(req,res){
     var id = req.params.id;
+    console.log("req: ");
+    console.log(req.params);
     //console.log("ID: ", id);
     cast.getOne(id, function(data){ //Display image by id
         var postsObj = {posts: data};
         console.log("postsObj :", postsObj);
-        
-        res.render('post', postsObj);
+        if (postsObj.posts.length !== 0){
+            res.render('post', postsObj);
+        } else {
+            res.redirect("/newpost");
+        }
+    });
+});
+
+router.get('/random', function(req, res){
+    cast.getLast(function(result){
+        console.log("result ::");
+        console.log(result[0].id);
+        let last = parseInt(result[0].id);
+        let random = Math.floor(Math.random() * last) + 1;
+        //Random number from last id in db
+        res.redirect("/post/" + random);
     });
 });
 

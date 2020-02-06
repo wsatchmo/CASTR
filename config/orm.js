@@ -54,7 +54,7 @@ var orm = {
     },
 
     getLast: function(table, cb){ // CREATE -
-        var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
+        var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";  //SOMETHING WRONG HERE?!?!?!
         //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
         connection.query(queryString, function(err, result){
             if (err) throw err;
