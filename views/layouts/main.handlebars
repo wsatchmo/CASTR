@@ -209,6 +209,27 @@ $(".modal-background").click(function() {
       );
     });
   }
+   function callMessagesApi() {
+  var accessToken = oktaSignIn.tokenManager.get("accessToken");
+
+  if (!accessToken) {
+    return;
+  }
+
+  // Make the request using jQuery
+  $.ajax({
+    url: "https://dev-243399.okta.com/oauth2/default",
+    headers: {
+      Authorization : "Bearer " + accessToken.accessToken
+    },
+    success: function(response) {
+      console.log('Messages', response);
+    },
+    error: function(response) {
+      console.error(response);
+    }
+  });
+}
 </script>
 
 
