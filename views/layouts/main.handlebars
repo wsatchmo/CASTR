@@ -78,7 +78,7 @@
       
           <div class="navbar-end">
               <div class="navbar-item">
-              <div class="buttons">
+              <div class="buttons" id="okta-button">
                   <a class="button is-primary modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a>
@@ -187,7 +187,8 @@ $(".modal-background").click(function() {
         oktaSignIn.tokenManager.add('accessToken', accessToken);
         oktaSignIn.tokenManager.add('idToken', idToken);
         window.location.hash='';
-        document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
+        hide(document.getElementById("okta-button"));
+        document.getElementById("okta-button").innerHTML = "Hello, " + idToken.claims.email;
       },
       function error(err) {
         console.error(err);
