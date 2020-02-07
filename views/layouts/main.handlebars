@@ -74,12 +74,12 @@
           </div>
       
           <div class="navbar-end">
-              <div class="navbar-item" id="messagebox">
-              <div class="buttons" id="okta-button">
+              <div class="navbar-item">
+              <div class="buttons" id="messagebox">
                   {{!-- <a class="button is-link modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a> --}}
-                  <a class="button is-light modal-button" data-target="#signin-modal">
+                  <a class="button is-light modal-button" id="okta-button" data-target="#signin-modal">
                   Log in
                   </a>
               </div>
@@ -177,6 +177,9 @@ $(".modal-background").click(function() {
       issuer: "https://dev-243399.okta.com/oauth2/default",
       responseType: ['token', 'id_token'],
       display: 'page'
+    },
+    features: {
+        registration: true
     }
   });
   if (oktaSignIn.token.hasTokensInUrl()) {
@@ -188,7 +191,7 @@ $(".modal-background").click(function() {
         oktaSignIn.tokenManager.add('accessToken', accessToken);
         oktaSignIn.tokenManager.add('idToken', idToken);
         window.location.hash='';
-        $(".okta-button").hide();
+        $("okta-button").hide();
         document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email;
       },
       function error(err) {
