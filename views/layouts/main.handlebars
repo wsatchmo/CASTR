@@ -82,10 +82,13 @@
                   <a class="button is-light modal-button" id="okta-button" data-target="#signin-modal">
                   Log in
                   </a>
+
                   <div id="messagebox"></div>
                   <a class="button is-light modal-button" id="logout-button" onclick="logout()">
+
                   Log Out
                   </a>
+
               </div>
               </div>
           </div>
@@ -239,10 +242,12 @@ $(".modal-background").click(function() {
     }
   });
 }
+
  function logout() {
         oktaSignIn.signOut();
         location.reload();
       }
+
 </script>
 
 {{!-- NAVBAR BURGER JS --}}
