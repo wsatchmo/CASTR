@@ -1,73 +1,70 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <br>
-          <h3 class="card-title">Your Post</h3>
-          <br>
+<div class="columns" id="newpost-main">
+  <div class="column" id="newpost-card">
+    <div class="card mt-4" style="margin-left: 2%; margin-right: 2%;">
+      <div class="card-body" id="newpost-cardbody">
+        <br>
+        <h3 class="card-title" id="newpost-title">Create New Post</h3>
+        <br>
+        <div class="field">
+          <label class="label white-label">Title</label>
+            <div class="control has-icons-right">
+              <input class="input is-info" id="post-title" type="text" placeholder="Post Title">
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
+
           <div class="field">
-            <label class="label">Title</label>
-              <div class="control">
-                <input class="input" id="post-title" type="text" placeholder="Text input">
-              </div>
+            <label class="label white-label">Username</label>
+            <div class="control">
+              <input class="input is-info" id="post-user" type="text" placeholder="Username">
+              <span class="icon is-small is-left">
+              </span>
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label">Username</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" id="post-user" type="text" placeholder="Text input">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
+          <div class="field">
+            <label class="label white-label">Genre</label>
+            <div class="control">
+              <div class="select">
+                <select class="genre-select">
+                  <option disabled>Select From Genres</option>
+                    {{#each posts}}
+                    <option>{{this.post_type}}</option>
+                    {{/each}}
+                </select>
               </div>
+              <input class="input genre-input is-info" name="genre-new" type="text" placeholder="Create Genre">  {{!-- MAKE IT SO USERS CAN FILL THIS IS TO MAKE A GENRE --}}
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label">Genre</label>
-              <div class="control">
-                <div class="select">
-                  <select id="post-type">
-                    <option>Select dropdown</option>
-                    <option>OPTION1</option> <!-- MAKE IT SO THESE LOAD THE DIFFERENT GENRES -->
-                    <option>OPTION2</option> <!-- ADD A FIELD TO MAKE YOUR OWN GENRE -->
-                    <option>OPTION3</option>
-
-                  </select>
-                </div>
-              </div>
+          <div class="field">
+            <label class="label white-label">Message</label>
+            <div class="control">
+              <textarea id="post-body" class="textarea" placeholder="Post Message or <iframe> Embed"></textarea>
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label">Message</label>
-              <div class="control">
-                <textarea id="post-body" class="textarea" placeholder="Textarea"></textarea>
-              </div>
+          <div class="field">
+            <label class="label white-label">Link to your image</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-info" id="post-image" type="text" placeholder="Image url">
+              <span class="icon is-small is-left">
+                <i class="fas fa-image"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
             </div>
+          </div>
 
-            <div class="field">
-              <label class="label">Link to your image</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" id="post-image" type="text" placeholder="Text input">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-              </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="add-post" class="button is-link">Submit</button>
             </div>
-
-            <div class="field is-grouped">
-              <div class="control">
-                <button id="add-post" class="button is-link">Submit</button>
-              </div>
-              <div class="control">
-                <button class="button is-link is-light">Cancel</button>
-              </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
             </div>
           </div>
         </div>
@@ -84,30 +81,76 @@
                                     |__|
     -->
 
-<script type="text/javascript"> //Script for sending PUT request
-    $("#add-post").on("click", function(event) {
-        console.log("Submit button pressed");
-        let title = $("#post-title").val();
-        let type = $("#post-type").val();
-        let user = $("#post-user").val();
-        let body = $("#post-body").val();
-        let image = $("#post-image").val();
+<script id="PUT_REQUEST_JS" type="text/javascript"> //Script for sending PUT request
+$("#add-post").on("click", function(event) {
+  console.log("Submit button pressed");
+  var type;
+  let title = $("#post-title").val();
+  let user = $("#post-user").val();
+  let body = $("#post-body").val();
+  let image = $("#post-image").val();
+  let genreInput = $(".genre-input");
+  let genreSelect = $(".genre-select");
 
-        data = { //This sends the data from the fields to the server
-          post_title: title,
-          post_type: type,
-          post_user: user,
-          post_body: body,
-          post_image: image
-        }
-        console.log(data);
-        // Send the PUT request.
-        $.ajax("/posts/add", {
-        type: "POST",
-        data: data
-        }).then(
-        function() {
-            //CHANGE THIS TO RELOAD (render) A PAGE THAT DISPLAYS THE POST
-        });
+  //If user enters their own genre, use it
+  if (genreInput.val() !== ""){
+    type = genreInput.val();
+  } else {
+    type = genreSelect.val();
+  }
+
+  //If user is blank, auto-fill Anonymous
+  if(user === ""){
+    user = "Anonymous";
+  }
+
+  //If any of these are blank, modal
+  if ((type === "") || (image === "") || (title === "") ){
+    console.log("Not enough info");
+    $("#required-modal").addClass("is-active");
+  } else {
+    //otherwise add to db
+    data = { //This sends the data from the fields to the server
+      post_title: title,
+      post_type: type,
+      post_user: user,
+      post_body: body,
+      post_image: image
+    }
+    //console.log(data);
+    // Send the PUT request.
+    $.ajax("/newpost/add", {
+      type: "POST",
+      data: data
+      }).then(
+      function(req) {
+          
     });
+    // LOAD A PAGE THAT DISPLAYS THE POST
+    setTimeout(function() { //In 3 sec, go to post
+      //console.log("Countdown fired");
+      window.location.href = '/newpost/post';
+    }, 3000);
+  }
+});
 </script>
+
+  <div id="required-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="card" id="modal-content" style="margin: 3%;">
+      <div class="card-content">
+        <p class="title">
+          “More, more, more!”
+        </p>
+        <p class="subtitle">
+          - Billy Idol & Zoidberg
+        </p>
+      </div>
+      <footer class="card-footer" style="padding: 15px;">
+        <p>We're sorry, but you haven't provided enough information for this post. Please include at minimum: a title, genre, and image link.</p>
+      </footer>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+</body>

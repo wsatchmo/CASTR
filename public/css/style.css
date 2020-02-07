@@ -1,25 +1,26 @@
 body, html{
-    height: 100%;
-}
-
-.main{
     background-image: url("../images/diagonal.jpg");
     height: 100%;
     background-repeat: repeat;
     background-size: 200px;
 }
 
-#post-main{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#post-column{
-   margin-left: 5%;
+.post-full{
+    padding: 5%;
+    margin-bottom: 100px;
 }
 
 #comments{
+    background-image: linear-gradient(to bottom right, rgb(95, 174, 240) , rgb(18, 108, 211) , rgb(21, 65, 148));
+    padding-bottom: 5px;
+}
 
+#comments-title{
+    color: white;
+}
+
+#if-embed iframe{
+    width: 100%;
 }
 
 .card{
@@ -38,7 +39,7 @@ body, html{
     color: white;
 }
 
-.card-content{
+#post-content{
     background-color: rgb(20, 20, 20);
 }
 
@@ -78,8 +79,60 @@ body, html{
     flex-grow: 5;
 }
 
+#newpost-title{
+    font-size: 20px;
+}
+
+#newpost-main{
+    background-image: url("../images/diagonal.jpg");
+    height: 100%;
+    background-repeat: repeat;
+    background-size: 200px;
+}
+
+#newpost-cardbody{
+    background-color: rgb(25, 25, 25);
+    padding: 2%;
+    color: rgb(220, 220, 220);
+    margin-bottom: 150px;
+}
+
+.genre-input{
+    width: 33%;
+}
+
+.white-label{
+    color: rgb(220, 220, 220);
+}
+
 .footer{
     position: fixed;
     bottom: 0px;
     width: 100%;
+    background-color: rgb(54, 54, 54); 
+    height: 90px;
+    padding: 20px;
+}
+
+#main-footer{
+    font-size: 12px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  }
+
+@media only screen and (max-width: 400px) {
+    footer.footer {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    #main-footer{
+        font-size: 10px;
+    }
 }

@@ -1,6 +1,7 @@
 var express = require('express'); //express dependency
 var PORT = process.env.PORT || 8080; //define port
 var app = express(); //initialize express application
+
 //set environmet varibles
 require('dotenv').config()
 //For CSS
@@ -19,7 +20,7 @@ app.set("view engine", "handlebars"); //Use the view engine
 var routes = require("./controllers/cast-controller");
 app.use(routes); //Recognize & use the routes
 
-//GENTLEMEN, START YOUR SERVERS!!!
+//LADIES && GENTLEMEN, START YOUR SERVERS!!!
 app.listen(PORT, function(){
     //Logged when server is started:
     console.log("Server listening on:: http://localhost:" + PORT);

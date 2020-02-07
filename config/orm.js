@@ -11,7 +11,7 @@
  };
 
 var orm = {
-    all: function(table, cb){  //ALL -
+    all: function(table, cb){  //GET ALL POSTS
         var queryString = "SELECT * FROM " + table + " ORDER BY id DESC";
 
         connection.query(queryString, function(err, result){
@@ -20,7 +20,16 @@ var orm = {
         });
     },
 
-    create: function(table, cols, vals, cb){ // CREATE -
+    allGenre: function(table, cb){  //GET ALL DISTINCT GENRES
+        var queryString = "SELECT DISTINCT post_type FROM " + table;
+        //console.log(queryString);
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    create: function(table, cols, vals, cb){ // CREATE POST
         var queryString = "INSERT INTO " + table;
         queryString += " (post_title, post_type, post_user, post_body, post_image) VALUES (";
         queryString += printQuestionMarks(vals.length);
@@ -33,10 +42,17 @@ var orm = {
         });
     },
 
-    getOne: function(table, vals, cb){ // CREATE -
+    getOne: function(table, vals, cb){ //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
         var queryString = "SELECT * FROM " + table + " WHERE id = ";
         queryString += vals;
-        //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    getLast: function(table, cb){ //SELECT ITEM FROM TABLE BY LAST ID DESCENDING (LAST)
+        var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -44,7 +60,7 @@ var orm = {
     },
 
     //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
-    //////////////////////////// WORKING ////////////////////////////
+    //////////////////////////// COMMENT ////////////////////////////
 
     comment: function(table, cols, vals, cb){ // CREATE -
         var queryString = "INSERT INTO " + table;
@@ -59,8 +75,8 @@ var orm = {
         });
     },
 
-    //||||||||||||||||||||||||||NOT SURE?||||||||||||||||||||||||||||
-    //////////////////////////// WORKING ////////////////////////////
+    //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
+    //////////////////////////// COMMENT ////////////////////////////
 
     delete: function(table, condition, cb){
         var queryString = "DELETE FROM " + table;
