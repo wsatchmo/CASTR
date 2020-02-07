@@ -75,14 +75,15 @@
       
           <div class="navbar-end">
               <div class="navbar-item">
-              <div class="buttons" id="messagebox">
+              <div class="buttons">
                   {{!-- <a class="button is-link modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a> --}}
                   <a class="button is-light modal-button" id="okta-button" data-target="#signin-modal">
                   Log in
                   </a>
-                  <a class="button is-light modal-button" onclick="logout()">
+                  <div id="messagebox"></div>
+                  <a class="button is-light modal-button" id="logout-button" onclick="logout()">
                   Log Out
                   </a>
               </div>
@@ -194,8 +195,8 @@ $(".modal-background").click(function() {
         oktaSignIn.tokenManager.add('accessToken', accessToken);
         oktaSignIn.tokenManager.add('idToken', idToken);
         window.location.hash='';
-        $("okta-button").hide();
-        document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email;
+        $("#okta-button").hide();
+        document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email + " ";
       },
       function error(err) {
         console.error(err);
