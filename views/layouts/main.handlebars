@@ -27,7 +27,7 @@
     <!-- CSS Link -->
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <!-- Javascript Links // May not need this -->
-    <script src="/assets/js/comment.js" type="text/javascript"></script>
+    <script src="/js/comment.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -37,29 +37,29 @@
           <a class="navbar-item" href="/landing"> <!-- LOGO -->
               <img src="/images/logo2.png" width="112" height="28">
           </a>
-      
+
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
           </a>
           </div>
-      
+
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item" href="/newpost">
               Post <!-- NEW POST -->
               </a>
-      
+
               <a class="navbar-item" onclick="randomPage()">
               Random
               </a> <!-- RANDOM POST -->
-      
+
               <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
                   More <!-- MORE - Change to About, Contact, & Github Repo -->
               </a>
-      
+
               <div class="navbar-dropdown">
                   <a class="navbar-item" href="https://github.com/cshjnim/CASTR">
                   Github Repo
@@ -74,7 +74,7 @@
               </div>
             </div>
           </div>
-      
+
           <div class="navbar-end">
               <div class="navbar-item" id="messagebox">
               <div class="buttons" id="okta-button">
@@ -91,15 +91,15 @@
   </nav>
 
 
-{{!-- __________            _      ______   
-     / / / /  _ \          | |     \ \ \ \  
-    | | | || |_) | ___   __| |_   _ | | | | 
+{{!-- __________            _      ______
+     / / / /  _ \          | |     \ \ \ \
+    | | | || |_) | ___   __| |_   _ | | | |
    / / / / |  _ < / _ \ / _` | | | | \ \ \ \
    \ \ \ \ | |_) | (_) | (_| | |_| | / / / /
-    | | | ||____/ \___/ \__,_|\__, || | | | 
-     \_\_\_\                   __/ /_/_/_/  
+    | | | ||____/ \___/ \__,_|\__, || | | |
+     \_\_\_\                   __/ /_/_/_/
                               |___/          --}}
-                              
+
                  {{{ body }}}
 
 {{!--              ,#####,
@@ -118,17 +118,17 @@
    |  .'|      ".  ---:---  ."      |'.  |
    |  : |       |  ---:---  |       | :  |
     \ : |       |_____._____|       | : /
-    /   (       |----|------|       )   \ 
+    /   (       |----|------|       )   \
    /... .|      |    |      |      |. ...\
   |::::/'' jgs /     |       \     ''\::::|
   '""""       /'    .L_      `\       """"' --}}
 
 
-  <!-- FOOTER -->    
+  <!-- FOOTER -->
   <footer class="footer" id="main-footer">
       <div class="content has-text-centered" style="margin-bottom: 5px;">
           <p>
-          &#169; Copyright 
+          &#169; Copyright
           <a href="https://github.com/cshjnim">Hyejin Kim</a>,
           <a href="https://github.com/krizel4">Krizel Minnema</a>,
           <a href="https://github.com/UnseenMountain">Luke Klymshyn</a>, &
@@ -254,5 +254,5 @@ $(document).ready(function() {
 function randomPage() {
   console.log("RANDOM PAGE");
   window.location.href = "/random";
-}; 
+};
 </script>

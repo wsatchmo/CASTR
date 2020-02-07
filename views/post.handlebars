@@ -19,67 +19,88 @@
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
-                    <span>
-                        <a onclick="nextPage()" class="next_button" data-id="{{this.id}}">Next</a>
-                    </span>
+                        <span>
+                            <a onclick="nextPage()" class="next_button" data-id="{{this.id}}">Next</a>
+                        </span>
                     </p>
                     <p class="card-footer-item">
-                    <span>
-                        <a onclick="previousPage()" class="previous_button" data-id="{{this.id}}">Previous</a>
-                    </span>
+                        <span>
+                            <a onclick="previousPage()" class="previous_button" data-id="{{this.id}}">Previous</a>
+                        </span>
                     </p>
                 </footer>
             </div>
             {{/each}}
         </div>
 
+        {{!-- COMMENT FORM --}}
+        <article class="media">
+            <div class="media-content">
+                <div class="field">
+                     <p class="control">
+                        <input class="input" placeholder="Name" id="name"></input>
+                    </p>
+                    <p class="control">
+                        <input class="input" placeholder="email@email.com" id="email"></input>
+                    </p>
+                    <p class="control">
+                        <textarea class="textarea" placeholder="Add a comment..." id="commentBody"></textarea>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button class="button" id="comment" onclick=“handleFormSubmit()”>Post comment</button>
+                    </p>
+                </div>
+            </div>
+        </article>
 
-<article class="media">
-  <div class="media-content">
-    <div class="field">
-      <p class="control">
-        <textarea class="textarea" placeholder="Add a comment..." id="commentBody"></textarea>
-      </p>
-    </div>
-    <div class="field">
-      <p class="control">
-        <button class="button" id="commentForm">Post comment</button>
-      </p>
-    </div>
-  </div>
-</article>
+        {{!-- COMMENTS --}}
+        <div class="row">
+            <div class="column">
+                <h5>Comments</h5>
+                {{#if post.comment}}
+                {{#each post.comment}}
+
+                {{/each}}
+                {{else}}
+                <p>No comments yet.</p>
+                {{/if}}
+            </div>
+        </div>
 
 
+        {{!-- NEXT PAGE, PREVIOUS PAGE BUTTONS --}}
+        <script type="text/javascript" id="CHANGING_BUTTON_LINK">
+            function nextPage() {
+                let dataIdN = $(".next_button").attr("data-id");
+                let nextNum = parseInt(dataIdN) + 1;
+                window.location.href = "/post/" + nextNum;
+            };
 
-{{!-- NEXT PAGE, PREVIOUS PAGE BUTTONS --}}
-<script type="text/javascript" id="CHANGING_BUTTON_LINK">
-    function nextPage() {
-        let dataIdN = $(".next_button").attr("data-id");
-        let nextNum = parseInt(dataIdN) + 1;
-        window.location.href = "/post/" + nextNum;
-    };
+            function previousPage() {
+                let dataIdP = $(".previous_button").attr("data-id");
+                let previousNum = parseInt(dataIdP) - 1;
+                if (previousNum !== 0) {
+                    window.location.href = "/post/" + previousNum;
+                } //If previous is 0, don't go
+            };
+        </script>
 
-    function previousPage() {
-        let dataIdP = $(".previous_button").attr("data-id");
-        let previousNum = parseInt(dataIdP) - 1;
-        if (previousNum !== 0){
-            window.location.href = "/post/" + previousNum;
-        } //If previous is 0, don't go
-    };
-</script>
+        {{!-- EMBEDDING IFRAMES --}}
+        <script type="text/javascript" id="IFRAME_EMBED">
+            $(document).ready(function () {
+                let postBod = $(".post-body");
+                console.log(postBod);
+                let postBodVal = postBod[0].innerText;
+                console.log(postBodVal);
+                let ifEmbed = $("#if-embed");
+                if (postBodVal.includes("<iframe")) {
+                    console.log("Has embed link");
+                    ifEmbed.append(postBodVal);
+                    postBod.remove();
+                }
+            });
 
-{{!-- EMBEDDING IFRAMES --}}
-<script type="text/javascript" id="IFRAME_EMBED">
-    $(document).ready(function() {
-        let postBod = $(".post-body");
-        console.log(postBod);
-        let postBodVal = postBod[0].innerText;
-        console.log(postBodVal);
-        let ifEmbed = $("#if-embed");
-        if (postBodVal.includes("<iframe")) {
-           console.log("Has embed link");
-           ifEmbed.append(postBodVal);
-           postBod.remove();
-        }
-    });
-</script>
+
+        </script>
