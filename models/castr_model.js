@@ -27,8 +27,22 @@ let posts = {
     create: function(cols, vals, cb){ //For creating new posts
         orm.create("posts", cols, vals, function(res){
             cb(res);
-        }); //|||||||||||||||||||||NEED COMMENT JS|||||||||||||||||||||||||||
-    }, //update columns and conditions for posts
+        }); 
+    }, 
+
+    //||||||||||||||||||||| COMMENT |||||||||||||||||||||||||||
+    getComments: function(table, post_id, cb){
+        orm.getComments("comments", post_id, function(res){
+            cb(res);
+        });
+    },
+    addComment: function(table, post_id, comment_added, cb){
+        orm.addComment("comments", post_id, comment_added, function(res){
+            cb(res);
+        });
+    },
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    
     updateOne: function(table, objColVals, condition, cb){
         orm.updateOne("posts", objColVals, condition, function(res){
             cb(res);
