@@ -1,28 +1,29 @@
-$(document).ready(function () {
+
   // This is from activity 12 during the sequelize week.
   // Gets an optional query string from our url (i.e. ?post_id=23)
-  var url = window.location.search;
+  // var url = window.location.search;
   var postId;
   // Sets a flag for whether or not we're updating a post to be false initially
-  var updating = false;
+  // var updating = false;
 
   // If we have this section in our url, we pull out the post id from the url
   // In localhost:8080/cms?post_id=1, postId is 1
-  if (url.indexOf("?postId=") !== -1) {
-    postId = url.split("=")[1];
-    getPostData(postId);
-  }
+  // if (url.indexOf("?postId=") !== -1) {
+  //   postId = url.split("=")[1];
+  //   getPostData(postId);
+  // }
 
   // Getting jQuery references to the post name, email, form, and commentBody select
   var nameInput = $("#name");
   var emailInput = $("#email");
-  // var commentForm = $("#comment");
-  var commentArea = $("#commentBody");
+  var commentForm = $("#comment");
+  var commentArea = $("#commentBody").val();
   // Adding an event listener for when the form is submitted
-  $("#comment").click(function handleFormSubmit(event) {
+  $("#comment").on("submit", function (event) {
       event.preventDefault();
       // Wont submit the post if we are missing a name or a email
       // if (!emailInput.val().trim() || !nameInput.val().trim()) {
+        console.log("form submitted");
       return;
     });
 
@@ -30,42 +31,42 @@ $(document).ready(function () {
 
     // Constructing a newComment object to hand to the database
     var newComment = {
-      name: nameInput.val().trim(),
-      email: emailInput.val().trim(),
-      commentBody: commentArea.val()
+      name: nameInput,
+      email: emailInput,
+      commentBody: commentArea
     };
 
     console.log(newComment);
 
-    // If we're updating a post run updatePost to update a post
-    // Otherwise run submitPost to create a whole new post
-    if (updating) {
-      newComment.id = postId;
-      updatePost(newComment);
-    } else {
-      submitPost(newComment);
-    }
-  });
+    // // If we're updating a post run updatePost to update a post
+    // // Otherwise run submitPost to create a whole new post
+    // if (updating) {
+    //   newComment.id = postId;
+    //   updatePost(newComment);
+    // } else {
+    //   submitPost(newComment);
+    // }
+
 
 // Submits a new post and brings user to blog page upon completion
-function submitPost(Post) {
-  $.post("/comments", Post, function () {
-    window.location.href = "/comments";
-  });
-}
+// function submitPost(Post) {
+//   $.post("/comments", Post, function () {
+//     window.location.href = "/comments";
+//   });
+// }
 
 // Gets post data for a post if we're editing
-function getPostData(id) {
-  $.get(`/comments/${id}`, function (data) {
-    if (data) {
-      // If this post exists, prefill our forms with its data
-      nameInput.val(data.name);
-      emailInput.val(data.email);
-      commentArea.val(data.commentBody);
+// function getPostData(id) {
+//   $.get(`/comments/${id}`, function (data) {
+//     if (data) {
+//       // If this post exists, prefill our forms with its data
+//       nameInput.val(data.name);
+//       emailInput.val(data.email);
+//       commentArea.val(data.commentBody);
       // If we have a post with this id, set a flag for us to know to update the post
       // when we hit submit
-      updating = true;
-    }
-  });
-}
+      // updating = true;
+//     }
+//   });
+// }
 

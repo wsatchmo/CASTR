@@ -100,6 +100,13 @@ router.post("/comments/:id", function(req, res){
     });
 });
 
+router.get('/comments', function(req, res){
+    cast.get(function(result){
+        res.redirect("/comment/");
+    });
+});
+
+
 //CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;

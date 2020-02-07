@@ -35,24 +35,26 @@
 
         {{!-- COMMENT FORM --}}
         <article class="media">
+            <form id="comment">
             <div class="media-content">
                 <div class="field">
                      <p class="control">
-                        <input class="input" placeholder="Name" id="name"></input>
+                        <input class="input" placeholder="Name" name="name"></input>
                     </p>
                     <p class="control">
-                        <input class="input" placeholder="email@email.com" id="email"></input>
+                        <input class="input" placeholder="email@email.com" name="email"></input>
                     </p>
                     <p class="control">
-                        <textarea class="textarea" placeholder="Add a comment..." id="commentBody"></textarea>
+                        <textarea class="textarea" placeholder="Add a comment..." name="commentBody"></textarea>
                     </p>
                 </div>
                 <div class="field">
                     <p class="control">
-                        <button class="button" id="comment" onclick=“handleFormSubmit()”>Post comment</button>
+                        <button class="button" id="comment" type="submit">Post comment</button>
                     </p>
                 </div>
             </div>
+            </form>
         </article>
 
         {{!-- COMMENTS --}}
