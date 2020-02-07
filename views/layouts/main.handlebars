@@ -125,7 +125,7 @@
 
 
   <!-- FOOTER -->    
-  <footer class="footer" style="font-size: 12px">
+  <footer class="footer" id="main-footer">
       <div class="content has-text-centered" style="margin-bottom: 5px;">
           <p>
           &#169; Copyright 
@@ -151,7 +151,7 @@
 
 </body>
 
-<!-- MODAL -->
+<!-- MODAL FOR LOGIN; modal closing is globally required -->
 <script id="MODAL_JS">
 $(".modal-button").click(function() {
   var target = $(this).data("target");
@@ -169,7 +169,6 @@ $(".modal-background").click(function() {
   $(this).parent().removeClass("is-active");
 });
 </script>
-
 
 <!-- use the Okta widget to power authentication! -->
 <script id="OKTA_AUTH" type="text/javascript">
@@ -237,13 +236,11 @@ $(".modal-background").click(function() {
 }
 </script>
 
-
+{{!-- NAVBAR BURGER JS --}}
 <script id="NAVBAR_BURGER_TOGGLE">
 $(document).ready(function() {
-
   // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function() {
-
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
@@ -252,6 +249,7 @@ $(document).ready(function() {
 });
 </script>
 
+{{!-- POST RANDOMIZER --}}
 <script type="text/javascript" id="RANDOM_POST">
 function randomPage() {
   console.log("RANDOM PAGE");

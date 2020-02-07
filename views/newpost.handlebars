@@ -83,57 +83,56 @@
 
 <script id="PUT_REQUEST_JS" type="text/javascript"> //Script for sending PUT request
 $("#add-post").on("click", function(event) {
-    console.log("Submit button pressed");
-    var type;
-    let title = $("#post-title").val();
-    let user = $("#post-user").val();
-    let body = $("#post-body").val();
-    let image = $("#post-image").val();
-    let genreInput = $(".genre-input");
-    let genreSelect = $(".genre-select");
+  console.log("Submit button pressed");
+  var type;
+  let title = $("#post-title").val();
+  let user = $("#post-user").val();
+  let body = $("#post-body").val();
+  let image = $("#post-image").val();
+  let genreInput = $(".genre-input");
+  let genreSelect = $(".genre-select");
 
-    //If user enters their own genre, use it
-    if (genreInput.val() !== ""){
-      type = genreInput.val();
-    } else {
-      type = genreSelect.val();
+  //If user enters their own genre, use it
+  if (genreInput.val() !== ""){
+    type = genreInput.val();
+  } else {
+    type = genreSelect.val();
+  }
+
+  //If user is blank, auto-fill Anonymous
+  if(user === ""){
+    user = "Anonymous";
+  }
+
+  //If any of these are blank, modal
+  if ((type === "") || (image === "") || (title === "") ){
+    console.log("Not enough info");
+    $("#required-modal").addClass("is-active");
+  } else {
+    //otherwise add to db
+    data = { //This sends the data from the fields to the server
+      post_title: title,
+      post_type: type,
+      post_user: user,
+      post_body: body,
+      post_image: image
     }
-
-    if(user === ""){
-      user = "Anonymous";
-    }
-
-    //If any of these are blank, modal
-    if ((type === "") || (image === "") || (title === "") ){
-      console.log("Not enough info");
-      $("#required-modal").addClass("is-active");
-    } else {
-      //otherwise add to db
-      data = { //This sends the data from the fields to the server
-        post_title: title,
-        post_type: type,
-        post_user: user,
-        post_body: body,
-        post_image: image
-      }
-      //console.log(data);
-      // Send the PUT request.
-      $.ajax("/newpost/add", {
-        type: "POST",
-        data: data
-        }).then(
-        function(req) {
-           
-      });
-      // LOAD A PAGE THAT DISPLAYS THE POST
-      setTimeout(function() {
-        //console.log("Am i even firing??"); //In 5 sec, go to post
-        window.location.href = '/newpost/post';
-      }, 5000);
-    }
-
+    //console.log(data);
+    // Send the PUT request.
+    $.ajax("/newpost/add", {
+      type: "POST",
+      data: data
+      }).then(
+      function(req) {
+          
+    });
+    // LOAD A PAGE THAT DISPLAYS THE POST
+    setTimeout(function() { //In 3 sec, go to post
+      //console.log("Countdown fired");
+      window.location.href = '/newpost/post';
+    }, 3000);
+  }
 });
-
 </script>
 
   <div id="required-modal" class="modal">

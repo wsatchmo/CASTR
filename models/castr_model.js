@@ -2,32 +2,32 @@
 var orm = require("../config/orm.js"); // Require the ORM to interact with Database
 
 let posts = {
-    all: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+    all: function(cb){ //For loading all posts
         orm.all("posts", function(res){
             cb(res);
         });
-    }, //create columns for new posts
-    allGenre: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+    },
+    allGenre: function(cb){ //For loading all genres
         orm.allGenre("posts", function(res){
             cb(res);
         });
-    }, //create columns for new posts
-    getOne: function(vals, cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+    },
+    getOne: function(vals, cb){ //For loading one post
         orm.getOne("posts", vals, function(res){
             //console.log("Vals: ", vals);
             cb(res);
         });
-    }, //create columns for new posts
-    getLast: function(cb){ //For loading all posts -- CHANE TO FIRST 20 OR SO???
+    },
+    getLast: function(cb){ //For loading last post
         orm.getLast("posts", function(res){
             //console.log("Vals: ", vals);
             cb(res);
         });
-    }, //create columns for new posts
-    create: function(cols, vals, cb){
+    },
+    create: function(cols, vals, cb){ //For creating new posts
         orm.create("posts", cols, vals, function(res){
             cb(res);
-        });
+        }); //|||||||||||||||||||||NEED COMMENT JS|||||||||||||||||||||||||||
     }, //update columns and conditions for posts
     updateOne: function(table, objColVals, condition, cb){
         orm.updateOne("posts", objColVals, condition, function(res){

@@ -2,13 +2,14 @@ var express = require("express");
 var router = express.Router();
 var cast = require("../models/castr_model");
 
-//CHANGE TO GET DATA FROM THE DB TO POST ONTO HOME PAGE
+//HOME PAGE
 router.get("/", function(req, res){
     res.redirect("/landing") //Redirect to home page
 });
 
+//SHOW ALL POSTS ON HOME
 router.get("/landing", function(req,res){
-    cast.all(function(data){ //Display all posts on home page
+    cast.all(function(data){ //Get all post objs for home page
         var postsObj = {posts: data};
         console.log(postsObj);
         res.render("index", postsObj);
@@ -17,7 +18,7 @@ router.get("/landing", function(req,res){
 
 //POSTS PAGE FOR NEW POSTS ---
 router.get('/newpost', function(req,res){
-    cast.allGenre(function(data){ //Display all ids in dropdown
+    cast.allGenre(function(data){ //Display all genres in dropdown
         var postsObj = {posts: data};
         console.log(postsObj);
         res.render("newpost", postsObj);
@@ -26,7 +27,7 @@ router.get('/newpost', function(req,res){
 
 //ADDING POSTS
 router.post("/newpost/add", function(req, res){
-    cast.create([
+    cast.create([ //Create a post w/ these parameters
         post_title = req.body.post_title,
         post_type = req.body.post_type,
         post_user = req.body.post_user,
@@ -35,48 +36,50 @@ router.post("/newpost/add", function(req, res){
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        //RENDER NEWEST ITEM FROM DB 
+        
     });
 });
 
+//GET THE LAST POST IN DB BY ID
 router.get('/newpost/post', function(req,res){
-    //GET THE LAST POST BY ID
     cast.getLast(function(result){
         console.log("result ::");
         console.log(result[0].id);
-        //GIVES THE RESULT NUMBER
+        //Gives the result number
         res.redirect("/post/" + result[0].id);
     });
 });
 
-//PAGE OF INDIVIDUAL POSTS ---
+//PAGES OF INDIVIDUAL POSTS USE THIS LAYOUT
 router.get('/post/', function(req,res){
     res.render('post', {layout: 'main.handlebars'});
 });
 
+//SPECIFIC POST -- BY ID
 router.get('/post/:id', function(req,res){
     var id = req.params.id;
     console.log("req: ");
     console.log(req.params);
     //console.log("ID: ", id);
-    cast.getOne(id, function(data){ //Display image by id
+    cast.getOne(id, function(data){ //Get obj w/ corresponding id
         var postsObj = {posts: data};
         console.log("postsObj :", postsObj);
         if (postsObj.posts.length !== 0){
-            res.render('post', postsObj);
-        } else {
+            res.render('post', postsObj); 
+        } else { //If there is nothing in the post obj load newpost instead
             res.redirect("/newpost");
         }
     });
 });
 
+//RANDOM ITEM FROM DB
 router.get('/random', function(req, res){
     cast.getLast(function(result){
         console.log("result ::");
         console.log(result[0].id);
         let last = parseInt(result[0].id);
         let random = Math.floor(Math.random() * last) + 1;
-        //Random number from last id in db
+        //Random number using last id in db
         res.redirect("/post/" + random);
     });
 });
