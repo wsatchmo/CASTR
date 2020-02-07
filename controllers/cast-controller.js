@@ -36,7 +36,7 @@ router.post("/newpost/add", function(req, res){
     ], [
         req.body.post_title, req.body.post_type, req.body.post_user, req.body.post_body, req.body.post_image
     ], function(result) {
-        
+
     });
 });
 
@@ -65,7 +65,7 @@ router.get('/post/:id', function(req,res){
         var postsObj = {posts: data};
         console.log("postsObj :", postsObj);
         if (postsObj.posts.length !== 0){
-            res.render('post', postsObj); 
+            res.render('post', postsObj);
         } else { //If there is nothing in the post obj load newpost instead
             res.redirect("/newpost");
         }
@@ -94,13 +94,13 @@ router.post("/comments/:id", function(req, res){
     var emailInput = req.body.email;
     var commentForm = req.body.commentBody;
 
-    cast.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
+    cast.comment([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
         console.log(result)
         console.log("comment added to db")
     });
 });
 
-//CHANGE SO THIS CAN EDIT A USER"S POSTS
+//CHANGE SO THIS CAN EDIT A USER'S POSTS
 router.put("/posts/update/:id", function(req, res){
 	var condition = "id=" + req.params.id;
 	console.log("condition", condition);

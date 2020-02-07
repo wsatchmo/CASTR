@@ -33,30 +33,23 @@
             {{/each}}
         </div>
 
-        <div class="column">
-            <div class="card">
-                <div id="comments" class="card-content">
-                    <div class="media-content">
-                        <p id="comments-title" class="title is-4">Comments</p>
-                    </div>
-                    <div class="content" id="comments-section">
-                        <p>Stuff</p>
-                    </div>
-                        <footer class="card-footer">
-                        <div class="card-footer-item">
-                            <div class="control">
-                                <input class="input is-info" id="add-comment" type="text" placeholder="Add a Comment">
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            </div>
-            {{!-- FIGURE OUT HOW TO TIE COMMENT TABLE TO HERE & LOAD COMMENTS --}}
-        </div>
 
-
+<article class="media">
+  <div class="media-content">
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" placeholder="Add a comment..." id="commentBody"></textarea>
+      </p>
     </div>
-</div>
+    <div class="field">
+      <p class="control">
+        <button class="button" id="commentForm">Post comment</button>
+      </p>
+    </div>
+  </div>
+</article>
+
+
 
 {{!-- NEXT PAGE, PREVIOUS PAGE BUTTONS --}}
 <script type="text/javascript" id="CHANGING_BUTTON_LINK">
@@ -65,7 +58,7 @@
         let nextNum = parseInt(dataIdN) + 1;
         window.location.href = "/post/" + nextNum;
     };
-    
+
     function previousPage() {
         let dataIdP = $(".previous_button").attr("data-id");
         let previousNum = parseInt(dataIdP) - 1;
@@ -87,6 +80,6 @@
            console.log("Has embed link");
            ifEmbed.append(postBodVal);
            postBod.remove();
-        } 
+        }
     });
 </script>
