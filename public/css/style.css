@@ -120,10 +120,9 @@ body, html{
 }
 
 .footer{
-    position: fixed;
     bottom: 0px;
     width: 100%;
-    background-color: rgb(54, 54, 54); 
+    background-color: rgb(54, 54, 54);
     height: 90px;
     padding: 20px;
 }

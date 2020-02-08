@@ -54,8 +54,8 @@
                         <footer class="card-footer">
                         <div class="card-footer-item">
                             <div class="control">
-                                <input class="input is-info" id="add-comment" type="text" placeholder="Add a Comment">
-                                <button class="button is-link">Link</button>
+                                <textarea class="textarea" placeholder="Join the conversation"></textarea>
+                                <button class="button is-link">Comment</button>
                             </div>
                         </div>
                     </footer>
@@ -75,7 +75,7 @@
         let nextNum = parseInt(dataIdN) + 1;
         window.location.href = "/post/" + nextNum;
     };
-    
+
     function previousPage() {
         let dataIdP = $(".previous_button").attr("data-id");
         let previousNum = parseInt(dataIdP) - 1;
@@ -97,6 +97,6 @@
            console.log("Has embed link");
            ifEmbed.append(postBodVal);
            postBod.remove();
-        } 
+        }
     });
 </script>
