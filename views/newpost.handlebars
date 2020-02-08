@@ -18,9 +18,7 @@
           <div class="field">
             <label class="label white-label">Username</label>
             <div class="control">
-              <input class="input is-info" id="post-user" type="text" placeholder="Username">
-              <span class="icon is-small is-left">
-              </span>
+              <p id="newpost_username">Anonymous</p>
             </div>
           </div>
 
@@ -86,7 +84,7 @@ $("#add-post").on("click", function(event) {
   console.log("Submit button pressed");
   var type;
   let title = $("#post-title").val();
-  let user = $("#post-user").val();
+  let user = $("#newpost_username").text();
   let body = $("#post-body").val();
   let image = $("#post-image").val();
   let genreInput = $(".genre-input");
@@ -97,11 +95,6 @@ $("#add-post").on("click", function(event) {
     type = genreInput.val();
   } else {
     type = genreSelect.val();
-  }
-
-  //If user is blank, auto-fill Anonymous
-  if(user === ""){
-    user = "Anonymous";
   }
 
   //If any of these are blank, modal
@@ -130,7 +123,7 @@ $("#add-post").on("click", function(event) {
     setTimeout(function() { //In 3 sec, go to post
       //console.log("Countdown fired");
       window.location.href = '/newpost/post';
-    }, 3000);
+    }, 1000);
   }
 });
 </script>

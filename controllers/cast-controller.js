@@ -70,6 +70,8 @@ router.get('/post/:id', function(req,res){
             res.redirect("/newpost");
         }
     });
+
+
 });
 
 //RANDOM ITEM FROM DB
