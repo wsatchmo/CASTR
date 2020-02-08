@@ -17,6 +17,7 @@ body, html{
 #comments{
     background-image: linear-gradient(to bottom right, rgb(95, 174, 240) , rgb(18, 108, 211) , rgb(21, 65, 148));
     padding-bottom: 5px;
+    margin: auto;
 }
 
 #comments-title{
@@ -30,7 +31,7 @@ body, html{
 
 .comment-name-right{
     font-size: 12px;
-    color: rgb(204, 13, 70);
+    color: rgb(204, 144, 13);
 }
 
 .comment-name-left{
@@ -133,13 +134,24 @@ body, html{
 }
 
 .footer{
-    position: fixed;
+    position:absolute;
     bottom: 0px;
     width: 100%;
-    background-color: rgb(54, 54, 54); 
-    height: 90px;
+    background-color: rgb(54, 54, 54);
+    height: 7rem;
     padding: 20px;
+    text-align: center;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+
 
 #main-footer{
     font-size: 12px;
