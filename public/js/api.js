@@ -1,5 +1,3 @@
-
-
 function displayPics(){
     var picture = $(this).attr("data-pic");
     console.log(picture);

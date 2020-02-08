@@ -64,18 +64,45 @@
                     </footer>
                 </div>
             </div>
- <div class="is-divider" style="padding-top: 30px;"><hr></div>
-
-
-
-
-
         </div>
-
-
     </div>
 </div>
 
+  <div id="not-loggedin-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="card" id="modal-content" style="margin: 3%;">
+      <div class="card-content">
+        <p class="title">
+          Come on in!
+        </p>
+        <p class="subtitle">
+           - Chrissy, Jaws
+        </p>
+      </div>
+      <footer class="card-footer" style="padding: 15px;">
+        <p>You must be logged in to post comments. Please log in or sign up if you do not have an account.</p>
+      </footer>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <div id="comment-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="card" id="modal-content" style="margin: 3%;">
+      <div class="card-content">
+        <p class="title">
+          Empty Comment
+        </p>
+        <img class="img-on-modal" src="http://cdn140.picsart.com/300363128099211.png">
+      </div>
+      <footer class="card-footer" style="padding: 15px;">
+        <p>No empty comments allowed. Come on.</p>
+      </footer>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+</body>
 
 <!--
  _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ _____
@@ -92,46 +119,59 @@ $("#push-comment").on("click", function(event) {
     let postId = parseInt($("#post-number").attr("data-id"));
     var name;
     let email = $("#messagebox").attr("data-login");
-    let comment = $("#add-comment").val();
-
-    let n = email.indexOf("@");
-    //console.log("NAME: ");
-    //console.log(email.substring(0, n));
-    name = email.substring(0, n);
-
-    //If comment field blank, modal
-    if (comment === ""){
-        console.log("Not enough info");
-        $("#comment-modal").addClass("is-active"); //MAKE THIS
+    let comment = $("#add-comment").val().trim();
+    console.log(email);
+    
+    if (email === undefined){
+        console.log("Must log in to add comments");
+        $("html").addClass("is-clipped");
+        $("#not-loggedin-modal").addClass("is-active");
     } else {
-        //otherwise add to db
-        data = { //This sends the data from the fields to the server
-        postId: postId,
-        name: name,
-        email: email,
-        comment: comment
-        }
-        console.log(data);
+        let n = email.indexOf("@");
+        //console.log("NAME: ");
+        //console.log(email.substring(0, n));
+        name = email.substring(0, n);
 
-        // Send the POST request.
-        $.ajax("/post/comment", {
-            type: "POST",
-            data: data
-        }).then(
-        function(req) {
-        });
-        setTimeout(function() { //In 3 sec, go to post
-        //console.log("Countdown fired");
-        window.location.href = '/post/' + postId;
-        }, 1000);
+        //If comment field blank, modal
+        if (comment === ""){
+            console.log("Not enough info");
+            $("html").addClass("is-clipped");
+            $("#comment-modal").addClass("is-active");
+        } else {
+            //otherwise add to db
+            data = { //This sends the data from the fields to the server
+            postId: postId,
+            name: name,
+            email: email,
+            comment: comment
+            }
+            console.log(data);
+
+            // Send the POST request.
+            $.ajax("/post/comment", {
+                type: "POST",
+                data: data
+            }).then(
+            function(req) {     
+            });
+            setTimeout(function() { //In 3 sec, go to post
+            //console.log("Countdown fired");
+            window.location.href = '/post/' + postId;
+            }, 1000);
+        };
     };
 });
 </script>
 
 <script id="COMMENT_OWNER">
-    setTimeout(function() { //In 3 sec, go to post
-        //console.log("Countdown fired");
-        let userE = $("#messagebox").attr("data-login");
+var count = 0;
+
+$(document).ready(loadCommentOwner());
+
+function loadCommentOwner() {
+    //console.log("Countdown fired");
+    let userE = $("#messagebox").attr("data-login");
+    if (userE !== undefined){    
         let n = userE.indexOf("@");
         userE = userE.substring(0, n);
 
@@ -151,8 +191,18 @@ $("#push-comment").on("click", function(event) {
             $(this).addClass("comment-right");
             }
         });
-    }, 1000);
+    }
+};
 
+var commentRetry = setInterval(function() { //For 10 seconds, try again (just in case)
+    count+=1;
+    console.log(count);
+    if (count < 10){
+        loadCommentOwner();
+    } else {
+        clearInterval(commentRetry);
+    };
+}, 1000);
 </script>
 
 {{!-- NEXT PAGE, PREVIOUS PAGE BUTTONS --}}

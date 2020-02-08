@@ -51,7 +51,7 @@ router.get('/newpost/post', function(req,res){
 });
 
 //PAGES OF INDIVIDUAL POSTS USE THIS LAYOUT
-router.get('/post/', function(req,res){
+router.get('/post', function(req,res){
     res.render('post', {layout: 'main.handlebars'});
 });
 
@@ -59,27 +59,32 @@ router.get('/post/', function(req,res){
 router.get('/post/:id', function(req,res){
     var id = req.params.id;
     var comObj;
-    console.log("req: ");
-    console.log(req.params);
-    //console.log("ID: ", id);
-    cast.getComments(id, function(comData){
-        comObj = {comments: comData};
-        console.log("comObj :", comObj);
-        return comObj;
-    });
-    cast.getOne(id, function(data){ //Get obj w/ corresponding id
-        var postsObj = {posts: data};
-        var getObj = {
-            postsObj: postsObj,
-            comObj: comObj
-        }
-        //console.log("Object for GET request :", getObj);
-        if (postsObj.posts.length !== 0){
-            res.render('post', getObj); //COMBINE OBJ's
-        } else { //If there is nothing in the post obj load newpost instead
-            res.redirect("/newpost");
-        }
-    });
+    // console.log("req: ");
+    // console.log(req);
+    // console.log("req.params.id: ");
+    // console.log(req.params.id);
+    if (isNaN(id)){
+        console.log("Error: req.params.id has misfired; the id of '"+req.params.id+"' is not a number and has no accompanying page");
+    } else {
+        cast.getComments(id, function(comData){
+            comObj = {comments: comData};
+            console.log("comObj :", comObj);
+            return comObj;
+        });
+        cast.getOne(id, function(data){ //Get obj w/ corresponding id
+            var postsObj = {posts: data};
+            var getObj = {
+                postsObj: postsObj,
+                comObj: comObj
+            }
+            //console.log("Object for GET request :", getObj);
+            if (postsObj.posts.length !== 0){
+                res.render('post', getObj); //COMBINE OBJ's
+            } else { //If there is nothing in the post obj load newpost instead
+                res.redirect("/newpost");
+            }
+        });
+    }
 });
 
 //RANDOM ITEM FROM DB
