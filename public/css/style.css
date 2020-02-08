@@ -134,12 +134,24 @@ body, html{
 }
 
 .footer{
-    /* bottom: 0px;
-    width: 100%; */
+    position:absolute;
+    bottom: 0px;
+    width: 100%;
     background-color: rgb(54, 54, 54);
-    /* height: 90px;
-    padding: 20px; */
+    height: 7rem;
+    padding: 20px;
+    text-align: center;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+  }
+
 
 #main-footer{
     font-size: 12px;

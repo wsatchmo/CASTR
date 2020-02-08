@@ -1,104 +1,115 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- FOR BULMA -->
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jQuery Link -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- AJAX Link -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- jQuery Link -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- AJAX Link -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pixla</title>
-    <meta name="description" content="The everything network - all posts welcome">
-    <meta name="keywords" content="Social, Post, Comment, Network, Image, Video, Embed, Fun, Media">
-    <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pixla</title>
+  <meta name="description" content="The everything network - all posts welcome">
+  <meta name="keywords" content="Social, Post, Comment, Network, Image, Video, Embed, Fun, Media">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
 
-    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
-    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet" />
-    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet" />
-    <script src="https://global.oktacdn.com/okta-signin-widget/3.2.2/js/okta-sign-in.min.js" type="text/javascript"></script>
-    <link href="https://global.oktacdn.com/okta-signin-widget/3.2.2/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
+  <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js"
+    type="text/javascript"></script>
+  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css"
+    type="text/css" rel="stylesheet" />
+  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css"
+    rel="stylesheet" />
+  <script src="https://global.oktacdn.com/okta-signin-widget/3.2.2/js/okta-sign-in.min.js"
+    type="text/javascript"></script>
+  <link href="https://global.oktacdn.com/okta-signin-widget/3.2.2/css/okta-sign-in.min.css" type="text/css"
+    rel="stylesheet" />
 
 
-    <!-- Bulma Link -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <!-- Javascript Links // May not need this -->
-    <script src="/assets/js/comment.js" type="text/javascript"></script>
+  <!-- Bulma Link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- Javascript Links // May not need this -->
+  <script src="/assets/js/comment.js" type="text/javascript"></script>
 
 </head>
+
 <body>
   <!-- NAVBAR -->
   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-          <a class="navbar-item" href="/landing"> <!-- LOGO -->
-              <img src="/images/logo2.png" width="112" height="28">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/landing">
+        <!-- LOGO -->
+        <img src="/images/logo2.png" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/newpost">
+          Post
+          <!-- NEW POST -->
+        </a>
+
+        <a class="navbar-item" onclick="randomPage()">
+          Random
+        </a> <!-- RANDOM POST -->
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+            <!-- MORE - Change to About, Contact, & Github Repo -->
           </a>
 
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/cshjnim/CASTR">
+              Github Repo
+            </a>
+            <a class="navbar-item">
+              Contact
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="mailto:wsatcher144@gmail.com">
+              Report an issue
+            </a>
           </div>
+        </div>
+      </div>
 
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item" href="/newpost">
-              Post <!-- NEW POST -->
-              </a>
-
-              <a class="navbar-item" onclick="randomPage()">
-              Random
-              </a> <!-- RANDOM POST -->
-
-              <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                  More <!-- MORE - Change to About, Contact, & Github Repo -->
-              </a>
-
-              <div class="navbar-dropdown">
-                  <a class="navbar-item" href="https://github.com/cshjnim/CASTR">
-                  Github Repo
-                  </a>
-                  <a class="navbar-item">
-                  Contact
-                  </a>
-                  <hr class="navbar-divider">
-                  <a class="navbar-item" href="mailto:wsatcher144@gmail.com">
-                  Report an issue
-                  </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="navbar-end">
-              <div class="navbar-item">
-              <div class="buttons">
-                  {{!-- <a class="button is-link modal-button">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {{!-- <a class="button is-link modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a> --}}
-                  <a class="button modal-button is-link" id="okta-button" data-target="#signin-modal">
-                  Sign in
-                  </a>
+            <a class="button modal-button is-link" id="okta-button" data-target="#signin-modal">
+              Sign in
+            </a>
 
-                  <div id="messagebox" style="font-size: 12px; margin-right: 10px; margin-bottom: 5px;"></div>
-                  <a class="button is-light modal-button" id="logout-button" onclick="logout()">
+            <div id="messagebox" style="font-size: 12px; margin-right: 10px; margin-bottom: 5px;"></div>
+            <a class="button is-light modal-button" id="logout-button" onclick="logout()">
 
-                  Log Out
-                  </a>
+              Log Out
+            </a>
 
-              </div>
-              </div>
           </div>
+        </div>
       </div>
+    </div>
   </nav>
 
 
-{{!-- __________            _      ______
+  {{!-- __________            _      ______
      / / / /  _ \          | |     \ \ \ \
     | | | || |_) | ___   __| |_   _ | | | |
    / / / / |  _ < / _ \ / _` | | | | \ \ \ \
@@ -107,9 +118,9 @@
      \_\_\_\                   __/ /_/_/_/
                               |___/          --}}
 
-                 {{{ body }}}
+  {{{ body }}}
 
-{{!--              ,#####,
+  {{!--              ,#####,
                    #_   _#
                    |~` `~|  BODY!!!
                    |  u  |  /
@@ -132,17 +143,22 @@
 
 
   <!-- FOOTER -->
-  <footer class="footer" id="main-footer">
-      <div class="content has-text-centered" style="margin-bottom: 5px;">
-          <p>
+  <div id="page-container">
+    <div id="content-wrap">
+      <footer class="footer" id="main-footer">
+        <p style="color:#eee;">
           &#169; Copyright
           <a href="https://github.com/cshjnim">Hyejin Kim</a>,
           <a href="https://github.com/krizel4">Krizel Minnema</a>,
           <a href="https://github.com/UnseenMountain">Luke Klymshyn</a>, &
           <a href="https://github.com/wsatchmo">Will Satcher</a>
-          </p>
-      </div>
-      <img class="center" src="/images/logo1.png" style="height: 20px;">
+        </p>
+        <p>&nbsp;</p>
+        <p>
+          <img class="center" src="/images/logo1.png" style="height: 20px;">
+        </p>
+    </div>
+  </div>
   </footer>
   <!-- where the sign-in form will be displayed -->
 
@@ -154,131 +170,131 @@
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 </body>
 
 <!-- MODAL FOR LOGIN; modal closing is globally required -->
 <script id="MODAL_JS">
-$(".modal-button").click(function() {
-  var target = $(this).data("target");
-  $("html").addClass("is-clipped");
-  $(target).addClass("is-active");
-});
+  $(".modal-button").click(function () {
+    var target = $(this).data("target");
+    $("html").addClass("is-clipped");
+    $(target).addClass("is-active");
+  });
 
-$(".modal-close").click(function() {
-  $("html").removeClass("is-clipped");
-  $(this).parent().removeClass("is-active");
-});
+  $(".modal-close").click(function () {
+    $("html").removeClass("is-clipped");
+    $(this).parent().removeClass("is-active");
+  });
 
-$(".modal-background").click(function() {
-  $("html").removeClass("is-clipped");
-  $(this).parent().removeClass("is-active");
-});
+  $(".modal-background").click(function () {
+    $("html").removeClass("is-clipped");
+    $(this).parent().removeClass("is-active");
+  });
 </script>
 
 <!-- use the Okta widget to power authentication! -->
 <script id="OKTA_AUTH" type="text/javascript">
-var oktaSignIn = new OktaSignIn({
-  baseUrl: "https://dev-243399.okta.com",
-  clientId: "0oa17yze2QPsrc85c4x6",
-  authParams: {
-    issuer: "https://dev-243399.okta.com/oauth2/default",
-    responseType: ['token', 'id_token'],
-    display: 'page'
-  },
-  features: {
-      registration: true
-  }
-});
-
-if (oktaSignIn.token.hasTokensInUrl()) {
-  console.log("OKTA_TRUE");
-  oktaSignIn.token.parseTokensFromUrl(
-    // If we get here, the user just logged in.
-    function success(res) {
-      var accessToken = res[0];
-      var idToken = res[1];
-      oktaSignIn.tokenManager.add('accessToken', accessToken);
-      oktaSignIn.tokenManager.add('idToken', idToken);
-      window.location.hash='';
-      $("#okta-button").hide();
-      document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email + " ";
+  var oktaSignIn = new OktaSignIn({
+    baseUrl: "https://dev-243399.okta.com",
+    clientId: "0oa17yze2QPsrc85c4x6",
+    authParams: {
+      issuer: "https://dev-243399.okta.com/oauth2/default",
+      responseType: ['token', 'id_token'],
+      display: 'page'
     },
-    function error(err) {
-      console.error(err);
+    features: {
+      registration: true
     }
-  );
-} else {
-  oktaSignIn.session.get(function (res) {
-    // If we get here, the user is already signed in.
-    if (res.status === 'ACTIVE') {
-      $("#okta-button").hide();
-      document.getElementById("messagebox").innerHTML = "Hello, " + res.login + "";
-      $("#messagebox").attr("data-login", res.login);
-      let newpostUsername = document.getElementById("newpost_username");
-      if (newpostUsername){
-        document.getElementById("newpost_username").innerHTML = "" + res.login + "";
-      }
-      console.log("res.login ::", res.login);
-      return;
-    }
-    oktaSignIn.renderEl(
-      { el: '#okta-login-container' },
-      function success(res) {},
+  });
+
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    console.log("OKTA_TRUE");
+    oktaSignIn.token.parseTokensFromUrl(
+      // If we get here, the user just logged in.
+      function success(res) {
+        var accessToken = res[0];
+        var idToken = res[1];
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
+        window.location.hash = '';
+        $("#okta-button").hide();
+        document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email + " ";
+      },
       function error(err) {
         console.error(err);
       }
     );
-  });
-}
-
-function callMessagesApi() {
-  var accessToken = oktaSignIn.tokenManager.get("accessToken");
-
-  if (!accessToken) {
-    return;
+  } else {
+    oktaSignIn.session.get(function (res) {
+      // If we get here, the user is already signed in.
+      if (res.status === 'ACTIVE') {
+        $("#okta-button").hide();
+        document.getElementById("messagebox").innerHTML = "Hello, " + res.login + "";
+        $("#messagebox").attr("data-login", res.login);
+        let newpostUsername = document.getElementById("newpost_username");
+        if (newpostUsername) {
+          document.getElementById("newpost_username").innerHTML = "" + res.login + "";
+        }
+        console.log("res.login ::", res.login);
+        return;
+      }
+      oktaSignIn.renderEl(
+        { el: '#okta-login-container' },
+        function success(res) { },
+        function error(err) {
+          console.error(err);
+        }
+      );
+    });
   }
 
-  // Make the request using jQuery
-  $.ajax({
-    url: "https://dev-243399.okta.com/oauth2/default",
-    headers: {
-      Authorization : "Bearer " + accessToken.accessToken
-    },
-    success: function(response) {
-      console.log('Messages', response);
-    },
-    error: function(response) {
-      console.error(response);
-    }
-  });
-}
+  function callMessagesApi() {
+    var accessToken = oktaSignIn.tokenManager.get("accessToken");
 
-function logout() {
-  oktaSignIn.signOut();
-  location.reload();
-}
+    if (!accessToken) {
+      return;
+    }
+
+    // Make the request using jQuery
+    $.ajax({
+      url: "https://dev-243399.okta.com/oauth2/default",
+      headers: {
+        Authorization: "Bearer " + accessToken.accessToken
+      },
+      success: function (response) {
+        console.log('Messages', response);
+      },
+      error: function (response) {
+        console.error(response);
+      }
+    });
+  }
+
+  function logout() {
+    oktaSignIn.signOut();
+    location.reload();
+  }
 
 </script>
 
 {{!-- NAVBAR BURGER JS --}}
 <script id="NAVBAR_BURGER_TOGGLE">
-$(document).ready(function() {
-  // Check for click events on the navbar burger icon
-  $(".navbar-burger").click(function() {
+  $(document).ready(function () {
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function () {
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
 
+    });
   });
-});
 </script>
 
 {{!-- POST RANDOMIZER --}}
 <script type="text/javascript" id="RANDOM_POST">
-function randomPage() {
-  console.log("RANDOM PAGE");
-  window.location.href = "/random";
-};
+  function randomPage() {
+    console.log("RANDOM PAGE");
+    window.location.href = "/random";
+  };
 </script>
