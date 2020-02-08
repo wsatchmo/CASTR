@@ -1,18 +1,16 @@
 # CASTR
 **CASTR** is a cross between Pinterest and Reddit/Quora.
 
-Users sign up for an account and subscribe to their favorite podcasts. What makes this app different from native podcast platforms or aggregator is that they’re able to pin episodes on their dashboard and pull related conversations.
-
-The real magic behind CASTR is the conversational space around the users’ favorite content. When a podcast is posted, users are able to have real, live conversations around the topic. Eventually, they’ll receive suggested podcasts relating to their engagement (future development) and likes.
+Users sign up for an account and subscribe to their favorite creators. This is a space where creators can share a wide breadth of mediums including audio, art, literature, and video. It's a space where they can share, save, and start meaningful conversations around the different pieces creators have to offer.
 
 ## Group project #2
-* **Team Members:** Luke Klymshyn, Will Satcher, Krizel Minnema, Hyejin Kim
+* **Team Members:** [Luke Klymshyn](https://github.com/UnseenMountain), [Will Satcher](https://github.com/wsatchmo), [Krizel Minnema](https://github.com/krizel4), [Hyejin Kim](https://github.com/cshjnim)
 * **Group Name:** The Wizards
 
 ## Team Roles
 * **Design:** Luke
-* **Chat/Conversation:** Krizel
-* **Database/User Submissions:** Will
+* **Comment/Styling:** Krizel
+* **Database/Posts/Live Comments:** Will
 * **Auth:** Hyejin
 
 ## Technologies
@@ -31,18 +29,19 @@ The real magic behind CASTR is the conversational space around the users’ favo
 * jQuery
 
 ## Other Tools
+* Okta
 
 ## Screenshots
 
-* deployed page Screenshot: 
+* deployed page Screenshot:
 
 ![Screenshots](/screenshots/frontpage.png)
 
-* Okta Sign-in modal: 
+* Okta Sign-in modal:
 
 ![Screenshots](/screenshots/okta-auth.png)
 
-* Okta Sign-up modal: 
+* Okta Sign-up modal:
 
 ![Screenshots](/screenshots/signup.png)
 
