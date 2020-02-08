@@ -72,14 +72,14 @@
 </div>
 
 <!--
- _____ __ __ _____    _____ _____ _____ _____ _____ _____ _____
-|  _  |  |  |_   _|  | __  |   __|     |  |  |   __|   __|_   _|
-|   __|  |  | | |    |    -|   __|  |  |  |  |   __|__   | | |
-|__|  |_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|
-                                    |__|
+ _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ _____
+|  _  |  .  |   __|_   _|  | __  |   __|     |  |  |   __|   __|_   _|
+|   __|  |  |__   | | |    |    -|   __|  |  |  |  |   __|__   | | |
+|__|  |_____|_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|
+                                          |__|
     -->
 
-<script id="PUT_REQUEST_JS" type="text/javascript"> //Script for sending PUT request
+<script id="POST_REQUEST_FORPOSTS" type="text/javascript"> //Script for sending PUT request
 $("#add-post").on("click", function(event) {
   console.log("Submit button pressed");
   var type;
@@ -111,7 +111,7 @@ $("#add-post").on("click", function(event) {
       post_image: image
     }
     //console.log(data);
-    // Send the PUT request.
+    // Send the POST request.
     $.ajax("/newpost/add", {
       type: "POST",
       data: data

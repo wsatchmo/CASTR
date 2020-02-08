@@ -72,13 +72,12 @@ var orm = {
         });
     },
 
-    addComment: function(table, cols, vals, cb){ // CREATE -
-        var queryString = "INSERT INTO " + table;
-        queryString += " (postId, name, email, comment) VALUES (";
+    addComment: function(vals, cb){ // CREATE -
+        var queryString = "INSERT INTO comments (postId, name, email, comment) VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
-
-        console.log(queryString);
+        console.log("===========vals:: ");
+        console.log(vals);
         connection.query(queryString, vals, function(err, result){
             if (err) throw err;
             cb(result);
