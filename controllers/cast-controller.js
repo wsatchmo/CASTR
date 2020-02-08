@@ -73,7 +73,7 @@ router.get('/post/:id', function(req,res){
             postsObj: postsObj,
             comObj: comObj
         }
-        console.log("Object for GET request :", getObj);
+        //console.log("Object for GET request :", getObj);
         if (postsObj.posts.length !== 0){
             res.render('post', getObj); //COMBINE OBJ's
         } else { //If there is nothing in the post obj load newpost instead
@@ -85,8 +85,8 @@ router.get('/post/:id', function(req,res){
 //RANDOM ITEM FROM DB
 router.get('/random', function(req, res){
     cast.getLast(function(result){
-        console.log("result ::");
-        console.log(result[0].id);
+        // console.log("result ::");
+        // console.log(result[0].id);
         let last = parseInt(result[0].id);
         let random = Math.floor(Math.random() * last) + 1;
         //Random number using last id in db
@@ -98,32 +98,16 @@ router.get('/random', function(req, res){
 //////////////////////////// WORKING ////////////////////////////
 
 // COMMENT ROUTE
-router.post("/comments/:id", function(req, res){
-    var postId  = req.params.id;
+router.post("/post/comment", function(req, res){
+    var postId  = req.body.postId;
     var nameInput = req.body.name;
     var emailInput = req.body.email;
-    var commentForm = req.body.commentBody;
+    var commentInput = req.body.comment;
 
-    cast.create([postId, name, email, comment],[postId, nameInput,emailInput, commentForm], function(result) {
-        console.log(result)
-        console.log("comment added to db")
+    cast.addComment([postId, nameInput, emailInput, commentInput], function(result) {
+        // console.log(result);
+        // console.log("comment added to db");
     });
-});
-
-//CHANGE SO THIS CAN EDIT A USER"S POSTS
-router.put("/posts/update/:id", function(req, res){
-	var condition = "id=" + req.params.id;
-	console.log("condition", condition);
-
-	cast.updateOne({
-        post_title: req.body.post_title,
-        post_type: req.body.post_type,
-        post_user: req.body.post_user,
-        post_body: req.body.post_body,
-        post_image: req.body.post_image
-	}, condition, function(data){
-		res.render("index");
-	});
 });
 
 //CHANGE SO THIS CAN DELETE A USER"S POSTS

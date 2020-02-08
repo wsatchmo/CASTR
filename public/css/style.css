@@ -10,6 +10,10 @@ body, html{
     margin-bottom: 100px;
 }
 
+.com-group{
+    width: 100%;
+}
+
 #comments{
     background-image: linear-gradient(to bottom right, rgb(95, 174, 240) , rgb(18, 108, 211) , rgb(21, 65, 148));
     padding-bottom: 5px;
@@ -24,13 +28,22 @@ body, html{
     border-radius: 5px;
 }
 
-.comment-name{
+.comment-name-right{
     font-size: 12px;
     color: rgb(204, 13, 70);
 }
 
+.comment-name-left{
+    font-size: 12px;
+    color: rgb(20, 7, 139);
+}
+
 .comment-left{
     margin-right: 10%;
+}
+
+.comment-right{
+    margin-left: 10%;
 }
 
 #if-embed iframe{
