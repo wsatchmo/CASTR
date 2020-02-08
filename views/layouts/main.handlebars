@@ -21,7 +21,6 @@
     <script src="https://global.oktacdn.com/okta-signin-widget/3.2.2/js/okta-sign-in.min.js" type="text/javascript"></script>
     <link href="https://global.oktacdn.com/okta-signin-widget/3.2.2/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
    
-
     <!-- Bulma Link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <!-- CSS Link -->
@@ -132,21 +131,25 @@
   '""""       /'    .L_      `\       """"' --}}
 
 
-  <!-- FOOTER -->    
-  <footer class="footer" id="main-footer">
-      <div class="content has-text-centered" style="margin-bottom: 5px;">
-          <p>
-          &#169; Copyright 
-          <a href="https://github.com/cshjnim">Hyejin Kim</a>,
-          <a href="https://github.com/krizel4">Krizel Minnema</a>,
-          <a href="https://github.com/UnseenMountain">Luke Klymshyn</a>, &
-          <a href="https://github.com/wsatchmo">Will Satcher</a>
-          </p>
-      </div>
-      <img class="center" src="/images/logo1.png" style="height: 20px;">
-  </footer>
+  <!-- FOOTER --> 
+  <div id="page-container">
+    <div id="content-wrap">   
+      <footer class="footer" id="main-footer">
+          <div class="content has-text-centered" style="margin-bottom: 5px;">
+              <p>
+              &#169; Copyright 
+              <a href="https://github.com/cshjnim">Hyejin Kim</a>,
+              <a href="https://github.com/krizel4">Krizel Minnema</a>,
+              <a href="https://github.com/UnseenMountain">Luke Klymshyn</a>, &
+              <a href="https://github.com/wsatchmo">Will Satcher</a>
+              </p>
+          </div>
+          <img class="center" src="/images/logo1.png" style="height: 20px;">
+      </footer>
+    </div>
+  </div>
+  
   <!-- where the sign-in form will be displayed -->
-
   <div id="signin-modal" class="modal">
     <div class="modal-background"></div>
     <div id="okta-login-container">

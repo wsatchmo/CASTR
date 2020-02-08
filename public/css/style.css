@@ -138,21 +138,19 @@ body, html{
     bottom: 0px;
     width: 100%;
     background-color: rgb(54, 54, 54);
-    height: 90px;
+    height: 6rem;
+    padding: 20px;
     text-align: center;
-    padding-bottom: 65px;
-    padding-top: 35px;
 }
 
 #page-container {
     position: relative;
     min-height: 100%;
-  }
+}
 
 #content-wrap {
     padding-bottom: 2.5rem;    /* Footer height */
-  }
-
+}
 
 #main-footer{
     font-size: 12px;
