@@ -13,7 +13,6 @@
 var orm = {
     all: function(table, cb){  //GET ALL POSTS
         var queryString = "SELECT * FROM " + table + " ORDER BY id DESC";
-
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -45,6 +44,7 @@ var orm = {
     getOne: function(table, vals, cb){ //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
         var queryString = "SELECT * FROM " + table + " WHERE id = ";
         queryString += vals;
+        console.log("QUERY STRING: ", queryString);
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -53,6 +53,7 @@ var orm = {
 
     getLast: function(table, cb){ //SELECT ITEM FROM TABLE BY LAST ID DESCENDING (LAST)
         var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
+        console.log("Firing");
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);

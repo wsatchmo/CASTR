@@ -14,7 +14,7 @@ let posts = {
     },
     getOne: function(vals, cb){ //For loading one post
         orm.getOne("posts", vals, function(res){
-            //console.log("Vals: ", vals);
+            console.log("Vals: ", vals);
             cb(res);
         });
     },

@@ -145,6 +145,12 @@ body, html{
     font-size: 12px;
 }
 
+.img-on-modal{
+    display: block;
+    margin-left: auto;
+    width: 50%;
+}
+
 .center {
     display: block;
     margin-left: auto;
