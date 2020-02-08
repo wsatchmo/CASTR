@@ -138,14 +138,13 @@ body, html{
     bottom: 0px;
     width: 100%;
     background-color: rgb(54, 54, 54);
-    height: 7rem;
-    padding: 20px;
+
     text-align: center;
 }
 
 #page-container {
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
   }
 
 #content-wrap {
