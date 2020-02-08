@@ -1,0 +1,152 @@
+body, html{
+    background-image: url("../images/diagonal.jpg");
+    height: 100%;
+    background-repeat: repeat;
+    background-size: 200px;
+}
+
+.post-full{
+    padding: 5%;
+    margin-bottom: 100px;
+}
+
+#comments{
+    background-image: linear-gradient(to bottom right, rgb(95, 174, 240) , rgb(18, 108, 211) , rgb(21, 65, 148));
+    padding-bottom: 5px;
+}
+
+#comments-title{
+    color: white;
+}
+
+.comments-inner{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment-name{
+    font-size: 12px;
+    color: rgb(204, 13, 70);
+}
+
+.comment-left{
+    margin-right: 10%;
+}
+
+#if-embed iframe{
+    width: 100%;
+}
+
+.card{
+    margin-top: 5%;
+}
+
+.post-title{
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.post-body{
+    margin-top: 15px;
+    color: white;
+}
+
+#post-content{
+    background-color: rgb(20, 20, 20);
+}
+
+#mosaic{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+    align-items: stretch;
+    overflow: scroll;
+}
+
+.mosaic-small {
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 5rem;
+    height: auto;
+    flex-grow: 1;
+}
+
+.mosaic-med{
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 15rem;
+    height: auto;
+    flex-grow: 2;
+}
+
+.mosaic-lrg{
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    width: 25rem;
+    height: auto;
+    flex-grow: 5;
+}
+
+#newpost-title{
+    font-size: 20px;
+}
+
+#newpost-main{
+    background-image: url("../images/diagonal.jpg");
+    height: 100%;
+    background-repeat: repeat;
+    background-size: 200px;
+}
+
+#newpost-cardbody{
+    background-color: rgb(25, 25, 25);
+    padding: 2%;
+    color: rgb(220, 220, 220);
+    margin-bottom: 150px;
+}
+
+.genre-input{
+    width: 33%;
+}
+
+.white-label{
+    color: rgb(220, 220, 220);
+}
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgb(54, 54, 54); 
+    height: 90px;
+    padding: 20px;
+}
+
+#main-footer{
+    font-size: 12px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  }
+
+@media only screen and (max-width: 400px) {
+    footer.footer {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    #main-footer{
+        font-size: 10px;
+    }
+}

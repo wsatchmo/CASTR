@@ -1,16 +1,26 @@
 {
   "name": "castr",
   "version": "1.0.0",
-  "description": "",
+  "description": "**CASTR** is a cross between Pinterest and Reddit/Quora.",
   "main": "server.js",
   "dependencies": {
+    "@okta/okta-signin-widget": "^3.7.0",
+    "bulma": "^0.8.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.7.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-prettier": "^3.1.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "eslint **/*.js --quiet"
   },
   "repository": {
     "type": "git",
@@ -21,5 +31,6 @@
   "bugs": {
     "url": "https://github.com/cshjnim/CASTR/issues"
   },
-  "homepage": "https://github.com/cshjnim/CASTR#readme"
+  "homepage": "https://github.com/cshjnim/CASTR#readme",
+  "keywords": []
 }
