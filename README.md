@@ -9,8 +9,8 @@ Users sign up for an account and subscribe to their favorite creators. This is a
 
 ## Team Roles
 * **Design:** Luke
-* **Comment/Styling:** Krizel
-* **Database/Posts/Live Comments:** Will
+* **Comments Set-up:** Krizel
+* **Database/Posts/Comments:** Will
 * **Auth:** Hyejin
 
 ## Technologies
