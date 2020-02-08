@@ -27,13 +27,22 @@ let posts = {
     create: function(cols, vals, cb){ //For creating new posts
         orm.create("posts", cols, vals, function(res){
             cb(res);
-        }); //|||||||||||||||||||||NEED COMMENT JS|||||||||||||||||||||||||||
-    }, //update columns and conditions for posts
-    updateOne: function(table, objColVals, condition, cb){
-        orm.updateOne("posts", objColVals, condition, function(res){
+        }); 
+    }, 
+
+    //||||||||||||||||||||| COMMENT |||||||||||||||||||||||||||
+    getComments: function(post_id, cb){
+        orm.getComments(post_id, function(res){
             cb(res);
         });
     },
+    addComment: function(post_id, comment_added, cb){
+        orm.addComment(post_id, comment_added, function(res){
+            cb(res);
+        });
+    },
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
     deleteOne: function(table, objColVals, condition, cb){
         orm.deleteOne("posts", objColVals, condition, function(res){
             cb(res);

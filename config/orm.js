@@ -62,7 +62,17 @@ var orm = {
     //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
     //////////////////////////// COMMENT ////////////////////////////
 
-    comment: function(table, cols, vals, cb){ // CREATE -
+    getComments: function(post_id, cb){ //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN post_id
+        var comQueryString = "SELECT * FROM comments WHERE postId = ";
+        comQueryString += post_id;
+        console.log("COMMENT QUERY STRING: ", comQueryString);
+        connection.query(comQueryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        });
+    },
+
+    addComment: function(table, cols, vals, cb){ // CREATE -
         var queryString = "INSERT INTO " + table;
         queryString += " (postId, name, email, comment) VALUES (";
         queryString += printQuestionMarks(vals.length);
@@ -74,6 +84,8 @@ var orm = {
             cb(result);
         });
     },
+
+    // SELECT ALL FROM comments WHERE post_id = {given post id}
 
     //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
     //////////////////////////// COMMENT ////////////////////////////

@@ -8,6 +8,8 @@ CREATE TABLE posts (
     post_user varchar (100),
     post_body varchar (5000),
     post_image varchar (500) NOT NULL,
+    -- post_likes INTEGER (50) NOT NULL DEFAULT 0,
+    -- post_comments varchar (MAX),
     time_created DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (id)
 );

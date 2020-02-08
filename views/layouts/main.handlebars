@@ -10,9 +10,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pixla - The Everything Network</title>
-
-    <!-- OKTA -->
+    <title>Pixla</title>
+    <meta name="description" content="The everything network - all posts welcome">
+    <meta name="keywords" content="Social, Post, Comment, Network, Image, Video, Embed, Fun, Media">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+    
     <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet" />
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet" />
@@ -63,7 +65,7 @@
                   Github Repo
                   </a>
                   <a class="navbar-item">
-                  Jobs
+                  Contact
                   </a>
                   <hr class="navbar-divider">
                   <a class="navbar-item">
@@ -79,11 +81,11 @@
                   {{!-- <a class="button is-link modal-button">
                   <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
                   </a> --}}
-                  <a class="button is-light modal-button" id="okta-button" data-target="#signin-modal">
-                  Log in
+                  <a class="button modal-button is-link" id="okta-button" data-target="#signin-modal">
+                  Sign in
                   </a>
 
-                  <div id="messagebox"></div>
+                  <div id="messagebox" style="font-size: 12px; margin-right: 10px; margin-bottom: 5px;"></div>
                   <a class="button is-light modal-button" id="logout-button" onclick="logout()">
 
                   Log Out
@@ -177,51 +179,60 @@ $(".modal-background").click(function() {
 
 <!-- use the Okta widget to power authentication! -->
 <script id="OKTA_AUTH" type="text/javascript">
-  var oktaSignIn = new OktaSignIn({
-    baseUrl: "https://dev-243399.okta.com",
-    clientId: "0oa17yze2QPsrc85c4x6",
-    authParams: {
-      issuer: "https://dev-243399.okta.com/oauth2/default",
-      responseType: ['token', 'id_token'],
-      display: 'page'
+var oktaSignIn = new OktaSignIn({
+  baseUrl: "https://dev-243399.okta.com",
+  clientId: "0oa17yze2QPsrc85c4x6",
+  authParams: {
+    issuer: "https://dev-243399.okta.com/oauth2/default",
+    responseType: ['token', 'id_token'],
+    display: 'page'
+  },
+  features: {
+      registration: true
+  }
+});
+
+if (oktaSignIn.token.hasTokensInUrl()) {
+  console.log("OKTA_TRUE");
+  oktaSignIn.token.parseTokensFromUrl(
+    // If we get here, the user just logged in.
+    function success(res) {
+      var accessToken = res[0];
+      var idToken = res[1];
+      oktaSignIn.tokenManager.add('accessToken', accessToken);
+      oktaSignIn.tokenManager.add('idToken', idToken);
+      window.location.hash='';
+      $("#okta-button").hide();
+      document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email + " ";
     },
-    features: {
-        registration: true
+    function error(err) {
+      console.error(err);
     }
-  });
-  if (oktaSignIn.token.hasTokensInUrl()) {
-    oktaSignIn.token.parseTokensFromUrl(
-      // If we get here, the user just logged in.
-      function success(res) {
-        var accessToken = res[0];
-        var idToken = res[1];
-        oktaSignIn.tokenManager.add('accessToken', accessToken);
-        oktaSignIn.tokenManager.add('idToken', idToken);
-        window.location.hash='';
-        $("#okta-button").hide();
-        document.getElementById("messagebox").innerHTML = "Hello, " + idToken.claims.email + " ";
-      },
+  );
+} else {
+  oktaSignIn.session.get(function (res) {
+    // If we get here, the user is already signed in.
+    if (res.status === 'ACTIVE') {
+      $("#okta-button").hide();
+      document.getElementById("messagebox").innerHTML = "Hello, " + res.login + "";
+      let newpostUsername = document.getElementById("newpost_username");
+      if (newpostUsername){
+        document.getElementById("newpost_username").innerHTML = "" + res.login + "";
+      }
+      console.log("res.login ::", res.login);
+      return;
+    }
+    oktaSignIn.renderEl(
+      { el: '#okta-login-container' },
+      function success(res) {},
       function error(err) {
         console.error(err);
       }
     );
-  } else {
-    oktaSignIn.session.get(function (res) {
-      // If we get here, the user is already signed in.
-      if (res.status === 'ACTIVE') {
-        document.getElementById("messageBox").innerHTML = "Hello, " + res.login;
-        return;
-      }
-      oktaSignIn.renderEl(
-        { el: '#okta-login-container' },
-        function success(res) {},
-        function error(err) {
-          console.error(err);
-        }
-      );
-    });
-  }
-   function callMessagesApi() {
+  });
+}
+
+function callMessagesApi() {
   var accessToken = oktaSignIn.tokenManager.get("accessToken");
 
   if (!accessToken) {
@@ -243,10 +254,10 @@ $(".modal-background").click(function() {
   });
 }
 
- function logout() {
-        oktaSignIn.signOut();
-        location.reload();
-      }
+function logout() {
+  oktaSignIn.signOut();
+  location.reload();
+}
 
 </script>
 
