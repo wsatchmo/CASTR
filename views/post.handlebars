@@ -12,7 +12,7 @@
                 <div class="card-content" id="post-content">
                     <div class="media-content">
                         <p class="post-title title is-4">{{this.post_title}}</p>
-                        <p class="subtitle">{{this.post_user}}</p>
+                        <p class="subtitle">{{this.post_user}}</p><p id="post-number" style="visibility: hidden; font-size: 2px" data-id="{{this.id}}"></p>
                     </div>
                     <div class="content post-body">{{this.post_body}}</div>
                     <div id="if-embed"></div>
@@ -41,23 +41,34 @@
                     </div>
                     <div class="content comment-size" id="comments-section">
                         {{#each comObj.comments}}
-                        <div class="card comments-inner comment-left">
-                            <div class="media-content">
-                                <p class="subtitle comment-name">{{this.email}}</p>
+                            <div class="card comments-inner comment-left">
+                                <div class="media-content">
+                                    <p class="subtitle comment-name comment-name-left">{{this.name}}</p>
+                                </div>
+                                <div class="content">
+                                    <p>{{this.comment}}</p>
+                                </div>
                             </div>
-                            <div class="content">
-                                <p>{{this.comment}}</p>
+                        {{/each}}
+                    </div>
+                        <footer class="card-footer">
+                        <div class="card-footer-item">
+                            <div class="control com-group">
+                                <input class="input is-info" id="add-comment" type="text" placeholder="Add a Comment">
+                                <div class="buttons is-right">
+                                    <button id="push-comment" class="button is-link is-right" style="margin-top: 5px;">Add Comment</button>
+                                </div>
                             </div>
                         </div>
                         {{/each}}
 
                         <div class="is-divider" style="padding-top: 30px;"><hr></div>
 
-                        <div class="control" style="padding: 30px;">
+                        {{!-- <div class="control" style="padding: 30px;">
                             <h2 class="title is-4" style="color:#fff;">Join the conversation</h2>
                             <textarea class="textarea" placeholder="Start typing here..."></textarea>
                             <button class="button is-warning" style="margin:20px 0 20px 0;">COMMENT</button>
-                        </div>
+                        </div> --}}
                     </div>
 
 
@@ -72,6 +83,85 @@
 
     </div>
 </div>
+
+
+<!--
+ _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ _____
+|  _  |  .  |   __|_   _|  | __  |   __|     |  |  |   __|   __|_   _|
+|   __|  |  |__   | | |    |    -|   __|  |  |  |  |   __|__   | | |
+|__|  |_____|_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|
+                                          |__|
+    -->
+
+<script id="POST_REQUEST_FORPOSTS" type="text/javascript"> //Script for sending PUT request
+
+$("#push-comment").on("click", function(event) {
+    //console.log("Comment submit button pressed");
+    let postId = parseInt($("#post-number").attr("data-id"));
+    var name;
+    let email = $("#messagebox").attr("data-login");
+    let comment = $("#add-comment").val();
+
+    let n = email.indexOf("@");
+    //console.log("NAME: ");
+    //console.log(email.substring(0, n));
+    name = email.substring(0, n);
+
+    //If comment field blank, modal
+    if (comment === ""){
+        console.log("Not enough info");
+        $("#comment-modal").addClass("is-active"); //MAKE THIS
+    } else {
+        //otherwise add to db
+        data = { //This sends the data from the fields to the server
+        postId: postId,
+        name: name,
+        email: email,
+        comment: comment
+        }
+        console.log(data);
+
+        // Send the POST request.
+        $.ajax("/post/comment", {
+            type: "POST",
+            data: data
+        }).then(
+        function(req) {
+        });
+        setTimeout(function() { //In 3 sec, go to post
+        //console.log("Countdown fired");
+        window.location.href = '/post/' + postId;
+        }, 1000);
+    };
+});
+</script>
+
+<script id="COMMENT_OWNER">
+    setTimeout(function() { //In 3 sec, go to post
+        //console.log("Countdown fired");
+        let userE = $("#messagebox").attr("data-login");
+        let n = userE.indexOf("@");
+        userE = userE.substring(0, n);
+
+        $('.comment-name').each(function(i, obj) {
+            let commentName = $(this).html();
+            if (userE.trim() === commentName.trim()){
+            //console.log("firing");
+            $(this).removeClass("comment-name-left");
+            $(this).addClass("comment-name-right");
+            }
+        });
+        $('.comments-inner').each(function(i, obj) {
+            let commentName = $(this).find("p").html();
+            if (userE.trim() === commentName.trim()){
+            //console.log("firing");
+            $(this).removeClass("comment-left");
+            $(this).addClass("comment-right");
+            }
+        });
+    }, 1000);
+
+</script>
 
 {{!-- NEXT PAGE, PREVIOUS PAGE BUTTONS --}}
 <script type="text/javascript" id="CHANGING_BUTTON_LINK">

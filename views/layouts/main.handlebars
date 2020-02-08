@@ -68,7 +68,7 @@
                   Contact
                   </a>
                   <hr class="navbar-divider">
-                  <a class="navbar-item">
+                  <a class="navbar-item" href="mailto:wsatcher144@gmail.com">
                   Report an issue
                   </a>
               </div>
@@ -215,6 +215,7 @@ if (oktaSignIn.token.hasTokensInUrl()) {
     if (res.status === 'ACTIVE') {
       $("#okta-button").hide();
       document.getElementById("messagebox").innerHTML = "Hello, " + res.login + "";
+      $("#messagebox").attr("data-login", res.login);
       let newpostUsername = document.getElementById("newpost_username");
       if (newpostUsername){
         document.getElementById("newpost_username").innerHTML = "" + res.login + "";

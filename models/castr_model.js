@@ -30,14 +30,14 @@ let posts = {
         }); 
     }, 
 
-    //||||||||||||||||||||| COMMENT |||||||||||||||||||||||||||
+    //||||||||||||||||||||| COMMENTS |||||||||||||||||||||||||||
     getComments: function(post_id, cb){
         orm.getComments(post_id, function(res){
             cb(res);
         });
     },
-    addComment: function(post_id, comment_added, cb){
-        orm.addComment(post_id, comment_added, function(res){
+    addComment: function(comment_added, cb){
+        orm.addComment(comment_added, function(res){
             cb(res);
         });
     },
