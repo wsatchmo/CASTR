@@ -19,14 +19,14 @@
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
-                    <span>
-                        <a onclick="nextPage()" class="next_button" data-id="{{this.id}}">Next</a>
-                    </span>
+                        <span>
+                            <a onclick="nextPage()" class="next_button" data-id="{{this.id}}">Next</a>
+                        </span>
                     </p>
                     <p class="card-footer-item">
-                    <span>
-                        <a onclick="previousPage()" class="previous_button" data-id="{{this.id}}">Previous</a>
-                    </span>
+                        <span>
+                            <a onclick="previousPage()" class="previous_button" data-id="{{this.id}}">Previous</a>
+                        </span>
                     </p>
                 </footer>
             </div>
@@ -35,30 +35,35 @@
 
         <div class="column">
             <div class="card">
-                <div id="comments" class="card-content">
+                <div id="comments" class="card-content control">
                     <div class="media-content">
                         <p id="comments-title" class="title is-4">Comments</p>
                     </div>
-                    <div class="content" id="comments-section">
+                    <div class="content comment-size" id="comments-section">
                         {{#each comObj.comments}}
-                            <div class="card comments-inner comment-left">
-                                <div class="media-content">
-                                    <p class="subtitle comment-name">{{this.email}}</p>
-                                </div>
-                                <div class="content">
-                                    <p>{{this.comment}}</p>
-                                </div>
+                        <div class="card comments-inner comment-left">
+                            <div class="media-content">
+                                <p class="subtitle comment-name">{{this.email}}</p>
                             </div>
-                        {{/each}}
-                    </div>
-                        <footer class="card-footer">
-                        <div class="card-footer-item">
-                            <div class="control">
-                                <textarea class="textarea" placeholder="Join the conversation"></textarea>
-                                <button class="button is-link">Comment</button>
+                            <div class="content">
+                                <p>{{this.comment}}</p>
                             </div>
                         </div>
-                    </footer>
+                        {{/each}}
+
+                        <div class="is-divider" style="padding-top: 30px;"><hr></div>
+
+                        <div class="control" style="padding: 30px;">
+                            <h2 class="title is-4" style="color:#fff;">Join the conversation</h2>
+                            <textarea class="textarea" placeholder="Start typing here..."></textarea>
+                            <button class="button is-warning" style="margin:20px 0 20px 0;">COMMENT</button>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
             </div>
             {{!-- FIGURE OUT HOW TO TIE COMMENT TABLE TO HERE & LOAD COMMENTS --}}
@@ -79,7 +84,7 @@
     function previousPage() {
         let dataIdP = $(".previous_button").attr("data-id");
         let previousNum = parseInt(dataIdP) - 1;
-        if (previousNum !== 0){
+        if (previousNum !== 0) {
             window.location.href = "/post/" + previousNum;
         } //If previous is 0, don't go
     };
@@ -87,16 +92,16 @@
 
 {{!-- EMBEDDING IFRAMES --}}
 <script type="text/javascript" id="IFRAME_EMBED">
-    $(document).ready(function() {
+    $(document).ready(function () {
         let postBod = $(".post-body");
         //console.log(postBod);
         let postBodVal = postBod[0].innerText;
         //console.log(postBodVal);
         let ifEmbed = $("#if-embed");
         if (postBodVal.includes("<iframe")) {
-           console.log("Has embed link");
-           ifEmbed.append(postBodVal);
-           postBod.remove();
+            console.log("Has embed link");
+            ifEmbed.append(postBodVal);
+            postBod.remove();
         }
     });
 </script>
