@@ -54,19 +54,17 @@
                         <footer class="card-footer">
                         <div class="card-footer-item">
                             <div class="control com-group">
+                                <h2 class="title is-4" style="color:#fff;">Join the conversation</h2>
                                 <input class="input is-info" id="add-comment" type="text" placeholder="Add a Comment">
                                 <div class="buttons is-right">
-                                    <button id="push-comment" class="button is-link is-right" style="margin-top: 5px;">Add Comment</button>
+                                    <button id="push-comment" class="button is-link is-right is-warning" style="margin-top: 5px;">Add Comment</button>
                                 </div>
                             </div>
                         </div>
                     </footer>
                 </div>
             </div>
-            {{!-- FIGURE OUT HOW TO TIE COMMENT TABLE TO HERE & LOAD COMMENTS --}}
         </div>
-
-
     </div>
 </div>
 
@@ -214,7 +212,7 @@ var commentRetry = setInterval(function() { //For 10 seconds, try again (just in
         let nextNum = parseInt(dataIdN) + 1;
         window.location.href = "/post/" + nextNum;
     };
-    
+
     function previousPage() {
         let dataIdP = $(".previous_button").attr("data-id");
         let previousNum = parseInt(dataIdP) - 1;
@@ -236,6 +234,9 @@ var commentRetry = setInterval(function() { //For 10 seconds, try again (just in
            console.log("Has embed link");
            ifEmbed.append(postBodVal);
            postBod.remove();
-        } 
+        }
     });
 </script>
+
+
+
