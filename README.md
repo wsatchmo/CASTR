@@ -31,3 +31,25 @@ The real magic behind CASTR is the conversational space around the users’ favo
 * jQuery
 
 ## Other Tools
+
+## Screenshots
+
+* deployed page Screenshot: 
+
+![Screenshots](/screenshots/frontpage.png)
+
+* Okta Sign-in modal: 
+
+![Screenshots](/screenshots/okta-auth.png)
+
+* Okta Sign-up modal: 
+
+![Screenshots](/screenshots/signup.png)
+
+## Links & Portfolio's Links
+
+*  [Deployed page](https://podfire.herokuapp.com/)
+
+- - -
+App created: Jan. 28, 2020
+Last Updated: Feb. 7, 2020
