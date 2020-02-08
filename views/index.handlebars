@@ -1,41 +1,35 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-
-        <h2>Welcome to CASTR</h2>
-
-        <h2>This is our Home Page!</h2>
-
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-
-          {{#each cast}}
-
-          {{#each examples}}
-
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<!-- MOSAIC OF IMAGES -->
+<div class="columns main">
+    <div id="mosaic" class="column">
+        {{#each posts}}
+        <img class="mosaic-image lazy" src="{{this.post_image}}" data-id="{{this.id}}" onerror="this.src='/images/error.jpg'" loading="lazy" style="cursor:pointer;">
+        {{/each}}
     </div>
-  </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+{{!-- CLICK IMAGE TO GO TO PAGE --}}
+<script id="GO_TO_PAGE">
+$(".mosaic-image").on("click", function toPage(){
+    let id = $(this).attr("data-id");
+    console.log(id);
+    window.location.href = "/post/" + id;
+});
+</script>
+
+{{!-- IMAGE SIZE RANDOMIZER --}}
+<script id="IMAGE_SIZE_RANDOMIZER">
+$(".mosaic-image").each(function randomClass(){
+  console.log("this:", this);
+  let random = Math.floor(Math.random() * 6);
+  console.log(random);
+  if (random <= 1){
+      $(this).addClass("mosaic-small");
+  }
+  else if (random <= 4){
+      $(this).addClass("mosaic-med");
+  }
+  else {
+      $(this).addClass("mosaic-lrg");
+  }
+});
+</script>
