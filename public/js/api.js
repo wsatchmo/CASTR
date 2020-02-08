@@ -1,30 +1,28 @@
 
+var CLOUNDIAINARY_URL = 'https://api.cloudinary.com/v1_1/daa08ca0i/image/upload';
+var CLOUNDIAINARY_UPLOAD_PRESET = 'daa08ca0i';
 
-function displayPics(){
-    var picture = $(this).attr("data-pic");
-    console.log(picture);
-    var queryURL = "CLOUDINARY_URL=cloudinary://491934646965334:6WGsvdJIuzIGY6Iz5dT4RZ4oQQs@daa08ca0i"+
-    picture + "491934646965334";
+var imgPreview = document.getElementById('img-prewiew');
+var fileUpload = document.getElementById('file-upload');
 
-    console.log(queryURL)
-        $.ajax({
-            url: queryURL,
-            method:  "GET"
-        }).then(function(response){
-            console.log(response);
+fileUpload.addEventListener('change', function(event){
+    var file = event.target.files[0];
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUNDIAINARY_UPLOAD_PRESET);
 
-            var results = response.data;
+    axios({
+        url: CLOUNDIAINARY_URL,
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: formData
+    }).then(function(res){
+        console.log(res);
+    }).catch(function(err){
+        console.error(err);
+    });
 
-            for (var i = 0; i < results.length; i++){
+});
 
-                var pictureDiv = $("<div>");
-                var pictureDiv = $("<div class='pic'>")
-
-               var pictures = $("<img>");
-               
-               pictures.attr("scr", results[i].images.fixed_height.url);
-
-               pictureDiv.append(pictures);
-            }
-        })
-}
