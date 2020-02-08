@@ -31,23 +31,18 @@ let posts = {
     }, 
 
     //||||||||||||||||||||| COMMENT |||||||||||||||||||||||||||
-    getComments: function(table, post_id, cb){
-        orm.getComments("comments", post_id, function(res){
+    getComments: function(post_id, cb){
+        orm.getComments(post_id, function(res){
             cb(res);
         });
     },
-    addComment: function(table, post_id, comment_added, cb){
-        orm.addComment("comments", post_id, comment_added, function(res){
+    addComment: function(post_id, comment_added, cb){
+        orm.addComment(post_id, comment_added, function(res){
             cb(res);
         });
     },
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    
-    updateOne: function(table, objColVals, condition, cb){
-        orm.updateOne("posts", objColVals, condition, function(res){
-            cb(res);
-        });
-    },
+
     deleteOne: function(table, objColVals, condition, cb){
         orm.deleteOne("posts", objColVals, condition, function(res){
             cb(res);

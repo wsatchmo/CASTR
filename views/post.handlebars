@@ -2,7 +2,7 @@
 <div class="post-full">
     <div id="post-main" class="columns main">
         <div id="post-column" class="column">
-            {{#each posts}}
+            {{#each postsObj.posts}}
             <div class="card">
                 <div class="card-image">
                     <figure class="image is-3by3">
@@ -40,7 +40,16 @@
                         <p id="comments-title" class="title is-4">Comments</p>
                     </div>
                     <div class="content" id="comments-section">
-                        <p>Stuff</p>
+                        {{#each comObj.comments}}
+                            <div class="card comments-inner comment-left">
+                                <div class="media-content">
+                                    <p class="subtitle comment-name">{{this.email}}</p>
+                                </div>
+                                <div class="content">
+                                    <p>{{this.comment}}</p>
+                                </div>
+                            </div>
+                        {{/each}}
                     </div>
                         <footer class="card-footer">
                         <div class="card-footer-item">
@@ -80,9 +89,9 @@
 <script type="text/javascript" id="IFRAME_EMBED">
     $(document).ready(function() {
         let postBod = $(".post-body");
-        console.log(postBod);
+        //console.log(postBod);
         let postBodVal = postBod[0].innerText;
-        console.log(postBodVal);
+        //console.log(postBodVal);
         let ifEmbed = $("#if-embed");
         if (postBodVal.includes("<iframe")) {
            console.log("Has embed link");

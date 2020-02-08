@@ -58,20 +58,28 @@ router.get('/post/', function(req,res){
 //SPECIFIC POST -- BY ID
 router.get('/post/:id', function(req,res){
     var id = req.params.id;
+    var comObj;
     console.log("req: ");
     console.log(req.params);
     //console.log("ID: ", id);
+    cast.getComments(id, function(comData){
+        comObj = {comments: comData};
+        console.log("comObj :", comObj);
+        return comObj;
+    });
     cast.getOne(id, function(data){ //Get obj w/ corresponding id
         var postsObj = {posts: data};
-        console.log("postsObj :", postsObj);
+        var getObj = {
+            postsObj: postsObj,
+            comObj: comObj
+        }
+        console.log("Object for GET request :", getObj);
         if (postsObj.posts.length !== 0){
-            res.render('post', postsObj); 
+            res.render('post', getObj); //COMBINE OBJ's
         } else { //If there is nothing in the post obj load newpost instead
             res.redirect("/newpost");
         }
     });
-
-
 });
 
 //RANDOM ITEM FROM DB
