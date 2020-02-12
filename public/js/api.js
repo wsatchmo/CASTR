@@ -1,3 +1,5 @@
+var axios = require('axios')
+
 
 var CLOUNDIAINARY_URL = 'https://api.cloudinary.com/v1_1/daa08ca0i/image/upload';
 var CLOUNDIAINARY_UPLOAD_PRESET = 'daa08ca0i';
@@ -20,6 +22,7 @@ fileUpload.addEventListener('change', function(event){
         data: formData
     }).then(function(res){
         console.log(res);
+        imgPreview.src = res.data.secure_url;
     }).catch(function(err){
         console.error(err);
     });
