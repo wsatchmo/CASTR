@@ -1,5 +1,5 @@
-# CASTR
-**CASTR** is a cross between Pinterest and Reddit/Quora.
+# Pixla
+**Pixla** is a cross between Pinterest and Reddit/Quora.
 
 Users sign up for an account and subscribe to their favorite creators. This is a space where creators can share a wide breadth of mediums including audio, art, literature, and video. It's a space where they can share, save, and start meaningful conversations around the different pieces creators have to offer.
 
