@@ -1,4 +1,4 @@
- var connection = require('../config/connection.js'); //Connections dependency
+    var connection = require("../config/connection.js"); //Connections dependency
 
  // Array of question marks -- to be used as parameterized variables
  function printQuestionMarks(num){
@@ -85,11 +85,10 @@ var orm = {
         });
     },
 
-    // SELECT ALL FROM comments WHERE post_id = {given post id}
+    //||||||||||||||||||||||||||                    ||||||||||||||||||||||||||||
+    //////////////////////////// DELETE/UPDATE POST ////////////////////////////
 
-    //||||||||||||||||||||||||||         ||||||||||||||||||||||||||||
-    //////////////////////////// COMMENT ////////////////////////////
-
+    //NOT YET IMPLEMENTED -- REMEMBER TO ACCOUNT FOR DELETED ID's IN THE DB
     delete: function(table, condition, cb){
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE "; //CHANGE THIS TO DELETE POSTS
@@ -111,11 +110,11 @@ var orm = {
 
         console.log(queryString);
         connection.query(queryString, function(err, result){
-		if(err){
-			throw err;
-		}
-		cb(result);
-	    });
+        if(err){
+            throw err;
+        }
+        cb(result);
+        });
     },
 };
 

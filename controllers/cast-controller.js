@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var cast = require("../models/castr_model");
+const express = require("express");
+const router = express.Router();
+const cast = require("../models/castr_model");
 
 //HOME PAGE
 router.get("/", function(req, res){
@@ -10,8 +10,8 @@ router.get("/", function(req, res){
 //SHOW ALL POSTS ON HOME
 router.get("/landing", function(req,res){
     cast.all(function(data){ //Get all post objs for home page
-        var postsObj = {posts: data};
-        console.log(postsObj);
+        let postsObj = {posts: data};
+        // console.log(postsObj);
         res.render("index", postsObj);
     });
 });
@@ -19,8 +19,8 @@ router.get("/landing", function(req,res){
 //POSTS PAGE FOR NEW POSTS ---
 router.get('/newpost', function(req,res){
     cast.allGenre(function(data){ //Display all genres in dropdown
-        var postsObj = {posts: data};
-        console.log(postsObj);
+        let postsObj = {posts: data};
+        // console.log(postsObj);
         res.render("newpost", postsObj);
     });
 });
@@ -43,8 +43,8 @@ router.post("/newpost/add", function(req, res){
 //GET THE LAST POST IN DB BY ID
 router.get('/newpost/post', function(req,res){
     cast.getLast(function(result){
-        console.log("result ::");
-        console.log(result[0].id);
+        // console.log("result ::");
+        // console.log(result[0].id);
         //Gives the result number
         res.redirect("/post/" + result[0].id);
     });
@@ -57,23 +57,26 @@ router.get('/post', function(req,res){
 
 //SPECIFIC POST -- BY ID
 router.get('/post/:id', function(req,res){
-    var id = req.params.id;
-    var comObj;
+    let id = req.params.id;
+    let comObj;
     // console.log("req: ");
     // console.log(req);
     // console.log("req.params.id: ");
     // console.log(req.params.id);
     if (isNaN(id)){
-        console.log("Error: req.params.id has misfired; the id of '"+req.params.id+"' is not a number and has no accompanying page");
+        console.warn(
+            "Error: req.params.id has misfired; the id of '" + req.params.id +
+            "' is not a number and has no accompanying page"
+            );
     } else {
         cast.getComments(id, function(comData){
             comObj = {comments: comData};
-            console.log("comObj :", comObj);
+            // console.log("comObj :", comObj);
             return comObj;
         });
         cast.getOne(id, function(data){ //Get obj w/ corresponding id
-            var postsObj = {posts: data};
-            var getObj = {
+            let postsObj = {posts: data};
+            let getObj = {
                 postsObj: postsObj,
                 comObj: comObj
             }
@@ -104,10 +107,10 @@ router.get('/random', function(req, res){
 
 // COMMENT ROUTE
 router.post("/post/comment", function(req, res){
-    var postId  = req.body.postId;
-    var nameInput = req.body.name;
-    var emailInput = req.body.email;
-    var commentInput = req.body.comment;
+    let postId  = req.body.postId;
+    let nameInput = req.body.name;
+    let emailInput = req.body.email;
+    let commentInput = req.body.comment;
 
     cast.addComment([postId, nameInput, emailInput, commentInput], function(result) {
         // console.log(result);
@@ -118,7 +121,7 @@ router.post("/post/comment", function(req, res){
 //CHANGE SO THIS CAN DELETE A USER"S POSTS
 router.delete("/posts/delete/:id", function(req, res) {
 
-    var condition = "id = " + req.params.id;
+    let condition = "id = " + req.params.id;
 
     cast.deleteOne(condition, function(result) {
 
@@ -130,4 +133,5 @@ router.delete("/posts/delete/:id", function(req, res) {
       }
     });
   });
+
 module.exports = router;

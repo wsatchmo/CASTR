@@ -1,5 +1,5 @@
-
-var orm = require("../config/orm.js"); // Require the ORM to interact with Database
+//Goblin-made ORM for requesting and sending data to the DB
+var orm = require("../config/orm.js"); // Interact with Database
 
 let posts = {
     all: function(cb){ //For loading all posts
@@ -31,19 +31,20 @@ let posts = {
     }, 
 
     //||||||||||||||||||||| COMMENTS |||||||||||||||||||||||||||
-    getComments: function(post_id, cb){
+    getComments: function(post_id, cb){ //Get comments of a post
         orm.getComments(post_id, function(res){
             cb(res);
         });
     },
-    addComment: function(comment_added, cb){
+    addComment: function(comment_added, cb){ //Add a new comment to post
         orm.addComment(comment_added, function(res){
             cb(res);
         });
     },
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-    deleteOne: function(table, objColVals, condition, cb){
+    //NOT YET IMPLEMENTED::
+    deleteOne: function(table, objColVals, condition, cb){ //Delete post if same user
         orm.deleteOne("posts", objColVals, condition, function(res){
             cb(res);
         });
