@@ -2,8 +2,8 @@ const mysql = require("mysql"); //mysql dependency
 const dotenv = require("dotenv").config(); //dotenv dependency
 let connection;
 
-if (process.env.JAWSDB_URL){ //Jaws db connection
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
+if (process.env.JAWSDB_MARIA_URL){ //Jaws db connection
+    connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 } else {
     connection = mysql.createConnection({
         host: process.env.DB_HOST, //Create .env file & fill_
