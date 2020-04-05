@@ -20,8 +20,8 @@ var orm = {
     },
 
     allGenre: function(table, cb){  //GET ALL DISTINCT GENRES
-        var queryString = "SELECT DISTINCT post_type FROM " + table;
-        //console.log(queryString);
+        var queryString = "SELECT DISTINCT post_type FROM posts"
+        console.log(queryString);
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);

@@ -117,8 +117,8 @@
 $("#push-comment").on("click", function(event) {
     //console.log("Comment submit button pressed");
     let postId = parseInt($("#post-number").attr("data-id"));
-    var name;
-    let email = $("#messagebox").attr("data-login");
+    let name = $("#messagebox").attr("data-login");
+    let email = $("#messagebox").attr("data-email");
     let comment = $("#add-comment").val().trim();
     console.log(email);
     
@@ -127,11 +127,6 @@ $("#push-comment").on("click", function(event) {
         $("html").addClass("is-clipped");
         $("#not-loggedin-modal").addClass("is-active");
     } else {
-        let n = email.indexOf("@");
-        //console.log("NAME: ");
-        //console.log(email.substring(0, n));
-        name = email.substring(0, n);
-
         //If comment field blank, modal
         if (comment === ""){
             console.log("Not enough info");
@@ -169,12 +164,8 @@ var count = 0;
 $(document).ready(loadCommentOwner());
 
 function loadCommentOwner() {
-    //console.log("Countdown fired");
     let userE = $("#messagebox").attr("data-login");
     if (userE !== undefined){    
-        let n = userE.indexOf("@");
-        userE = userE.substring(0, n);
-
         $('.comment-name').each(function(i, obj) {
             let commentName = $(this).html();
             if (userE.trim() === commentName.trim()){

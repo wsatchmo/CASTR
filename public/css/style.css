@@ -80,31 +80,72 @@ body, html{
     overflow: scroll;
 }
 
+.text-overlay {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.mosaic-text{
+    color: white;
+    font-size: 1em;
+    overflow: hidden;
+}
+
+.mosaic-image:hover{
+    background-color: black;
+}
+
+.mosaic-image:hover .text-overlay{
+    opacity: 1;
+}
+.mosaic-image:hover .mosaic-inner{
+    opacity: .25;
+}
+
+.mosaic-inner{
+    transition: .5s ease;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
 .mosaic-small {
+    position: relative;
     margin: 0px;
     padding: 0px;
     object-fit: cover;
     width: 5rem;
     height: auto;
     flex-grow: 1;
+    font-size: 18px;
 }
 
 .mosaic-med{
+    position: relative;
     margin: 0px;
     padding: 0px;
     object-fit: cover;
     width: 15rem;
     height: auto;
     flex-grow: 2;
+    font-size: 22px;
 }
 
 .mosaic-lrg{
+    position: relative;
     margin: 0px;
     padding: 0px;
     object-fit: cover;
     width: 25rem;
     height: auto;
     flex-grow: 5;
+    font-size: 28px;
 }
 
 #newpost-title{
@@ -141,6 +182,7 @@ body, html{
     height: 6rem;
     padding: 20px;
     text-align: center;
+    z-index: 5;
 }
 
 #page-container {
