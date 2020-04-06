@@ -2,7 +2,12 @@
 <div class="columns main">
     <div id="mosaic" class="column">
         {{#each posts}}
-        <img class="mosaic-image lazy" src="{{this.post_image}}" data-id="{{this.id}}" onerror="this.src='/images/error.jpg'" loading="lazy" style="cursor:pointer;">
+            <div class="mosaic-image" data-id="{{this.id}}">
+                <div class="text-overlay">
+                    <p class="mosaic-text has-text-weight-semibold is-family-sans-serif" data-id="{{this.id}}">{{this.post_title}}</p>
+                </div>
+                <img class="mosaic-inner lazy" src="{{this.post_image}}" data-id="{{this.id}}" onerror="this.src='/images/error.jpg'" loading="lazy" style="cursor:pointer;">
+            </div>
         {{/each}}
     </div>
 </div>
@@ -19,17 +24,16 @@ $(".mosaic-image").on("click", function toPage(){
 {{!-- IMAGE SIZE RANDOMIZER --}}
 <script id="IMAGE_SIZE_RANDOMIZER">
 $(".mosaic-image").each(function randomClass(){
-  console.log("this:", this);
-  let random = Math.floor(Math.random() * 6);
-  console.log(random);
-  if (random <= 1){
-      $(this).addClass("mosaic-small");
-  }
-  else if (random <= 4){
-      $(this).addClass("mosaic-med");
-  }
-  else {
-      $(this).addClass("mosaic-lrg");
-  }
+    let random = Math.floor(Math.random() * 6);
+    //console.log(random);
+    if (random <= 1){
+        $(this).addClass("mosaic-small");
+    }
+    else if (random <= 4){
+        $(this).addClass("mosaic-med");
+    }
+    else {
+        $(this).addClass("mosaic-lrg");
+    }
 });
 </script>

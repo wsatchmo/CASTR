@@ -4,17 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- jQuery Link -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- AJAX Link -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Metadata & Favicon -->
     <title>Pixla</title>
-    <meta name="description" content="The everything network - all posts welcome">
-    <meta name="keywords" content="Social, Post, Comment, Network, Image, Video, Embed, Fun, Media">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="The everything network">
+    <meta name="keywords" content="Social Post Comment Network Image Video Embed Fun Picture Media">
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
     
+    <!-- Fontawesome Reference -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+    <!-- OKTA Reference -->
     <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet" />
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet" />
@@ -30,105 +36,93 @@
 <body>
   <!-- NAVBAR -->
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-          <a class="navbar-item" href="/landing"> <!-- LOGO -->
-              <img src="/images/logo2.png" width="112" height="28">
-          </a>
-      
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-          </a>
-          </div>
-      
-          <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-              <a class="navbar-item" href="/newpost">
-              Post <!-- NEW POST -->
-              </a>
-      
-              <a class="navbar-item" onclick="randomPage()">
-              Random
-              </a> <!-- RANDOM POST -->
-      
-              <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                  More <!-- MORE - Change to About, Contact, & Github Repo -->
-              </a>
-      
-              <div class="navbar-dropdown">
-                  <a class="navbar-item" href="https://github.com/cshjnim/CASTR">
-                  Github Repo
-                  </a>
-                  <a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://www.okta.com/">
-                  Link to Okta
-                  </a>
-                  <a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://bulma.io/">
-                  Link to Bulma
-                  </a>
-                  <hr class="navbar-divider">
-                  <a class="navbar-item" href="mailto:wsatcher144@gmail.com">
-                  Report an issue
-                  </a>
-              </div>
-            </div>
-          </div>
-      
-          <div class="navbar-end">
-              <div class="navbar-item">
-              <div class="buttons">
-                  {{!-- <a class="button is-link modal-button">
-                  <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
-                  </a> --}}
-                  <a class="button modal-button is-link" id="okta-button" data-target="#signin-modal">
-                  Sign in
-                  </a>
-
-                  <div id="messagebox" style="font-size: 12px; margin-right: 10px; margin-bottom: 5px;"></div>
-                  <a class="button is-light modal-button" id="logout-button" onclick="logout()">
-
-                  Log Out
-                  </a>
-
-              </div>
-              </div>
-          </div>
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/landing"> <!-- LOGO -->
+          <img src="/images/logo2.png" width="112" height="28">
+      </a>
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+      </a>
       </div>
+  
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/newpost">
+            Post <!-- NEW POST -->
+          </a>
+  
+          <a class="navbar-item" onclick="randomPage()">
+            Random
+          </a> <!-- RANDOM POST -->
+  
+          <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More <!-- MORE - Change to About, Contact, & Github Repo -->
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" target="_blank" href="https://github.com/cshjnim/CASTR">
+            Github Repo
+            </a>
+            <a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://www.okta.com/">
+            Link to Okta
+            </a>
+            <a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://bulma.io/">
+            Link to Bulma
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="mailto:wsatcher144@gmail.com">
+            Report an issue
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {{!-- <a class="button is-link modal-button">
+            <strong>Sign up</strong> <!-- SIGNUP & LOGIN -- Change Hyejin's to modal -->
+            </a> --}}
+            <a class="button modal-button is-link" id="okta-button" data-target="#signin-modal">
+            Sign in
+            </a>
+
+            <div id="messagebox" style="font-size: 12px; margin-right: 10px; margin-bottom: 5px;"></div>
+            <a class="button is-light modal-button" id="logout-button" onclick="logout()">
+
+            Log Out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
-
-
-{{!-- __________            _      ______   
-     / / / /  _ \          | |     \ \ \ \  
-    | | | || |_) | ___   __| |_   _ | | | | 
-   / / / / |  _ < / _ \ / _` | | | | \ \ \ \
-   \ \ \ \ | |_) | (_) | (_| | |_| | / / / /
-    | | | ||____/ \___/ \__,_|\__, || | | | 
-     \_\_\_\                   __/ /_/_/_/  
-                              |___/          --}}
-                              
-                 {{{ body }}}
+             
 
 {{!--              ,#####,
                    #_   _#
                    |~` `~|  BODY!!!
-                   |  u  |  /
-                   \  =  /
-                   |\___/|
-          ___ ____/:     :\____ ___
-        .'   `.-===-\   /-===-.`   '.
-       /      .-"""""-.-"""""-.      \
-      /'             =:=             '\
-    .'  ' .:    o   -=:=-   o    :. '  `.
-    (.'   /'. '-.....-'-.....-' .'\   '.)
-    /' ._/   ".     --:--     ."   \_. '\
-   |  .'|      ".  ---:---  ."      |'.  |
-   |  : |       |  ---:---  |       | :  |
-    \ : |       |_____._____|       | : /
-    /   (       |----|------|       )   \ 
-   /... .|      |    |      |      |. ...\
-  |::::/'' jgs /     |       \     ''\::::|
-  '""""       /'    .L_      `\       """"' --}}
+                   |  u  |  /         _    ____.     _
+                   \  =  /           | |  /;^^^^\   | |
+                   |\___/|         --}} {{{ body }}} {{!-- 
+          ___ ____/:     :\____ ___  |_|    \    \  |_|
+        .'   `.-===-\   /-===-.`   '.        | , l
+       /      .-"""""-.-"""""-.      \      /  ; l
+      /'             =:=             '\   /    :| 
+    .'  ' .:    o   -=:=-   o    :. '  `./     /
+    (.'   /'. '-.....-'-.....-' .'\   '.)     /. 
+    /' ._/   ".     --:--     ."   \_. '\    /;
+   |  .'|      ".  ---:---  ."      |'.     )
+   |  : |       |  ---:---  |        \. __/•
+    \ : |       |_____._____|           
+    /   (       |----|------|    
+   /... .|      |    |      |    
+  |::::/'' jgs /     |       \  
+  '""""       /'    .L_      `\  --}}
 
 
   <!-- FOOTER --> 
@@ -136,18 +130,20 @@
       <footer class="footer" id="main-footer">
           <div class="content has-text-centered" style="margin-bottom: 5px;">
               <p>
-              &#169; Copyright 
-              <a href="https://github.com/cshjnim">Hyejin Kim</a>,
-              <a href="https://github.com/krizel4">Krizel Minnema</a>,
-              <a href="https://github.com/UnseenMountain">Luke Klymshyn</a>, &
-              <a href="https://github.com/wsatchmo">Will Satcher</a>
+              <a href="https://github.com/cshjnim" target="_blank">Hyejin Kim</a>
+              <i class="fa fa-cog fa-spin fa-fw"></i>
+              <a href="https://github.com/krizel4" target="_blank">Krizel Minnema</a>
+              <i class="fa fa-cog fa-spin fa-fw"></i>
+              <a href="https://github.com/UnseenMountain" target="_blank">Luke Klymshyn</a>
+              <i class="fa fa-cog fa-spin fa-fw"></i>
+              <a href="https://github.com/wsatchmo" target="_blank">Will Satcher</a>
               </p>
           </div>
           <img class="center" src="/images/logo1.png" style="height: 20px;">
       </footer>
     </div>
   
-  <!-- where the sign-in form will be displayed -->
+  <!-- Where the sign-in form will be displayed -->
   <div id="signin-modal" class="modal">
     <div class="modal-background"></div>
     <div id="okta-login-container">
@@ -156,7 +152,8 @@
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <!-- Fontawesome js -->
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 </body>
 
@@ -182,10 +179,10 @@ $(".modal-background").click(function() {
 <!-- use the Okta widget to power authentication! -->
 <script id="OKTA_AUTH" type="text/javascript">
 var oktaSignIn = new OktaSignIn({
-  baseUrl: "https://dev-243399.okta.com",
-  clientId: "0oa17yze2QPsrc85c4x6",
+  baseUrl: "https://dev-809000.okta.com",
+  clientId: "0oa5cc8ibdeo6rX7y4x6",
   authParams: {
-    issuer: "https://dev-243399.okta.com/oauth2/default",
+    issuer: "https://dev-809000.okta.com/oauth2/default",
     responseType: ['token', 'id_token'],
     display: 'page'
   },
@@ -216,11 +213,15 @@ if (oktaSignIn.token.hasTokensInUrl()) {
     // If we get here, the user is already signed in.
     if (res.status === 'ACTIVE') {
       $("#okta-button").hide();
-      document.getElementById("messagebox").innerHTML = "Hello, " + res.login + "";
-      $("#messagebox").attr("data-login", res.login);
+      let userE = res.login;
+      let n = userE.indexOf("@");
+      userE = userE.substring(0, n);
+      document.getElementById("messagebox").innerHTML = "Hello, " + userE + "";
+      $("#messagebox").attr("data-email", res.login);
+      $("#messagebox").attr("data-login", userE);
       let newpostUsername = document.getElementById("newpost_username");
       if (newpostUsername){
-        document.getElementById("newpost_username").innerHTML = "" + res.login + "";
+        document.getElementById("newpost_username").innerHTML = "" + userE + "";
       }
       console.log("res.login ::", res.login);
       return;
@@ -244,9 +245,10 @@ function callMessagesApi() {
 
   // Make the request using jQuery
   $.ajax({
-    url: "https://dev-243399.okta.com/oauth2/default",
+    url: "https://dev-809000.okta.com/oauth2/default",
     headers: {
-      Authorization : "Bearer " + accessToken.accessToken
+      Authorization : "Bearer " + accessToken.accessToken //,
+      //Access-Control-Allow-Origin : *
     },
     success: function(response) {
       console.log('Messages', response);

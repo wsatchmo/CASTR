@@ -37,23 +37,54 @@
             </div>
           </div>
 
-          <div class="field">
-            <label class="label white-label">Message</label>
-            <div class="control">
-              <textarea id="post-body" class="textarea" placeholder="Post Message or <iframe> Embed"></textarea>
-            </div>
+          <div class="tabs is-toggle" style="margin-top: 30px;">
+            <ul>
+              <li class="is-active" data-tab="image-url">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-link" aria-hidden="true"></i></span>
+                  <span style="color: white;">Image Link</span>
+                </a>
+              </li>
+              <li data-tab="pexels-search">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-search" aria-hidden="true"></i></span>
+                  <span style="color: white;">Image Search</span>
+                </a>
+              </li>
+            </ul>
           </div>
 
-          <div class="field">
-            <label class="label white-label">Link to your image</label>
+          <div class="tab-content field is-active image-url" style="width: 85%">
+            <label class="label white-label">Link to your Image</label>
             <div class="control has-icons-left has-icons-right">
-              <input class="input is-info" id="post-image" type="text" placeholder="Image url">
+              <input class="input is-info" id="post-image" type="text" placeholder="Image URL">
               <span class="icon is-small is-left">
                 <i class="fas fa-image"></i>
               </span>
               <span class="icon is-small is-right">
                 <i class="fas fa-check"></i>
               </span>
+            </div>
+          </div>
+
+          <div class="tab-content field pexels-search">
+            <label class="label white-label">Pexels Image Search</label>
+            <div class="control has-icons-left has-icons-right" style="width: 85%;">
+              <input class="input is-info" id="pexel-image-search" type="text" placeholder="Search Images">
+              <span class="icon is-small is-left">
+                <i class="fas fa-image"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <button class="button is-link search-btn" style="margin-top: 10px;">Search</button>
+          </div>
+
+          <div class="field" style="margin-top: 15px;">
+            <label class="label white-label">Message</label>
+            <div class="control">
+              <textarea id="post-body" class="textarea" placeholder="Post Message or <iframe> Embed"></textarea>
             </div>
           </div>
 
@@ -71,8 +102,42 @@
   </div>
 </div>
 
+<div id="required-modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="card" id="modal-content" style="margin: 3%;">
+    <div class="card-content">
+      <p class="title">
+        “More, more, more!”
+      </p>
+      <p class="subtitle">
+        - Billy Idol & Zoidberg
+      </p>
+    </div>
+    <footer class="card-footer" style="padding: 15px;">
+      <p>We're sorry, but you haven't provided enough information for this post. Please include at minimum: a title, genre, and image link.</p>
+    </footer>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="pexels-modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="card pexels-modal-inner" id="modal-content" style="margin: 3%;">
+    <div class="card-content">
+      <p class="subtitle">
+        Search Results
+      </p>
+    </div>
+    <footer class="card-footer" style="padding: 15px;">
+      <div class="image-dropping"></div>
+    </footer>
+    <button class="button is-link search-btn" style="float: right; margin-right: 20px; margin-bottom: 20px">More Images</button>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
 <!--
- _____ _____ _____ _____    _____ _____ _____ _____ _____ _____ _____
+_____ _____ _____ _____    _____ _____ _____ _____ _____ _____ _____
 |  _  |  .  |   __|_   _|  | __  |   __|     |  |  |   __|   __|_   _|
 |   __|  |  |__   | | |    |    -|   __|  |  |  |  |   __|__   | | |
 |__|  |_____|_____| |_|    |__|__|_____|__  _|_____|_____|_____| |_|
@@ -80,13 +145,38 @@
     -->
 
 <script id="POST_REQUEST_FORPOSTS" type="text/javascript"> //Script for sending PUT request
+//If selecting image from pexels
+var pexImage;
+function selectImg(pexelsUrl, selected){
+  event.preventDefault();
+  pexImage = pexelsUrl;
+  setTimeout(function()
+  {
+    $(".checkcircle-image").css("opacity", "0");
+  }, 3000);
+  setTimeout(function()
+  {
+    $(".checkcircle-image").remove();
+  }, 3500);
+  $("#" + selected).append("<i class='far fa-check-circle checkcircle-image'></i>");
+};
+
+//Actual post request
 $("#add-post").on("click", function(event) {
   console.log("Submit button pressed");
   var type;
   let title = $("#post-title").val();
   let user = $("#newpost_username").text();
   let body = $("#post-body").val();
-  let image = $("#post-image").val();
+  //If post image is selected, post image; same for pexel image
+  let linkImage = $("#post-image").val();
+  var image;
+  if ($(".image-url").hasClass("is-active")){
+    image = linkImage;
+  }
+  if ($(".pexels-search").hasClass("is-active")){
+    image = pexImage;
+  }
   let genreInput = $(".genre-input");
   let genreSelect = $(".genre-select");
 
@@ -128,22 +218,130 @@ $("#add-post").on("click", function(event) {
 });
 </script>
 
-  <div id="required-modal" class="modal">
-    <div class="modal-background"></div>
-    <div class="card" id="modal-content" style="margin: 3%;">
-      <div class="card-content">
-        <p class="title">
-          “More, more, more!”
-        </p>
-        <p class="subtitle">
-          - Billy Idol & Zoidberg
-        </p>
-      </div>
-      <footer class="card-footer" style="padding: 15px;">
-        <p>We're sorry, but you haven't provided enough information for this post. Please include at minimum: a title, genre, and image link.</p>
-      </footer>
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
 
-</body>
+<script id="IMAGE_TABS">
+  const tabs = [...document.querySelectorAll('.tabs li')];
+  const activeClass = 'is-active';
+  const imgUrl = $(".image-url");
+  const pexelsSearch = $(".pexels-search");
+
+  //Initialize tabs
+  function initTabs() {
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        let selected = tab.getAttribute('data-tab');
+        //console.log(selected);
+        updateActiveTab(tab);
+        if (selected === 'image-url'){
+          imageUrlActive();
+        }
+        if (selected === 'pexels-search'){
+          pexelsSearchActive();
+        }
+      })
+    })
+  }
+
+  //Change active tab
+  function updateActiveTab(selected) {
+    tabs.forEach((tab) => {
+      if (tab && tab.classList.contains(activeClass)) {
+        tab.classList.remove(activeClass);
+      }
+    });
+    selected.classList.add(activeClass);
+  }
+
+  //Change active content
+  function imageUrlActive(){        
+    if (!imgUrl.hasClass(activeClass)){
+      $(".image-url").addClass(activeClass);
+      $(".pexels-search").removeClass(activeClass);
+    }
+  }
+  function pexelsSearchActive(){        
+    if (!pexelsSearch.hasClass(activeClass)){
+      $(".pexels-search").addClass(activeClass);
+      $(".image-url").removeClass(activeClass);
+    }
+  }
+
+  initTabs();
+</script>
+
+<script id="PEXELS_SEARCH">
+  function makePexelsRequest (queryParamater, page){
+    // This is our API key
+    var APIKey = "563492ad6f917000010000016cb107822cca4692b05cb34dd239360d";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = `https://api.pexels.com/v1/search?query=${queryParamater}&per_page=15&page=` + page;
+    //console.log(queryURL);
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+      headers: {
+        'Authorization': APIKey
+      } 
+    })
+
+    .then(function(response) {
+      // Log the resulting object
+      // console.log(response);
+      var photos = response.photos;
+      //console.log(response);
+      // call a function named handleResponse, 
+      handleResponse(photos);
+    });
+  }
+
+  // make a function called handleResponse
+  function handleResponse (photos){
+    // console.log(photos);
+    for(var i = 0; i<photos.length; i++){
+      var photo =  photos[i];
+      var imageContainer = $(".image-dropping");
+      var image = `<div class='pexels-image' id='${photo.id}' onclick="selectImg('${photo.src.large}', '${photo.id}')"><img class='pexels-image-inner' src="${photo.src.medium}" ></div>`
+      imageContainer.prepend(image);
+      $("#pexels-modal").addClass("is-active");
+    }
+  }
+
+  var tempParam = "";
+  var page;
+  $(".search-btn").on("click", function(e){
+    e.preventDefault();
+    var queryParamater = $("#pexel-image-search").val();
+    if (tempParam != queryParamater){
+      page = 1;
+      tempParam = queryParamater;
+      //console.log("queryParamater:");
+      //console.log(queryParamater);
+      //console.log("tempParam:");
+      //console.log(tempParam);
+      if(queryParamater !== "" && queryParamater !== undefined){
+        makePexelsRequest (queryParamater, page)
+      } else{
+        console.log("you need to type something");
+      }
+    } else {
+      if(queryParamater !== "" && queryParamater !== undefined){
+        page++;
+        makePexelsRequest (queryParamater, page)
+      } else{
+        console.log("you need to type something");
+      }
+    }
+  });
+</script>
+
+<script id="TEXTAREA_ENTER">
+  $('#post-body').keypress(function(event) {
+  if (event.which == 13) {
+    event.preventDefault();
+    this.value = this.value + "\n";
+    console.log(this.value);
+  }
+});
+</script>
