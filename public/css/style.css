@@ -149,7 +149,7 @@ body, html{
 }
 
 #newpost-title{
-    font-size: 20px;
+    font-size: 25px;
 }
 
 #newpost-main{
@@ -204,12 +204,53 @@ body, html{
     width: 50%;
 }
 
+.pexels-modal-inner{
+    max-height: 85%;
+    overflow-y: scroll;
+}
+
+.pexels-image{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    overflow: hidden;
+}
+.pexels-image:hover{
+    outline: 3px solid rgba(39, 108, 218, .7);
+}
+
+.pexels-image-inner{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+
+.checkcircle-image{
+    margin-bottom: 60px; 
+    color: white; 
+    transition: .3s ease; 
+    font-size: 55px; 
+    position: relative; 
+    bottom: 85px; 
+    left: 23px;
+}
+
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
-  }
+}
+
+.tab-content {
+    display: none;
+}
+  
+.tab-content.is-active {
+display: block;
+}
 
 @media only screen and (max-width: 400px) {
     footer.footer {
