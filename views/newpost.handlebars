@@ -120,6 +120,24 @@
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
 
+<div id="noresults-modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="card" id="modal-content" style="margin: 3%;">
+    <div class="card-content">
+      <p class="title">
+        Nothing to see here...
+      </p>
+      <p class="subtitle">
+        Your search resulted in no photos - here's a random piece of beauty to make up for it.
+      </p>
+    </div>
+    <footer class="card-footer" style="padding: 15px;">
+      <div id="random-img"></div>
+    </footer>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
 <div id="pexels-modal" class="modal">
   <div class="modal-background"></div>
   <div class="card pexels-modal-inner" id="modal-content" style="margin: 3%;">
@@ -272,10 +290,10 @@ $("#add-post").on("click", function(event) {
 <script id="PEXELS_SEARCH">
   function makePexelsRequest (queryParamater, page){
     // This is our API key
-    var APIKey = "563492ad6f917000010000016cb107822cca4692b05cb34dd239360d";
+    const APIKey = "563492ad6f917000010000016cb107822cca4692b05cb34dd239360d";
 
     // Here we are building the URL we need to query the database
-    var queryURL = `https://api.pexels.com/v1/search?query=${queryParamater}&per_page=15&page=` + page;
+    const queryURL = `https://api.pexels.com/v1/search?query=${queryParamater}&per_page=15&page=` + page;
     //console.log(queryURL);
 
     $.ajax({
@@ -285,34 +303,64 @@ $("#add-post").on("click", function(event) {
         'Authorization': APIKey
       } 
     })
-
     .then(function(response) {
       // Log the resulting object
       // console.log(response);
-      var photos = response.photos;
-      //console.log(response);
-      // call a function named handleResponse, 
-      handleResponse(photos);
+      console.log("PEXELS RESPONSE:: ", response);
+      if (response.total_results === 0){
+        //Modal for no pexels responses
+        noResultsPhoto();
+      } else {
+        const photos = response.photos;
+        // call a function to handle the response 
+        handleResponse(photos);
+      }
     });
   }
 
-  // make a function called handleResponse
+  function noResultsPhoto(){
+    const APIKey = "563492ad6f917000010000016cb107822cca4692b05cb34dd239360d";
+    let page = Math.floor(Math.random() * 1000 + 1);
+    // Here we are building the URL we need to query the database
+    const queryURL = `https://api.pexels.com/v1/curated?per_page=1&page=` + page;
+    console.log("queryURL::", queryURL);
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+      headers: {
+        'Authorization': APIKey
+      } 
+    })
+    .then(function(response) {
+      // Log the resulting object
+      console.log(response);
+      const photo = response.photos[0];    
+      let imageContainer = $("#random-img");
+      let image = `<img class='random-image-inner' src="${photo.src.large}">`
+      imageContainer.empty().append(image);
+      $("#noresults-modal").addClass("is-active");   
+    });
+  }
+
+  // make a function called handleResponse that displays to a modal
   function handleResponse (photos){
     // console.log(photos);
     for(var i = 0; i<photos.length; i++){
-      var photo =  photos[i];
-      var imageContainer = $(".image-dropping");
-      var image = `<div class='pexels-image' id='${photo.id}' onclick="selectImg('${photo.src.large}', '${photo.id}')"><img class='pexels-image-inner' src="${photo.src.medium}" ></div>`
+      let photo =  photos[i];
+      let imageContainer = $(".image-dropping");
+      let image = `<div class='pexels-image' id='${photo.id}' onclick="selectImg('${photo.src.large}', '${photo.id}')"><img class='pexels-image-inner' src="${photo.src.medium}" ></div>`
       imageContainer.prepend(image);
       $("#pexels-modal").addClass("is-active");
     }
   }
 
+  //pagination
   var tempParam = "";
   var page;
   $(".search-btn").on("click", function(e){
     e.preventDefault();
-    var queryParamater = $("#pexel-image-search").val();
+    let queryParamater = $("#pexel-image-search").val();
     if (tempParam != queryParamater){
       page = 1;
       tempParam = queryParamater;
@@ -334,14 +382,4 @@ $("#add-post").on("click", function(event) {
       }
     }
   });
-</script>
-
-<script id="TEXTAREA_ENTER">
-  $('#post-body').keypress(function(event) {
-  if (event.which == 13) {
-    event.preventDefault();
-    this.value = this.value + "\n";
-    console.log(this.value);
-  }
-});
 </script>
