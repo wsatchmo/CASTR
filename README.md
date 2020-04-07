@@ -106,6 +106,7 @@ CREATE TABLE comments (
 ###### [Heroku Deploy](https://heroku.com/)
 
 ##### Dependencies
+* Bulma
 * dotenv
 * Node.js
 * Express
@@ -117,13 +118,15 @@ CREATE TABLE comments (
 ! FUTURE ADDITIONS !
 ```
 
-•Deleting & editing posts, comments
+* Deleting & editing posts, comments
 
-•Image upload from remote - possibly using Cloudinary
+* Image upload from remote - possibly using Cloudinary
 
-•Show date/time posted for posts & comments
+* Show date/time posted for posts & comments
 
-•Adding user profiles
+* Post search, filter by genre
+
+* Adding user profiles
 
 - - -
 
