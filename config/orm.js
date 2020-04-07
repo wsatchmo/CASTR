@@ -21,7 +21,7 @@ var orm = {
 
     allGenre: function(table, cb){  //GET ALL DISTINCT GENRES
         var queryString = "SELECT DISTINCT post_type FROM posts"
-        console.log(queryString);
+        //console.log(queryString);
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -34,7 +34,7 @@ var orm = {
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
-        console.log(queryString);
+        //console.log(queryString);
         connection.query(queryString, vals, function(err, result){
             if (err) throw err;
             cb(result);
@@ -44,7 +44,7 @@ var orm = {
     getOne: function(table, vals, cb){ //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN VALS
         var queryString = "SELECT * FROM " + table + " WHERE id = ";
         queryString += vals;
-        console.log("QUERY STRING: ", queryString);
+        //console.log("QUERY STRING: ", queryString);
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -53,7 +53,7 @@ var orm = {
 
     getLast: function(table, cb){ //SELECT ITEM FROM TABLE BY LAST ID DESCENDING (LAST)
         var queryString = "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
-        console.log("Firing");
+        //console.log(querystring);
         connection.query(queryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -66,7 +66,7 @@ var orm = {
     getComments: function(post_id, cb){ //SELECT ITEM FROM TABLE WHERE ID == GIVEN IN post_id
         var comQueryString = "SELECT * FROM comments WHERE postId = ";
         comQueryString += post_id;
-        console.log("COMMENT QUERY STRING: ", comQueryString);
+        //console.log("COMMENT QUERY STRING: ", comQueryString);
         connection.query(comQueryString, function(err, result){
             if (err) throw err;
             cb(result);
@@ -77,8 +77,9 @@ var orm = {
         var queryString = "INSERT INTO comments (postId, name, email, comment) VALUES (";
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
-        console.log("===========vals:: ");
-        console.log(vals);
+        //console.log(querystring);
+        // console.log("===========vals:: ");
+        // console.log(vals);
         connection.query(queryString, vals, function(err, result){
             if (err) throw err;
             cb(result);
@@ -93,8 +94,7 @@ var orm = {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE "; //CHANGE THIS TO DELETE POSTS
         queryString += condition; //the WHERE clause
-
-        console.log(queryString);
+        //console.log(queryString);
         connection.query(queryString, function(err, result){
 		if(err){
 			throw err;
@@ -103,12 +103,12 @@ var orm = {
 	    });
     },
 
+    //NOT YET IMPLEMENTED
     updateOne: function(table, condition, cb){
         var queryString = "UPDATE " + table;
         queryString += " SET devoured = true WHERE "; //CHANGE THIS TO UPDATE POSTS -- WHEN EDITING? ETC [???]
         queryString += condition; //the WHERE clause
-
-        console.log(queryString);
+        //console.log(queryString);
         connection.query(queryString, function(err, result){
         if(err){
             throw err;

@@ -262,6 +262,19 @@ body, html{
 display: block;
 }
 
+#h-link:hover{
+    color: #666666;
+}
+#k-link:hover{
+    color: #666666;
+}
+#l-link:hover{
+    color: #666666;
+}
+#w-link:hover{
+    color: #666666;
+}
+
 @media only screen and (max-width: 400px) {
     footer.footer {
         padding: 5px;

@@ -1,11 +1,12 @@
 var express = require("express"); //express dependency
 var PORT = process.env.PORT || 8080; //define port
 var app = express(); //initialize express application
+var path = require('path'); 
 
 //set environmet varibles
 require("dotenv").config();
 //For CSS
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, '/public')));
 
 //Parse application body JSON
 app.use(express.urlencoded({extended: true})); //ALLOWS NESTED OBJECTS -- is this needed?
