@@ -37,7 +37,7 @@
 ```diff
 ! NOTES !
 ```
-•If you use this app frequently, there is a possibility the API will hit its request quota. You can register for an API Key from [Pexels](https://www.pexels.com/api/) fairly easily. To use your own API Key, simply insert it in your code in the **pexels.js** or **thesaurus.js** files as follows:
+•If you use this app frequently, there is a possibility the API will hit its request quota. You can register for an API Key from [Pexels](https://www.pexels.com/api/) fairly easily. To use your own API Key, simply insert it in your code in the **pexels.js** file as follows:
 
 ```js
 function makePexelsRequest (queryParamater, page){
@@ -46,7 +46,7 @@ function makePexelsRequest (queryParamater, page){
     ...}
 ```
 
-•If you make any changes in the **login.js** file, please be sure to input your own Okta config information (found in Okta project settings) first so there is no chance you overwrite another user's previously saved work. The Okta config is as follows:
+•In the **main.js** file, be sure to input your own Okta config information (found in Okta project settings) first so there is no chance of conflicting authorization information. If you do not, your version likely will not work. The Okta config is as follows:
 
 ```js
 //Replace this config object with your own Okta configuration ↓↓↓
@@ -66,7 +66,7 @@ var oktaSignIn = new OktaSignIn({
 
 •Please also be wary of the SQL Database used; use your own by creating one with MySQL Workbench or your own SQL development environment. 
 ```html
-<PLEASE DO NOT DROP OUR DATABASE!>
+<PLEASE DO NOT DROP OUR DATABASE!!!>
 ```
 Input your own Database using the SQL Schema:
 
