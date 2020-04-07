@@ -31,7 +31,7 @@
 
 #### This project is deployed [here on Heroku](https://pixla.herokuapp.com)
 
-![Screenshots](/screenshots/frontpage.png)
+![Screenshots](/public/images/screenshots/frontpage.png)
 
 
 ```diff
