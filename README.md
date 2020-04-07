@@ -2,7 +2,7 @@
 
 ### Image and video-centric social media
 
-##### Team members: [Hyejin Kim](https://github.com/cshjnim "Hyejin's Github"), [Krizel Minnema](https://github.com/krizel4 "Krizel's Github), [Luke Klymshyn](https://github.com/UnseenMountain "Luke's Github), [Will Satcher](https://github.com/wsatchmo "My Github")
+##### Team members: [Hyejin Kim](https://github.com/cshjnim "Hyejin's Github"), [Krizel Minnema](https://github.com/krizel4 "Krizel's Github"), [Luke Klymshyn](https://github.com/UnseenMountain "Luke's Github"), [Will Satcher](https://github.com/wsatchmo "My Github")
 
 ```diff
 + HOW IT WORKS +
@@ -24,7 +24,6 @@
 
 •If a user types their password incorrectly, they are given the option of resetting their password via email
 
-![Screenshots](/screenshots/signup.png)
 
 ```diff
 - DEPLOYMENT -
@@ -65,8 +64,11 @@ var oktaSignIn = new OktaSignIn({
 });
 ```
 
-•Please also be wary of the SQL Database used; use your own by creating one with MySQL Workbench or your own SQL development environment. <p style="color: red;">DO NOT DROP OUR DATABASE!<p>
-Input your own Database 
+•Please also be wary of the SQL Database used; use your own by creating one with MySQL Workbench or your own SQL development environment. 
+```html
+<PLEASE DO NOT DROP OUR DATABASE!>
+```
+Input your own Database using the SQL Schema:
 
 ```sql
 CREATE DATABASE your_db_name;
