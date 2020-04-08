@@ -21,9 +21,9 @@ app.set("view engine", "handlebars"); //Use the view engine
 var routes = require("./controllers/cast-controller");
 app.use(routes); //Recognize & use the routes
 
-// ================~~~SERVER~~~~==================--------------------|  |===|===||
-// Start the server                                                 //|  |  _√_  ||
-app.listen(PORT, () => {                                            //|  |<(¨v¨)>||
-    console.log("Server listening on:: http://localhost:" + PORT);  //|  |  |U|  ||
-});                                                                 //|  |_______||
+// ================~~~SERVER~~~~==================--------------------|  |===|===|| github.com/wsatchmo
+// Start the server                                                 //|  |  _√_  || -Will S-
+app.listen(PORT, () => {                                            //|  |<(¨v¨)>|| "Many things can happen in brains!"   
+    console.log("Server listening on:: http://localhost:" + PORT);  //|  |  |U|  ||   "Time's coming near, almost there, never fear..."      
+});                                                                 //|  |_______||     "You can think lots of stuff with brains!"
 // ================~~~SERVER~~~~==================--------------------|  ~~GOBLIN~~ 
