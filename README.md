@@ -29,7 +29,7 @@
 - DEPLOYMENT -
 ```
 
-#### This project is deployed [here on Heroku](https://pixla.herokuapp.com)
+UPDATE: As Heroku has removed all free plans, this project is no longer deployed. I am currently working on finding it a home. It will likely be redeployed via [Google Firebase](https://firebase.google.com) in the future.
 
 ![Screenshots](/public/images/screenshots/frontpage.png)
 
@@ -131,7 +131,7 @@ CREATE TABLE comments (
 - - -
 
 Created: Jan. 28, 2020
-Last Updated: Apr. 6, 2020
+Last Updated: Jan. 17, 2024
 
 ```diff
 # Happy coding! #
