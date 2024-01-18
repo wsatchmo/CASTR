@@ -15,7 +15,7 @@ Utilizes:
 * Express-Handlebars
 * Bulma Framework
 
-Users send & post image or link data to an SQL database which populates immediately on the home page using React. Each post has its own page, which includes a comment section and like counter. Database is updated with new information from user comments and likes, which also populates immediately. Likes can be undone and comments can be edited and deleted. Front page displays all posts. Users can create accounts or login with Okta Auth (must login to comment); their like and comment data is saved to the database ~hosted on Heroku using JawsDB~
+Users send & post image or link data to an SQL database which populates immediately on the home page using Handlebars. Each post creates its own page, which includes a comment section and like counter. Database is updated with new information from user comments and likes, which also populates immediately. Likes can be undone and comments can be edited and deleted. Front page displays all posts. Users can create accounts or login with Okta Auth (must login to comment); their like and comment data is saved to the database ~hosted on Heroku using JawsDB~
 
 ```diff
 + WHAT IT DOES +
