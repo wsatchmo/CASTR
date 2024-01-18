@@ -5,7 +5,20 @@
 ##### Team members: [Hyejin Kim](https://github.com/cshjnim "Hyejin's Github"), [Krizel Minnema](https://github.com/krizel4 "Krizel's Github"), [Luke Klymshyn](https://github.com/UnseenMountain "Luke's Github"), [Will Satcher](https://github.com/wsatchmo "My Github")
 
 ```diff
-+ HOW IT WORKS +
+! HOW IT WORKS !
+```
+Utilizes:
+* Express
+* Node
+* SQL
+* Okta Auth
+* Express-Handlebars
+* Bulma Framework
+
+Users send & post image or link data to an SQL database which populates immediately on the home page using React. Each post has its own page, which includes a comment section and like counter. Database is updated with new information from user comments and likes, which also populates immediately. Likes can be undone and comments can be edited and deleted. Front page displays all posts. Users can create accounts or login with Okta Auth (must login to comment); their like and comment data is saved to the database ~hosted on Heroku using JawsDB~
+
+```diff
++ WHAT IT DOES +
 ```
 
 •Create posts and watch them populate onto the main page from an SQL Database
@@ -16,7 +29,7 @@
 
 •Post message may contain an iframe embed from Youtube or other sources - it will automatically format
 
-•Comment on posts to join the conversation. Comments by currently logged in user display as such
+•Comment on posts to join the conversation. Comments by currently logged in users display with username
 
 •Login via the Okta Oauth modal. New users must create an account and validate via email
 
@@ -26,16 +39,18 @@
 
 
 ```diff
-- DEPLOYMENT -
+- ~DEPLOYMENT~ -
 ```
 
 UPDATE: As Heroku has removed all free plans, this project is no longer deployed. I am currently working on finding it a home. It will likely be redeployed via [Google Firebase](https://firebase.google.com) in the future.
+
+DEPLOYED SCREENSHOT: 
 
 ![Screenshots](/public/images/screenshots/frontpage.png)
 
 
 ```diff
-! NOTES !
+# NOTES #
 ```
 •If you use this app frequently, there is a possibility the API will hit its request quota. You can register for an API Key from [Pexels](https://www.pexels.com/api/) fairly easily. To use your own API Key, simply insert it in your code in the **pexels.js** file as follows:
 
@@ -105,18 +120,9 @@ CREATE TABLE comments (
 ###### [Pexels Image API](https://www.pexels.com/api/)
 ###### [Heroku Deploy](https://heroku.com/)
 
-##### Dependencies
-* Bulma
-* dotenv
-* Node.js
-* Express
-* Express-Handlebars
-* MySQL & MySQL2
-* Oauth
+<!-- 
 
-```diff
-! FUTURE ADDITIONS !
-```
+TODO:
 
 * Deleting & editing posts, comments
 
@@ -127,6 +133,8 @@ CREATE TABLE comments (
 * Post search, filter by genre
 
 * Adding user profiles
+
+-->
 
 - - -
 
